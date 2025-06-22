@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './temp.css';
 import Startwriting from '../components/Startwriting';
-import LogoutButton from '../components/logoutbutton';
+import LogoutButton from '../components/Logoutbutton';
 import { useMyPosts } from '../context/MyPostsContext';
 import { AuthContext } from '../context/AuthContext';
 import PostCountCard from '../components/DashBoard/Postcountcard';
