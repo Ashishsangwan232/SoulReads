@@ -25,7 +25,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     fetchAllPosts();
-  }, [fetchAllPosts]);
+  }, []);
 
   return (
     <AllPostsContext.Provider value={{ posts, loading, error, refresh: fetchAllPosts }}>
