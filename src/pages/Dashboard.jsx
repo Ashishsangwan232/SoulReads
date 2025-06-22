@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import '../components/Dashboard/dashboard.css';
+import '../components/Dashboard/temp.css';
 import Startwriting from '../components/Startwriting';
 import LogoutButton from '../components/logoutbutton';
 import { useMyPosts } from '../context/MyPostsContext';
