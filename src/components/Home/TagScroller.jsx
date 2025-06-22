@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './tags.css';
+import './Tags.css';
 import { useLocation } from 'react-router-dom';
 
 const TagScroller = ({ onSearch }) => {
