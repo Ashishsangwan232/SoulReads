@@ -14,6 +14,7 @@ import MainContent from '../components/DashBoard/MainContent';
 import Settings from '../components/DashBoard/Settings';
 import { useLocation } from 'react-router-dom';
 import DarkModeToggle from '../components/Themetoggle/DarkModeToggle';
+import Logoutbutton from '../components/Logoutbutton';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -130,7 +131,9 @@ const Dashboard = () => {
                 <button className="setting-btn" onClick={() => setSettingtab(true)}>
                   <span className="material-symbols-outlined">settings</span>
                   Settings</button>
-                <LogoutButton className="dashbaord-sidebar-logout-btn" />
+                  <LogoutButton />
+                {/* <LogoutButton className="dashbaord-sidebar-logout-btn" /> */}
+                <Logoutbutton className="dashbaord-sidebar-logout-btn" />
               </div>
             </div>
           </aside>

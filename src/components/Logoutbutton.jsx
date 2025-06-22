@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-exports.LogoutButton=({ className })=> {
-    const navigate = useNavigate();
+const Logoutbutton = ({ className }) => {
+const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const { logout } = useContext(AuthContext);
 
@@ -30,3 +30,5 @@ exports.LogoutButton=({ className })=> {
         </button>
     );
 }
+
+export default Logoutbutton;
