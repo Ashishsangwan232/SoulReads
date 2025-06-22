@@ -8,7 +8,7 @@ const ResendVerification = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState({ text: '', type: '' });
     const [loading, setLoading] = useState(false);
-
+    const API_URL = import.meta.env.VITE_API_URL;
     const handleResend = async (e) => {
         e.preventDefault();
         setLoading(true);

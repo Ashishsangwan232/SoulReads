@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { gsap } from 'gsap';
 import './imagedropdown.css';
 import { AuthContext } from '../../context/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const ImageDropdown = () => {
     const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ const ImageDropdown = () => {
         if (!isconfirm) return;
         try {
             await logout();
-            navigate('/');
+            Navigate('/');
         } catch (error) {
             console.error("Logout failed:", error.message);
         }

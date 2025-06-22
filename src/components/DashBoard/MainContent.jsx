@@ -1,5 +1,5 @@
 import React from 'react'
-import { delay, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Menu_activity from './Menu_activity'
 import { CardsArchived, CardsBookmarked, Cardsdeleted, CardsDraft, CardsPublished } from './Userpost';
 import Filtercards from './Filtercards';

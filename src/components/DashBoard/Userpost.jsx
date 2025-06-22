@@ -71,7 +71,7 @@ export const CardsDraft = ({ cards }) => (
 
                     </div>
                     <h5>
-                        {card.authorId.username || displayName} • {new Date(card.createdAt).toLocaleDateString('en-US', {
+                        {card.authorId.username } • {new Date(card.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
@@ -97,7 +97,7 @@ export const CardsArchived = ({ cards }) => (
                         <OptionsMenu postId={card._id} archivestatus={card.archive} status={card.status} />
                     </div>
                     <h5>
-                        {card.authorId.username || displayName} • {new Date(card.createdAt).toLocaleDateString('en-US', {
+                        {card.authorId.username } • {new Date(card.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
@@ -123,7 +123,7 @@ export const Cardsdeleted = ({ cards }) => (
                         <OptionsMenu postId={card._id} archivestatus={card.archive} status={card.status} />
                     </div>
                     <h5>
-                        {card.authorId.username || displayName} • {new Date(card.createdAt).toLocaleDateString('en-US', {
+                        {card.authorId.username } • {new Date(card.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>

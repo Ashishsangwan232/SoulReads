@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import './Appmain.css';
-import { AuthContext } from '../context/AuthContext';
 import { MyPostsContext } from '../context/MyPostsContext';
 import RichTextEditor from './RichTextEditor';
 import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
 
 const WritingPageSlateEditing = () => {
   const { id } = useParams();
-  const { user } = useContext(AuthContext);
   const { refreshMyPosts } = useContext(MyPostsContext);
 
   const [value, setValue] = useState(null);

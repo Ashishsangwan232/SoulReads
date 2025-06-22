@@ -8,7 +8,7 @@ export const BookmarksProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
   const [bookmarks, setBookmarks] = useState([]);
   const [loadingbookmared, setLoadingBookmared] = useState(true);
-const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
   // Fetch bookmarks when user logs in
   useEffect(() => {
     if (!user) {

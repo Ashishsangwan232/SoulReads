@@ -9,7 +9,6 @@ import 'aos/dist/aos.css';
 import DarkModeToggle from '../Themetoggle/DarkModeToggle';
 
 function Navbar() {
-  const [pageReady, setPageReady] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -37,11 +36,11 @@ function Navbar() {
   }, [location.pathname]);
 
   // Page load detection (optional if you're animating after full load)
-  useEffect(() => {
-    const onLoad = () => setPageReady(true);
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
-  }, []);
+  // useEffect(() => {
+  //   // const onLoad = () => setPageReady(true);
+  //   window.addEventListener('load', onLoad);
+  //   return () => window.removeEventListener('load', onLoad);
+  // }, []);
 
   return (
     <nav className={`navbar ${isWritingPage ? 'writingnavbar' : ''}`}>

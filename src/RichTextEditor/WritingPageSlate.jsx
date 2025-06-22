@@ -27,7 +27,6 @@ const WritingPageSlate = () => {
     const { refreshMyPosts } = useContext(MyPostsContext);
 
     const userKey = user?.id || user?.email || 'anonymous';
-    const editor = useMemo(() => withHistory(withReact(createEditor())), []);
     const [value, setValue] = useState(initialValue);
     const [editorKey, setEditorKey] = useState(0);
 
