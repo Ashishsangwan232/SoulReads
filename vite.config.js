@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': { // Requests to /api will be proxied
-        target: 'http://localhost:8080', // Your backend server
+        target: import.meta.env.VITE_API_URL, // Your backend server
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, '') // If your backend routes don't start with /api
       }
