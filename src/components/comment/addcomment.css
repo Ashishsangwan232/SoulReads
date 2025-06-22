@@ -1,0 +1,89 @@
+.comment_section {
+  /* border: 2px solid red; */
+  background: var(--bg-default);
+  padding: 0.8rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: fadeIn 0.4s ease;
+  max-width: 100%;
+  margin: auto;
+}
+
+.comment_section textarea {
+  resize: vertical;
+  min-height: 80px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--shadow-color);
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background-color: var(--bg-card);
+  color: var(--text-default);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.comment_section textarea::placeholder {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.comment_section textarea:focus {
+  border-color: var(--shadow-hover);
+}
+
+.postcomment {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.postcomment button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.6rem;
+  background-color: var(--button);
+  color:var(white);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.postcomment button:hover:not(:disabled) {
+  background-color:var(--button);
+  transform: translateY(-1px);
+}
+
+.postcomment button:disabled {
+  background-color: var(--bg-hover);
+  color: var(--text-light);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Smooth fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .comment_section {
+    padding: 0.75rem;
+  }
+
+  .postcomment button {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}

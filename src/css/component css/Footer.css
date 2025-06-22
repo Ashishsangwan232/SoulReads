@@ -1,0 +1,9 @@
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--background-light);
+    border-top: 1px solid var(--background-gradient-start);
+    margin-top: 60px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }

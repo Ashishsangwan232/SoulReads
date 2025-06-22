@@ -1,0 +1,155 @@
+.post-detail {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 24px;
+}
+
+.post-detail h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-transform: capitalize;
+}
+
+.meta-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin: 0.6rem 0 1.2rem 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  color: var(--text-light);
+}
+
+.add-fav {
+  cursor: pointer;
+}
+
+.post-content {
+
+  font-size: 1.1rem;
+  color: var(--text-default);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.readmore-share-like {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.readmore-share {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+}
+
+.readmore-share svg {
+  fill: var(--primary-color);
+  stroke: var(--primary-color);
+}
+
+.native-share-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.author-bio {
+  background-color: #323232;
+  padding: 1.4rem;
+  border-radius: 0.5rem;
+  margin-top: 2.4rem;
+}
+
+.author-bio h3 {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.comments-section {
+  margin-top: 2.6rem;
+}
+
+.comments-section h3 {
+  color: var(--text-heading);
+  border-bottom: 0.1rem var(--border-color) solid;
+}
+
+.Nocomments {
+  color: var(--text-heading);
+  margin-top: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.comment {
+  padding: 0.1rem 0.4rem;
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  border-bottom: 0.1rem solid var(--border-color);
+
+}
+
+.reamdome-comment-author {
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.reamdome-comment-author span {
+  color: var(--text-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+
+}
+
+.reamdome-comment-author p {
+  font-size: 0.8rem;
+  color: var(--text-light);
+
+}
+
+.back {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.1rem;
+}
+
+.back-btn {
+  display: flex;
+  padding: 0.2rem 0.4rem;
+  background: transparent;
+  color: var(--arrow-color);
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+}
+
+.back-btn {
+  fill: none;
+  stroke: var(--text-muted);
+}
+
+.readmore-animation-line {
+  margin-bottom: 1rem;
+  color: var(--border-color);
+}
+
+.readmore-like-btn {
+  color: var(--text-heading);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.readmore-comment-content {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,107 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 90vh;
+  padding: 0 5rem;
+  background: var(--gradient-hero, linear-gradient(135deg,
+        #171717,
+        #0f0f0f,
+        #0f0f0f,
+        #000c0c,
+        #0f0f0f));
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: var(--text-default);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero::before {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+  opacity: 0.8;
+  z-index: 0;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  text-align: left;
+  z-index: 1;
+}
+
+.tagline {
+  font-size: 3.8rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  font-family: 'Merriweather', Georgia, serif;
+  letter-spacing: 0.8px;
+  line-height: 1.3;
+  color: var(--text-default);
+  text-shadow: 1px 1px 4px rgba(0, 31, 60, 0.429);
+}
+
+.subtitle {
+  text-align: left;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin: 0 0 36px 0;
+}
+
+.startwriting {
+  display: inline-flex;
+  margin: auto;
+  margin-left: 0;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.startwriting:hover {
+  transform: translateY(-2px);
+}
+
+.anim {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 6px;
+  background-color: var(--primary-color);
+  border-radius: 8px 0 0 8px;
+  color: var(--text-default);
+}
+
+.cta {
+  padding: 12px 12px 12px 0px;
+  background: var(--primary-color);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  color: var(--text-default);
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cta:hover {
+  background-color: var(--primary-color-dark);
+}

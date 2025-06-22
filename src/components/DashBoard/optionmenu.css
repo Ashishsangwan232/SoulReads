@@ -1,0 +1,47 @@
+
+.optionss {
+  position: relative;
+  display: flex;
+}
+
+.optionss svg {
+  fill: var(--text-heading);
+  cursor: pointer;
+  outline: none;
+}
+
+.optionss svg:hover {
+  background:var(--text-light);
+  border-radius: 0.3rem;
+}
+
+.further_options {
+  right: 25px;
+  top: 0;
+  position: absolute;
+  border-radius: 4px;
+  padding: 6px;
+  background-color: var(--bg-default);
+  z-index: 2;
+  min-width: 100px;
+  box-shadow: 0 2px 8px rgba(2, 2, 2, 0.37);
+}
+
+.further_options p {
+  width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 2px;
+  color: var(--text-default);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.further_options p:hover {
+  background: var(--bg-hover);
+}
+
+.further_options p:last-child {
+  margin-bottom: 0;
+}

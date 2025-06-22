@@ -1,0 +1,25 @@
+:root {
+    --background-light: #121212; /* Very dark background */
+    --background-gradient-start: #1e1e1e; /* Slightly lighter dark */
+    --background-gradient-end: #2a2a2a;
+    --background-gradient-Hover: #353535;
+    --text-button: #ffffff; /* Main text white */
+    --text-main: #ffffff; /* Main text white */
+    --text-light: #cccccc; /* Light text */
+    --text-muted: #aaaaaa; /* Muted text */
+    --primary-color: #ffb22c; /* Keep golden accent same */
+    --primary-light: #cd8200; /* Keep golden accent same */
+    --primary-color-dark: #e69f20; /* Slightly darker golden */
+    --button-color: #ffb22c; /* Deep brownish buttons */
+    --button-color-hover: #e69f20; /* Even darker for hover */
+    --login-button: #854836;
+    --login-button-hover: #6d3a2a;
+    --card-background: #1e1e1ecc; /* Semi-transparent dark card */
+    --white: #ffffff; /* White for text or highlights */
+    --error-color: #ff4c4c; /* Bright error red */
+    --success-color: #34d399; /* Softer success green */
+    --navbar-shadow: rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    --modal-background: rgba(0, 0, 0, 0.5); /* Dark blurred modal */
+    --modal-shadow: rgba(255, 255, 255, 0.1); /* White shadow on modals */
+  }
+  

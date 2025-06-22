@@ -1,0 +1,111 @@
+/* Resend Verification Email - Shared Styles */
+.log_sig_cont {
+  background: #1f1f1f;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.log_sig_cont h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+.log_sig_cont p {
+  color: #bbb;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Floating Label Input Style */
+.floating-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.floating-group input {
+  width: 100%;
+  padding: 1rem 0.75rem 0.75rem;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.floating-group input:focus {
+  outline: none;
+  border-color: #4fbcff;
+}
+
+.floating-group label {
+  position: absolute;
+  top: 1rem;
+  left: 0.75rem;
+  color: #aaa;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.floating-group input:focus + label,
+.floating-group input:not(:placeholder-shown) + label {
+  top: 0.25rem;
+  left: 0.65rem;
+  font-size: 0.75rem;
+  color: #4fbcff;
+}
+
+/* Button */
+.btn-log-sig {
+  width: 100%;
+  background: #4fbcff;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-log-sig:hover {
+  background: #3da6e0;
+}
+
+/* Message Styles */
+.message {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.4rem;
+}
+
+.success {
+  background: #d1ffda;
+  color: #0a5f1c;
+}
+
+.error {
+  background: #ffd1d1;
+  color: #a10000;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

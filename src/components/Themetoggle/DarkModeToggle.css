@@ -1,0 +1,70 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider track */
+.slider {
+  background-color: var(--bg-section);
+  border: 2px solid var(--primary-color);
+  border-radius: 34px;
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Slider thumb */
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  left: 3px;
+  bottom: 2px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* When checked, move the thumb */
+.switch input:checked + .slider:before {
+  transform: translateX(28px);
+}
+
+/* Icon (moon or sun) inside the thumb */
+.slider .icon {
+  position: absolute;
+  top: 3px;
+  left: 8px;
+  font-size: 16px;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  color: var(--white);
+}
+
+/* Move icon when dark mode is active */
+.switch input:checked + .slider .icon {
+  transform: translateX(28px);
+}
+.theme-toggle-container {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.theme-selector {
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--bg-card);
+  color: var(--text-default);
+}

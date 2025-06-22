@@ -1,0 +1,19 @@
+.explore-section {
+  max-width: 84%;
+  margin: auto;
+  margin-top:30px;
+}
+.explore-section h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 32px;
+  color: var(--text-heading);
+}
+.subtitle-explore {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+

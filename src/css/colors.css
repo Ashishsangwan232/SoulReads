@@ -1,0 +1,25 @@
+:root {
+  --floral-white: rgba(251, 251, 242, 1);   /* Very light - use as base background */
+  --platinum: rgba(229, 230, 228, 1);       /* Light section backgrounds */
+  --timberwolf: rgba(207, 210, 205, 1);     /* Neutral cards / input fields */
+  --silver: rgba(166, 162, 162, 1);         /* Borders, icons, subtle text */
+  --taupe-gray: rgba(132, 117, 119, 1);     /* Main text or heading (for soft contrast) */
+
+  --gradient-top: linear-gradient(0deg, #fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+  --gradient-right: linear-gradient(90deg, #fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+  --gradient-bottom: linear-gradient(180deg, #fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+  --gradient-left: linear-gradient(270deg, #fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+  --gradient-top-right: linear-gradient(45deg, #fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+  --gradient-bottom-right: linear-gradient(135deg, #fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+  --gradient-top-left: linear-gradient(225deg, #fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+  --gradient-bottom-left: linear-gradient(315deg, #fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+  --gradient-radial: radial-gradient(#fbfbf2ff, #e5e6e4ff, #cfd2cdff, #a6a2a2ff, #847577ff);
+
+  /* (Added) Fallback text/background colors if needed for dark mode toggle */
+  --text-default: var(--taupe-gray);
+  --text-muted: var(--silver);
+  --bg-default: var(--floral-white);
+  --bg-section: var(--platinum);
+  --bg-card: var(--timberwolf);
+  --border-color: var(--silver);
+}

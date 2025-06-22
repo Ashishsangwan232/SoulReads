@@ -1,0 +1,13 @@
+.likebutton {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    height: 1em;
+    font-size: 0.8rem;
+}
+
+.likebutton button {
+
+    padding: 2px;
+    background-color: transparent;
+}

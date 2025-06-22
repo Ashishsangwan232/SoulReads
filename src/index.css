@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-default);
+}
+
+
+.bulbb {
+  border: 2px solid red;
+  position: absolute;
+  right: 20px;
+  z-index: 1000000;
+  pointer-events: auto;
+}
