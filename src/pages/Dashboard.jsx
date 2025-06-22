@@ -131,7 +131,7 @@ const Dashboard = () => {
                 <button className="setting-btn" onClick={() => setSettingtab(true)}>
                   <span className="material-symbols-outlined">settings</span>
                   Settings</button>
-                  <LogoutButton />
+                  {/* <LogoutButton /> */}
                 {/* <LogoutButton className="dashbaord-sidebar-logout-btn" /> */}
                 <Logoutbutton className="dashbaord-sidebar-logout-btn" />
               </div>
