@@ -5,7 +5,8 @@ export const PostActionsContext = createContext();
 
 export const PostActionsProvider = ({ children }) => {
   const token = localStorage.getItem('token');
-
+  const API_URL = import.meta.env.VITE_API_URL;
+  
   const authHeaders = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -14,7 +15,7 @@ export const PostActionsProvider = ({ children }) => {
 
   const toggleLike = async (postId) => {
     try {
-      await axios.patch(`/api/posts/${postId}/like`, {}, authHeaders);
+      await axios.patch(`${API_URL}/posts/${postId}/like`, {}, authHeaders);
     } catch (err) {
       console.error('Error toggling like:', err);
     }
@@ -22,7 +23,7 @@ export const PostActionsProvider = ({ children }) => {
 
   const toggleBookmark = async (postId) => {
     try {
-      await axios.patch(`/api/posts/${postId}/bookmark`, {}, authHeaders);
+      await axios.patch(`${API_URL}/posts/${postId}/bookmark`, {}, authHeaders);
     } catch (err) {
       console.error('Error toggling bookmark:', err);
     }
@@ -30,7 +31,7 @@ export const PostActionsProvider = ({ children }) => {
 
   const toggleArchive = async (postId) => {
     try {
-      await axios.patch(`/api/posts/${postId}/archive`, {}, authHeaders);
+      await axios.patch(`${API_URL}/posts/${postId}/archive`, {}, authHeaders);
     } catch (err) {
       console.error('Error toggling archive:', err);
     }
@@ -38,7 +39,7 @@ export const PostActionsProvider = ({ children }) => {
 
   const softDeletePost = async (postId) => {
     try {
-      await axios.delete(`/api/posts/${postId}`, authHeaders);
+      await axios.delete(`${API_URL}/posts/${postId}`, authHeaders);
     } catch (err) {
       console.error('Error soft deleting post:', err);
     }
@@ -46,7 +47,7 @@ export const PostActionsProvider = ({ children }) => {
 
   const hardDeletePost = async (postId) => {
     try {
-      await axios.delete(`/api/posts/${postId}/permanent`, authHeaders);
+      await axios.delete(`${API_URL}/posts/${postId}/permanent`, authHeaders);
     } catch (err) {
       console.error('Error hard deleting post:', err);
     }

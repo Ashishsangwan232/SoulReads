@@ -10,14 +10,15 @@ export const CommentProvider = ({ children }) => {
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(false);
   const [error, setError] = useState(null);
-
+  const API_URL = import.meta.env.VITE_API_URL;
+  
   const { checkUserLikeStatus } = useLikeContext(); // ✅ Access like checker
 
   const fetchComments = useCallback(async (postId) => {
     setLoadingComments(true);
     setComments([]);
     try {
-      const res = await axios.get(`/api/comments/${postId}`);
+      const res = await axios.get(`${API_URL}/comments/${postId}`);
       const rawComments = res.data;
 
       // ✅ Enrich comments with like status
@@ -45,7 +46,7 @@ export const CommentProvider = ({ children }) => {
 
   const addComment = useCallback(async (postId, content) => {
     try {
-      const res = await axios.post(`/api/comments/${postId}`, { content });
+      const res = await axios.post(`${API_URL}/comments/${postId}`, { content });
 
       // ✅ Immediately check like status for new comment
       let newComment = res.data;

@@ -15,15 +15,15 @@ export const useLikeContext = () => {
 export const LikeProvider = ({ children }) => {
     const [loadingStates, setLoadingStates] = useState({});
     const [errorStates, setErrorStates] = useState({});
-
+    const API_URL = import.meta.env.VITE_API_URL;
     // Axios instance with credentials enabled
-    const axiosInstance = axios.create({
-        baseURL: '/api/likes',
-        withCredentials: true,
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    // const axiosInstance = axios.create({
+    //     baseURL: `${API_URL}/api/likes`,
+    //     withCredentials: true,
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // });
 
     const toggleLike = useCallback(async (targetId, targetType) => {
         const operationKey = `${targetType}-${targetId}`;
@@ -31,7 +31,7 @@ export const LikeProvider = ({ children }) => {
         setErrorStates(prev => ({ ...prev, [operationKey]: null }));
 
         try {
-            const response = await axiosInstance.post('/toggle', { targetId, targetType });
+            const response = await axios.post(`${API_URL}/likes/toggle`, { targetId, targetType });
             setLoadingStates(prev => ({ ...prev, [operationKey]: false }));
             return response.data; // { message, liked, likesCount }
         } catch (error) {
@@ -49,7 +49,7 @@ export const LikeProvider = ({ children }) => {
         setErrorStates(prev => ({ ...prev, [operationKey]: null }));
 
         try {
-            const response = await axiosInstance.get(`/status/${targetType}/${targetId}`);
+            const response = await axios.get(`${API_URL}/likes/status/${targetType}/${targetId}`);
             setLoadingStates(prev => ({ ...prev, [operationKey]: false }));
             return response.data; // { liked: boolean }
         } catch (error) {
@@ -67,7 +67,7 @@ export const LikeProvider = ({ children }) => {
         setErrorStates(prev => ({ ...prev, [operationKey]: null }));
 
         try {
-            const response = await axiosInstance.get(`/${targetType}/${targetId}`);
+            const response = await axios.get(`${API_URL}/likes/${targetType}/${targetId}`);
             setLoadingStates(prev => ({ ...prev, [operationKey]: false }));
             return response.data; // { message, count, likes }
         } catch (error) {

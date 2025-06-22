@@ -7,13 +7,14 @@ export const UpdatePostProvider = ({ children }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateError, setUpdateError] = useState(null);
   const [updateSuccess, setUpdateSuccess] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const updatePost = async (postId, updates) => {
     setIsUpdating(true);
     setUpdateError(null);
     setUpdateSuccess(null);
     try {
-      const res = await axios.patch(`/api/posts/${postId}`, updates);
+      const res = await axios.patch(`${API_URL}/posts/${postId}`, updates);
       setUpdateSuccess(res.data.message);
       return res.data.post; // return updated post
     } catch (err) {
