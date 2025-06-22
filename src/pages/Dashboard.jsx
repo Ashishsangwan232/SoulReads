@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './temp.css';
-import LogoutButton from '../components/LogoutButton';
+// import { LogoutButton } from '../components/LogoutButton';
 import Startwriting from '../components/Startwriting';
 import { useMyPosts } from '../context/MyPostsContext';
 import { AuthContext } from '../context/AuthContext';
@@ -42,7 +42,7 @@ const Dashboard = () => {
   }, [location.search]);
 
   // const displayName = user?.username ? user.username.split(' ')[0] : '';
-  const displayName =user.username? user.username : "Invalid" ;
+  const displayName = user.username ? user.username : "Invalid";
 
   const normalize = str => str?.toLowerCase().replace(/\s/g, '');
 
