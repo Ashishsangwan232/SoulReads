@@ -2,20 +2,20 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { gsap } from 'gsap';
 import './imagedropdown.css';
 import { AuthContext } from '../../context/AuthContext';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ImageDropdown = () => {
     const [open, setOpen] = useState(false);
     const menuRef = useRef();
     const containerRef = useRef();
-
+    const navigate = useNavigate
     const { user, logout } = useContext(AuthContext);
     const handleLogout = async () => {
         const isconfirm = window.confirm("proced for logout")
         if (!isconfirm) return;
         try {
             await logout();
-            Navigate('/login');
+            navigate('/');
         } catch (error) {
             console.error("Logout failed:", error.message);
         }

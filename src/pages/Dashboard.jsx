@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './temp.css';
-// import { LogoutButton } from '../components/LogoutButton';
 import Startwriting from '../components/Startwriting';
 import { useMyPosts } from '../context/MyPostsContext';
 import { AuthContext } from '../context/AuthContext';
@@ -14,7 +13,8 @@ import MainContent from '../components/DashBoard/MainContent';
 import Settings from '../components/DashBoard/Settings';
 import { useLocation } from 'react-router-dom';
 import DarkModeToggle from '../components/Themetoggle/DarkModeToggle';
-import Logoutbutton from '../components/Logoutbutton';
+import Logoutbutton from '../components/logoutbutton';
+
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -62,7 +62,7 @@ const Dashboard = () => {
     try {
       await logout();
       alert("Logout successful!");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       alert("Logout failed. " + (error.response?.data?.message || ""));
       console.error("Logout error:", error.response?.data);
