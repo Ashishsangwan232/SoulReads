@@ -35,15 +35,11 @@ function Navbar() {
     AOS.refresh();
   }, [location.pathname]);
 
-  // Page load detection (optional if you're animating after full load)
-  // useEffect(() => {
-  //   // const onLoad = () => setPageReady(true);
-  //   window.addEventListener('load', onLoad);
-  //   return () => window.removeEventListener('load', onLoad);
-  // }, []);
+
 
   return (
     <nav className={`navbar ${isWritingPage ? 'writingnavbar' : ''}`}>
+
       <div className="logo" data-aos="fade-down" data-aos-duration="1000">
         {/* <img src="/images/logo SR.png"  */}
         <p>SoulReads</p>
@@ -58,8 +54,8 @@ function Navbar() {
           data-aos="fade-down"
           data-aos-duration="800"
         >
-           <span className="material-symbols-outlined">Home</span>
-           Home
+          <span className="material-symbols-outlined">Home</span>
+          <p>Home</p>
         </Link>
         <Link
           to="/explore"
@@ -68,7 +64,7 @@ function Navbar() {
           data-aos-duration="1000"
         >
           <span className="material-symbols-outlined">Browse</span>
-          Explore
+          <p>Explore</p>
         </Link>
         <Link
           to="/about"
@@ -76,10 +72,10 @@ function Navbar() {
           data-aos="fade-down"
           data-aos-duration="1100"
         ><span className="material-symbols-outlined">info</span>
-          About
+          <p>About</p>
         </Link>
       </div>
-    <DarkModeToggle/>
+      <DarkModeToggle />
       {!isAuthPage && (
         user ? (
           <div

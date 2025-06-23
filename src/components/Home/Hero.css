@@ -71,6 +71,7 @@
   display: inline-flex;
   margin: auto;
   margin-left: 0;
+  
   text-decoration: none;
   transition: transform 0.3s ease;
 }
@@ -104,4 +105,29 @@
 
 .cta:hover {
   background-color: var(--primary-color-dark);
+}
+@media (max-width:486px) {
+  .hero{
+    height: auto;
+    padding: 2rem 0.4rem;
+  }
+  .tagline {
+    /* border: 2px solid red; */
+    font-size: 1.4rem;
+  }
+  .subtitle {
+  font-size: 0.8rem;
+  margin: 0 0 18px 0;
+  }
+  .startwriting {
+    border: 2px solid red;
+  }
+  .anim{
+    display: flex;
+      padding: 5px 3px;
+    /* transform: scale(0.5); */
+  }
+  .cta {
+    font-size: 0.6rem;
+  }
 }

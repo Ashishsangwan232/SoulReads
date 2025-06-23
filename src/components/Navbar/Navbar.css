@@ -162,3 +162,157 @@
 .aos-animate {
   opacity: 1;
 }
+/* @media (max-width: 486px)  {
+   .navbar{
+    padding: 2px 16px 10px 16px;
+  }
+  .logo {
+    border: 2px solid red;
+    display: flex;
+  }
+  .logo p{
+    justify-content: flex-start;
+    border: 2px solid red;
+  }
+   .nav-links{
+    display: inline-flex;
+    padding: 0.4rem;
+    gap: 2.3rem;
+    margin-right: 0;
+    flex-direction: row;
+    justify-content: end;
+   }
+   .nav-links p{
+      display: none;
+   }
+} */
+
+/* @media (max-width: 486px) {
+  
+  .navbar {
+    display: block;
+    padding: 4px 12px 8px 12px;
+    margin: 4px 0;
+    border-radius: 12px;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-default);
+    margin-bottom: 8px;
+  }
+
+  .logo img {
+    height: 24px;
+    margin-right: 6px;
+  }
+
+  .logo p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.4rem 0;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .nav-links p {
+    display: none;
+  }
+
+  .aos-link span {
+    display: block;
+    font-size: 1rem;
+    margin-right: 4px;
+  }
+
+  .signin-btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 2px 6px;
+    margin: 8px auto 0;
+    width: fit-content;
+  }
+
+  .signin-btn-div .signtext {
+    display: none;
+  }
+
+  .signin-btn-div .signlg {
+    display: block;
+    color: var(--text-default);
+    fill: var(--text-default);
+  }
+
+  .signin-btn {
+    padding: 4px 8px;
+    width: auto;
+    background-color: var(--primary-color);
+  }
+} */
+
+@media (max-width: 486px) {
+
+  .navbar {
+    position: relative;
+    height: 100px;
+    overflow: hidden;
+    /* border: 2px solid red; */
+  }
+  
+  .logo {
+    position: absolute;
+    left: 0.2rem;
+    /* border: 2px solid red; */
+    font-size: 1.3rem;
+  }
+  
+  .nav-links {
+    /* border: 2px solid red; */
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 1.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .aos-link span {
+    display: block;
+    font-size: 1.1rem;
+  }
+  
+  .aos-link p {
+    display: none;
+  }
+  
+  .signin-btn {
+    position: absolute;
+    right: 0;
+    padding: 4px 10px;
+    margin: auto;
+    margin-right: 0;
+    max-width: 150px;
+  }
+
+  .user-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

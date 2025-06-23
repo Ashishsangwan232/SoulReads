@@ -77,6 +77,7 @@ function Hero() {
                             trigger="morph"
                             target=".startwriting"
                             loading="lazy"
+                            className="current-class"
                             state="morph-detach"
                             colors="primary:#ffffff"
                             style={{ width: "24px", height: "24px" }}
