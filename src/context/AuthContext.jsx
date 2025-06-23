@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
         try {
             await axios.post(`${API_URL}/auth/signout`);
             setUser(null);
-            window.location.reload(); // This refreshes the page
+            // window.location.reload(); // This refreshes the page
         } catch (error) {
             console.error('Logout failed:', error);
         }
