@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Logoutbutton = ({ className }) => {
-    
+
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const { logout } = useContext(AuthContext);
