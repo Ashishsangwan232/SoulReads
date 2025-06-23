@@ -350,7 +350,10 @@ export default function ForgotPassword() {
 
   // Background Password Reset Check
   useEffect(() => {
-    
+    if ( cooldown <= 0 ) {
+      clearInterval(intervalRef.current);
+      return;
+    }
 
     intervalRef.current = setInterval(async () => {
       try {
