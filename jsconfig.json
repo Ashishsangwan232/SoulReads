@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {},
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"]
+}

@@ -13,8 +13,7 @@ import MainContent from '../components/DashBoard/MainContent';
 import Settings from '../components/DashBoard/Settings';
 import { useLocation } from 'react-router-dom';
 import DarkModeToggle from '../components/Themetoggle/DarkModeToggle';
-import Logoutbutton from '../components/logoutbutton';
-
+import Logoutbutton from '../components/Logoutbutton';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
