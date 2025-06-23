@@ -2,13 +2,14 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
-export const AllPostsContext = createContext(); 
+export const AllPostsContext = createContext();
 
 export const AllPostsProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); 
-const API_URL = import.meta.env.VITE_API_URL;
+  const [error, setError] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL;
+  
   const fetchAllPosts = async () => {
     try {
       setLoading(true);

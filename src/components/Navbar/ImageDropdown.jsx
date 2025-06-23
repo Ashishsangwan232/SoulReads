@@ -9,13 +9,13 @@ const ImageDropdown = () => {
     const menuRef = useRef();
     const containerRef = useRef();
 
-    const { user,logout } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const handleLogout = async () => {
         const isconfirm = window.confirm("proced for logout")
         if (!isconfirm) return;
         try {
             await logout();
-            Navigate('/');
+            Navigate('/login');
         } catch (error) {
             console.error("Logout failed:", error.message);
         }
