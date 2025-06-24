@@ -1,6 +1,8 @@
 .theme-toggle-lap-container {
   display: inline-block;
   margin: 0 10px;
+  position: relative; /* Enables z-index */
+  z-index: 999; /* Stays above normal UI */
 }
 
 .theme-lap-selector {
@@ -25,28 +27,27 @@
   top: 2rem;
   background: var(--bg-section, #fff);
   border-radius: 4px;
-  z-index: 999;
   padding: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999999; /* Ensures dropdown stays above everything */
 }
 
 .theme-optionsdash {
   position: absolute;
+  /* border: 2px solid red; */
   top: 2rem;
-  right: 2rem;
+  right: 1rem;
   background: var(--bg-section, #fff);
   border-radius: 4px;
-  z-index: 999;
   padding: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-
+  z-index: 9999; /* Stays on top */
 }
 
 .theme-option {
   font-size: 0.8rem;
   font-weight: 500;
   padding: 0.5rem 0.4rem;
-  /* border: 2px solid red; */
   width: 120px;
   cursor: pointer;
 }

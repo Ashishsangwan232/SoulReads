@@ -21,7 +21,7 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
     if (!confirmed) return;
 
     try {
-       await HardDelete(postId);
+      await HardDelete(postId);
       setStatusMessage('Post deleted successfully.');
       setIsOpen(false);
       refreshMine?.();
@@ -81,23 +81,9 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
 
   return (
     <div className="optionss" ref={wrapperRef}>
-      {isOpen && (
-        <div className="further_options">
-          {status !== 'draft' &&
-            <p onClick={handleToggle}>
-              {archivestatus ? 'Unarchive' : 'Archive'}
-            </p>}
-          <p onClick={() => {
-            navigate(`/editing/${postId}`);
-            setIsOpen(false);
-          }}>
-            Edit</p>
-          {/* <p onClick={handleDelete}>Delete</p> */}
-          <p onClick={handleHardDelete}>Delete</p>
-        </div>
-      )
-      }
-      <svg
+      <div className='svgoption'>
+        <svg
+        className='circle'
         onClick={() => setIsOpen(!isOpen)}
         width="24"
         height="24"
@@ -114,6 +100,25 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
         <circle cx="12" cy="12" r="2" />
         <circle cx="12" cy="19" r="2" />
       </svg>
+      </div>
+
+      {isOpen && (
+        <div className="further_options">
+          {status !== 'draft' &&
+            <p onClick={handleToggle}>
+              {archivestatus ? 'Unarchive' : 'Archive'}
+            </p>}
+          <p onClick={() => {
+            navigate(`/editing/${postId}`);
+            setIsOpen(false);
+          }}>
+            Edit</p>
+          {/* <p onClick={handleDelete}>Delete</p> */}
+          <p onClick={handleHardDelete}>Delete</p>
+        </div>
+      )
+      }
+
     </div >
   );
 };

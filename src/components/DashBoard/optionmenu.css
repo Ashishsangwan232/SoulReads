@@ -1,7 +1,6 @@
-
 .optionss {
   position: relative;
-  display: flex;
+  /* z-index: 1; */
 }
 
 .optionss svg {
@@ -11,20 +10,20 @@
 }
 
 .optionss svg:hover {
-  background:var(--text-light);
+  background: var(--text-light);
   border-radius: 0.3rem;
 }
 
 .further_options {
+  position: absolute;
   right: 25px;
   top: 0;
-  position: absolute;
   border-radius: 4px;
   padding: 6px;
   background-color: var(--bg-default);
-  z-index: 2;
   min-width: 100px;
   box-shadow: 0 2px 8px rgba(2, 2, 2, 0.37);
+  z-index: 99;
 }
 
 .further_options p {

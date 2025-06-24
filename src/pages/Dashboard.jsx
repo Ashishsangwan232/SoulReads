@@ -90,14 +90,6 @@ const Dashboard = () => {
           <motion.div className="dash-logo" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
             <img src="/images/logo" alt="SoulReads" />
           </motion.div>
-          {/* <div className='dashboard-topnavlink'>
-            <Link to="/" >
-              <span className="material-symbols-outlined">home</span></Link>
-            <Link to="/about">
-              <span className="material-symbols-outlined">info</span></Link>
-            <Link onClick={handleLogout}>
-              <span className="material-symbols-outlined">logout</span></Link>
-          </div> */}
           <motion.div className='dashboard-topnavlink'>
             <motion.div
               initial={{ y: -15, opacity: 0 }}
@@ -128,7 +120,7 @@ const Dashboard = () => {
                 <span className="material-symbols-outlined">logout</span>
               </Link>
             </motion.div>
-          <div>
+          <div className='togglemenuuu'>
             <DarkModeTogglemenu dash={true} />
           </div>
           </motion.div>
