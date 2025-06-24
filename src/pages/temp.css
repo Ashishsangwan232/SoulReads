@@ -281,7 +281,34 @@
   text-decoration: none;
 }
 @media (max-width:486px) {
-  
+  .card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+
+}
+.namedate-dash{
+  /* border:2px solid red ; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.card h5 {
+  font-size: 0.6rem;
+  /* display: flex; */
+  flex-direction: row;
+  color: var(--text-light);
+  margin-bottom: 0.8rem;
+}
+
+.card p {
+  color: var(--text-default);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.card a {
+  text-decoration: none;
+}
 }
 .dashboard-post-content {
   color: var(--text-heading);

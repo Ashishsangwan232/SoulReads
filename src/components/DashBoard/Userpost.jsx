@@ -35,15 +35,19 @@ export const CardsPublished = ({ cards }) => {
                         </Link>
                         <OptionsMenu postId={card._id} archivestatus={card.archive} status={card.status} />
                     </div>
-                    <h5>
-                        {card.authorId.username || 'Anonymous'} •{' '}
-                        {new Date(card.createdAt).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                        })}{' '}
-                        • #{card.category}
-                    </h5>
+                    <div className='namedate-dash'>
+                        <h5>
+                            {card.authorId.username || 'Anonymous'}
+                            •{' '}#{card.category}
+                        </h5>
+                        <h5>
+                            •{' '}{new Date(card.createdAt).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                            })}{' '}
+                        </h5>
+                    </div>
                     <Link to={`/posts/${card._id}`}>
                         <div className='dashboard-post-content'>
                             {extractPlainTextFromSlate(card.content)}
@@ -71,7 +75,7 @@ export const CardsDraft = ({ cards }) => (
 
                     </div>
                     <h5>
-                        {card.authorId.username } • {new Date(card.createdAt).toLocaleDateString('en-US', {
+                        {card.authorId.username} • {new Date(card.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
@@ -97,14 +101,14 @@ export const CardsArchived = ({ cards }) => (
                         <OptionsMenu postId={card._id} archivestatus={card.archive} status={card.status} />
                     </div>
                     <h5>
-                        {card.authorId.username } • {new Date(card.createdAt).toLocaleDateString('en-US', {
+                        {card.authorId.username} • {new Date(card.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
                     <p> {extractPlainTextFromSlate(card.content)}</p>
                     <div className="btn_in_card">
                         {card.likesCount} likes{' '}
-                        {card.archive===true && <p>Archived</p> }
+                        {card.archive === true && <p>Archived</p>}
                     </div>
                 </div>
             ))
@@ -123,7 +127,7 @@ export const Cardsdeleted = ({ cards }) => (
                         <OptionsMenu postId={card._id} archivestatus={card.archive} status={card.status} />
                     </div>
                     <h5>
-                        {card.authorId.username } • {new Date(card.createdAt).toLocaleDateString('en-US', {
+                        {card.authorId.username} • {new Date(card.createdAt).toLocaleDateString('en-US', {
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
