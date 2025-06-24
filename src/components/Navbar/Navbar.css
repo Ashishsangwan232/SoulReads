@@ -183,7 +183,7 @@
     position: absolute;
     width: 100%;
     left: 0;
-    bottom: 1.4rem;
+    bottom: 1rem;
     display: flex;
     gap: 2rem;
     padding: 0.2rem;
@@ -194,7 +194,7 @@
   
   .aos-link span {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
   
   .aos-link p {
