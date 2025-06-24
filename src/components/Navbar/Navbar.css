@@ -209,7 +209,7 @@
     max-width: 150px;
   }
    .user-actions {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     position: absolute;
     /* margin-top: 0.2rem; */
     right: 0.6rem;
