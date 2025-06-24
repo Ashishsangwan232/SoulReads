@@ -90,15 +90,48 @@ const Dashboard = () => {
           <motion.div className="dash-logo" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
             <img src="/images/logo" alt="SoulReads" />
           </motion.div>
-          <div className='dashboard-topnavlink'>
-            <Link to="/">
+          {/* <div className='dashboard-topnavlink'>
+            <Link to="/" >
               <span className="material-symbols-outlined">home</span></Link>
             <Link to="/about">
               <span className="material-symbols-outlined">info</span></Link>
             <Link onClick={handleLogout}>
               <span className="material-symbols-outlined">logout</span></Link>
-            <DarkModeTogglemenu dash={true}/>
+          </div> */}
+          <motion.div className='dashboard-topnavlink'>
+            <motion.div
+              initial={{ y: -15, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1 }}
+            >
+              <Link to="/">
+                <span className="material-symbols-outlined">home</span>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ y: -15, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Link to="/about">
+                <span className="material-symbols-outlined">info</span>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ y: -15, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Link onClick={handleLogout}>
+                <span className="material-symbols-outlined">logout</span>
+              </Link>
+            </motion.div>
+          <div>
+            <DarkModeTogglemenu dash={true} />
           </div>
+          </motion.div>
         </motion.div>
 
         <div className='main-dash'>
