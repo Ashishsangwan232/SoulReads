@@ -77,10 +77,10 @@ function Hero() {
                             trigger="morph"
                             target=".startwriting"
                             loading="lazy"
-                            className="current-class"
+                            className="current-width"
                             state="morph-detach"
                             colors="primary:#ffffff"
-                            style={{ width: "24px", height: "24px" }}
+                            // style={{ width: "24px", height: "24px" }}
                         />
                     </div>
                     <button className="cta">Start Writing</button>
