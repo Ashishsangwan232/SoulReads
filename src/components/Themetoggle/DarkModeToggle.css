@@ -1,10 +1,9 @@
-
-.theme-toggle-container {
+.theme-toggle-lap-container {
   display: inline-block;
   margin: 0 10px;
 }
 
-.theme-selector {
+.theme-lap-selector {
   padding: 6px 10px;
   font-size: 0.95rem;
   border-radius: 6px;
@@ -12,9 +11,39 @@
   background-color: var(--bg-card);
   color: var(--text-default);
 }
-@media (max-width:486px) {
-  .theme-toggle-container{
-    display: none;
-  }
-  
+
+.theme-toggle-container {
+  position: relative;
+}
+
+.theme-toggle-container span {
+  cursor: pointer;
+}
+
+.theme-options {
+  position: absolute;
+  top: 2rem;
+  background: var(--bg-section, #fff);
+  border-radius: 4px;
+  z-index: 999;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-option {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.5rem 0.4rem;
+  /* border: 2px solid red; */
+  width: 120px;
+  cursor: pointer;
+}
+
+.theme-option:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.theme-option.active {
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.1);
 }

@@ -9,6 +9,10 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
+.DarkModetogglemenu {
+  display: none;
+}
+
 .logo {
   font-size: 1.6rem;
   font-weight: bold;
@@ -116,6 +120,15 @@
     margin-bottom: 10px;
   }
 
+  .DarkModetogglemenu {
+    display: block;
+ 
+  }
+
+  .DarkModetoggle {
+    display: none;
+  }
+
   .nav-links {
     flex-direction: column;
     align-items: center;
@@ -162,6 +175,7 @@
 .aos-animate {
   opacity: 1;
 }
+
 @media (max-width: 486px) {
 
   .navbar {
@@ -170,36 +184,52 @@
     /* overflow: hidden; */
     /* border: 2px solid red; */
   }
-  
+
   .logo {
     position: absolute;
     left: 0.8rem;
     /* border: 2px solid red; */
     font-size: 1.7rem;
   }
-  
+
+  .DarkModetogglemenu {
+    position: absolute;
+    left: 0.8rem;
+    bottom: 1rem;
+    display: block;
+  }
+
+  .DarkModetoggle {
+    display: none;
+  }
+
   .nav-links {
     position: absolute;
     width: 100%;
     left: 0;
     bottom: 1rem;
     display: flex;
+    box-shadow: 0px 0px 10px rgba(118, 118, 118, 0.062);
+    /* border: 2px solid rgb(0, 0, 0); */
     gap: 2rem;
+    padding-right:1rem;
     padding: 0.2rem;
+    right: 100px;
+    padding-right: 0.5rem;
     flex-direction: row;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
   }
-  
+
   .aos-link span {
     display: block;
     font-size: 1.3rem;
   }
-  
+
   .aos-link p {
     display: none;
   }
-  
+
   .signin-btn {
     position: absolute;
     margin-top: 0.2rem;
@@ -207,7 +237,8 @@
     padding: 6px 10px;
     max-width: 150px;
   }
-   .user-actions {
+
+  .user-actions {
     /* border: 2px solid red; */
     position: absolute;
     /* margin-top: 0.2rem; */

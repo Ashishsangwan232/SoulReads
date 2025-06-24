@@ -7,6 +7,7 @@ import ImageDropdown from './ImageDropdown';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import DarkModeToggle from '../Themetoggle/DarkModeToggle';
+import DarkModeTogglemenu from '../Themetoggle/DarkModeTogglemenu';
 
 function Navbar() {
   const location = useLocation();
@@ -75,7 +76,12 @@ function Navbar() {
           <p>About</p>
         </Link>
       </div>
-      <DarkModeToggle />
+      <div className='DarkModetogglemenu'>
+        <DarkModeTogglemenu/>
+      </div>
+      <div className='DarkModetoggle'>
+        <DarkModeToggle />
+      </div>
       {!isAuthPage && (
         user ? (
           <div
@@ -97,8 +103,10 @@ function Navbar() {
           >
             Sign In
           </button>
+
         )
       )}
+
     </nav>
   );
 }

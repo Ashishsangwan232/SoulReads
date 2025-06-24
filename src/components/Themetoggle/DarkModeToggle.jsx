@@ -38,8 +38,8 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="theme-toggle-container">
-      <select value={theme} onChange={handleChange} className="theme-selector">
+    <div className="theme-toggle-lap-container">
+      <select value={theme} onChange={handleChange} className="theme-lap-selector">
         {themes.map(({ name, label }) => (
           <option key={name} value={name}>
             {label}
