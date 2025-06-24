@@ -1,7 +1,6 @@
-
 .dashboard-container {
   display: flex;
-  font-family:'Inter', 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
@@ -18,8 +17,12 @@
   box-shadow: 0 2px 6px var(--shadow-hover);
 }
 
-.logo img {
+.dash-logo img {
+  /* font-family:'Times New Roman', Times, serif; */
   height: 40px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--text-default);
   object-fit: contain;
   cursor: pointer;
 }
@@ -39,7 +42,7 @@
   transition: color 0.3s;
 }
 
-.dashboard-topnavlink span{
+.dashboard-topnavlink span {
   font-size: 1.2rem;
 }
 
@@ -80,7 +83,7 @@
   flex-direction: column;
   align-items: center;
   width: 10rem;
-  background-color:var(--bg-default);
+  background-color: var(--bg-default);
   box-shadow: 0 0 10px var(--shadow-hover);
 }
 
@@ -98,7 +101,7 @@
   text-align: center;
   color: var(--text-heading);
   font-size: 0.9rem;
-  padding:0 0.4rem;
+  padding: 0 0.4rem;
   letter-spacing: 0.03em;
 }
 
@@ -149,7 +152,7 @@
 }
 
 .dashboard-sidebarlower .setting-btn {
-  color:var(--text-heading);
+  color: var(--text-heading);
   display: flex;
   background: transparent;
   cursor: pointer;
@@ -162,7 +165,8 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.setting-btn span{
+
+.setting-btn span {
   font-size: 1rem;
 }
 
@@ -174,16 +178,17 @@
   border: none;
   border-radius: 0.2rem;
   background-color: var(--bg-subtle);
-  color:var(--text-heading);
+  color: var(--text-heading);
   box-shadow: 0 0 8px rgba(193, 193, 193, 0.474);
 }
-.dashbaord-sidebar-logout-btn span{
+
+.dashbaord-sidebar-logout-btn span {
   font-size: 1rem;
-  color:var(--text-heading);
+  color: var(--text-heading);
 }
 
 .dashbaord-sidebar-logout-btn:hover {
-  background:var(--bg-card);
+  background: var(--bg-card);
   cursor: pointer;
 }
 
@@ -211,9 +216,9 @@
 
 .tab {
   padding: 10px 18px;
-  background-color:var(--bg-card);
+  background-color: var(--bg-card);
   border-radius: 20px;
-  color:var(--text-default);
+  color: var(--text-default);
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s ease;
@@ -222,13 +227,15 @@
 
 .tab:hover,
 .tab.active {
-  background-color:var(--primary-color);
+  background-color: var(--primary-color);
   color: var(--white);
   border-color: var(--primary-color-dark);
 }
-.sideactivetab h5{
+
+.sideactivetab h5 {
   color: var(--text-default);
 }
+
 /* ===== Cards Area ===== */
 .card-container {
   display: flex;
@@ -263,23 +270,27 @@
 }
 
 .card p {
-  color:var(--text-default);
+  color: var(--text-default);
   font-size: 15px;
   line-height: 1.5;
 }
+
 .card a {
   text-decoration: none;
 }
-.dashboard-post-content{
+
+.dashboard-post-content {
   color: var(--text-heading);
   text-transform: capitalize;
   font-weight: 600;
   letter-spacing: 0.05em;
   line-height: 1.5;
 }
-.top_div a{
+
+.top_div a {
   text-decoration: none;
 }
+
 .top_div {
   display: flex;
   justify-content: space-between;
@@ -301,7 +312,7 @@
 }
 
 .btn_in_card .published {
-  color:var(--text-light);
+  color: var(--text-light);
 }
 
 /* ===== Scrollbar Styling ===== */
@@ -365,21 +376,23 @@
 
 .post-count-card h5 {
   display: flex;
-  background:transparent;
+  background: transparent;
   margin-left: auto;
   color: var(--text-heading);
   border: none;
   cursor: pointer;
 }
+
 .post-count-card button {
   display: flex;
-  background:transparent;
+  background: transparent;
   margin-left: auto;
   color: var(--text-heading);
   border: none;
   cursor: pointer;
 }
-.post-count-card lord-icon{
+
+.post-count-card lord-icon {
   /* color: #0a84ff; */
   color: var(--text-heading);
 }

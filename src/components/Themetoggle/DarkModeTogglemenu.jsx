@@ -18,7 +18,7 @@ const themes = [
   { name: 'soulreads-light', label: 'soulreads-light' },
 ];
 
-const ThemeToggle = () => {
+const ThemeToggle = ({ dash = false }) => {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'default';
   });
@@ -61,20 +61,22 @@ const ThemeToggle = () => {
       </span>
 
       {showMenu && (
-        <div className="theme-options">
-          {themes.map(({ name, label }) => (
-            <div
-              key={name}
-              className={`theme-option ${theme === name ? 'active' : ''}`}
-              onClick={() => handleThemeSelect(name)}
-            >
-              {label}
-            </div>
-          ))}
-        </div>
+        <div className={dash ? 'theme-optionsdash' : 'theme-options'}>
+
+        {/* // <div className={{ dash } ? 'theme-optionsdash' : 'theme-options'}> */}
+            {themes.map(({ name, label }) => (
+              <div
+                key={name}
+                className={`theme-option ${theme === name ? 'active' : ''}`}
+                onClick={() => handleThemeSelect(name)}
+              >
+                {label}
+              </div>
+            ))}
+          </div>
       )}
-    </div>
-  );
+        </div>
+      );
 };
 
-export default ThemeToggle;
+      export default ThemeToggle;

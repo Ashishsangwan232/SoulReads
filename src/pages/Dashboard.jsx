@@ -12,7 +12,7 @@ import { BookmarksContext } from '../context/BookmarksContext';
 import MainContent from '../components/DashBoard/MainContent';
 import Settings from '../components/DashBoard/Settings';
 import { useLocation } from 'react-router-dom';
-import DarkModeToggle from '../components/Themetoggle/DarkModeToggle';
+import DarkModeTogglemenu from '../components/Themetoggle/DarkModeTogglemenu';
 import Logoutbutton from '../components/Logoutbutton';
 
 const Dashboard = () => {
@@ -87,10 +87,9 @@ const Dashboard = () => {
       <Startwriting />
       <div className="dashboard-container">
         <motion.div className='topforlogo'>
-          <motion.div className="logo" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
+          <motion.div className="dash-logo" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
             <img src="/images/logo" alt="SoulReads" />
           </motion.div>
-          <DarkModeToggle />
           <div className='dashboard-topnavlink'>
             <Link to="/">
               <span className="material-symbols-outlined">home</span></Link>
@@ -98,7 +97,7 @@ const Dashboard = () => {
               <span className="material-symbols-outlined">info</span></Link>
             <Link onClick={handleLogout}>
               <span className="material-symbols-outlined">logout</span></Link>
-
+            <DarkModeTogglemenu dash={true}/>
           </div>
         </motion.div>
 
@@ -130,7 +129,7 @@ const Dashboard = () => {
                 <button className="setting-btn" onClick={() => setSettingtab(true)}>
                   <span className="material-symbols-outlined">settings</span>
                   Settings</button>
-                  {/* <LogoutButton /> */}
+                {/* <LogoutButton /> */}
                 {/* <LogoutButton className="dashbaord-sidebar-logout-btn" /> */}
                 <Logoutbutton className="dashbaord-sidebar-logout-btn" />
               </div>

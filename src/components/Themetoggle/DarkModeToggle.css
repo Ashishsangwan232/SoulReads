@@ -30,6 +30,18 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+.theme-optionsdash {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: var(--bg-section, #fff);
+  border-radius: 4px;
+  z-index: 999;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+}
+
 .theme-option {
   font-size: 0.8rem;
   font-weight: 500;

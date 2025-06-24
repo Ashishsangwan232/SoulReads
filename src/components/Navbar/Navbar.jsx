@@ -77,7 +77,7 @@ function Navbar() {
         </Link>
       </div>
       <div className='DarkModetogglemenu'>
-        <DarkModeTogglemenu/>
+        <DarkModeTogglemenu dash={false}/>
       </div>
       <div className='DarkModetoggle'>
         <DarkModeToggle />
