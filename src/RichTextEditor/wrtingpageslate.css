@@ -180,3 +180,170 @@
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
+
+@media (max-width: 768px) {
+  /* Root container switches to column layout */
+  .wrt-pg-cont {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Left Sidebar hidden or minimized */
+  .wrt-pg-leftside {
+    display: none;
+  }
+
+  /* Middle Panel takes full width */
+  .wrt-pg-middle {
+    flex: 1;
+    padding: 16px;
+    order: 1;
+  }
+
+  /* Title Bar adapts layout */
+  .wrt-title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .wrt-pg-title-div textarea.wrt-title-input {
+    width: 100%;
+    font-size: 22px;
+  }
+
+  .wrt-pg-selection select {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  /* Editor Area padding adjustment */
+  .wrt-editor {
+    padding: 8px 0;
+    font-size: 15px;
+  }
+
+  /* Right Sidebar becomes bottom panel */
+  .wrt-pg-rightside {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+    flex-direction: column;
+    padding: 16px;
+    order: 2;
+  }
+
+  /* Footer buttons stack on mobile */
+  .footer-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .footer-buttons button {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+    padding: 8px 12px;
+  }
+
+  .autosave-toggle {
+    font-size: 13px;
+    justify-content: space-between;
+  }
+
+  .wrt-footer {
+    padding: 12px;
+    align-items: stretch;
+  }
+
+  .wrt-wordcount {
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  /* Restore Popup - better fit for small screens */
+  .restore-popup {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 16px;
+  }
+
+  .popup-buttons {
+    flex-direction: column;
+  }
+
+  .popup-buttons button {
+    width: 100%;
+  }
+
+  .success-message {
+    width: 90%;
+    text-align: center;
+  }
+}
+@media (max-width: 486px) {
+  
+  .wrt-pg-middle {
+    padding: 12px;
+  }
+
+  .wrt-title-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .wrt-pg-title-div textarea.wrt-title-input {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .wrt-pg-selection select {
+    width: 100%;
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  .wrt-editor {
+    font-size: 14px;
+    padding: 6px 0;
+  }
+
+  .wrt-pg-rightside {
+    padding: 12px;
+  }
+
+  .autosave-toggle {
+    font-size: 12px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .footer-buttons button {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .restore-popup {
+    width: 95%;
+    padding: 12px 14px;
+  }
+
+  .popup-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .popup-buttons button {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .success-message {
+    width: 95%;
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}

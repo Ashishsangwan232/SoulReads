@@ -237,7 +237,9 @@
     padding: 6px 10px;
     max-width: 150px;
   }
-
+.user-name{
+  font-size: 0.9rem;
+}
   .user-actions {
     /* border: 2px solid red; */
     position: absolute;
