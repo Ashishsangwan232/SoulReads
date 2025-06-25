@@ -28,6 +28,7 @@ body {
 }
 
 .editor-wrapper {
+  /* border: 2px solid red; */
   display: flex;
   flex-direction: column-reverse;
   background-color: #ffffff;
@@ -40,11 +41,10 @@ body {
 }
 
 .toolbar {
-  /* border: 5px solid #37ff00; */
+  /* border: 2px solid red; */
   display: flex;
-  /* margin: auto;
-  margin-left: 0;
-  margin-bottom: 0; */
+  overflow-y: hidden;
+  overflow-x: auto;
   align-items: center;
   padding: 8px 12px;
   background-color: #f7f7f78f;
@@ -139,6 +139,8 @@ body {
   cursor: pointer;
   font-size: 1rem;
 }
-@media (max-width:486px) {
-  
+@media (max-width:786px) {
+ .editor-wrapper{
+  display: block;
+ } 
 }

@@ -27,8 +27,16 @@ export default function WritingPage({
   return (
     <div className="wrt-pg-cont">
       {/* leftside */}
+      <div className='home-without-soulreads'>
+        <span className="material-symbols-outlined">Home</span>
+      </div>
       <div className='wrt-pg-leftside'>
         <div className="wrt-header-logo">
+          <div className='home-with-soulreads'>
+            <span className="material-symbols-outlined">Home</span>
+          <hr />
+          <hr />
+          </div>
           <Link to="/" className="wrt-brand">SoulReads</Link>
         </div>
       </div>
