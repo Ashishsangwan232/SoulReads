@@ -5,6 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import './signup.css';
 import Footer from './Footer';
 import ParticleBackground from './ParticleBackground';
+import { Eye, EyeOff } from 'lucide-react'; // Lucide icons
 
 const Register = () => {
     const [form, setForm] = useState({
@@ -13,7 +14,10 @@ const Register = () => {
         password: '',
         confirmPassword: '',
     });
-    
+
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
     const API_URL = import.meta.env.VITE_API_URL;
 
     const [message, setMessage] = useState({ text: '', color: '' });
@@ -88,7 +92,7 @@ const Register = () => {
                             onChange={handlechange}
                             required
                         />
-                        <FloatingInput
+                        {/* <FloatingInput
                             label="Password"
                             type="password"
                             id="password"
@@ -102,6 +106,24 @@ const Register = () => {
                             id="confirmPassword"
                             value={form.confirmPassword}
                             onChange={handlechange}
+                            required
+                        /> */}
+                        <PasswordInput
+                            label="Password"
+                            id="password"
+                            value={form.password}
+                            onChange={handlechange}
+                            show={showPassword}
+                            toggle={() => setShowPassword(prev => !prev)}
+                            required
+                        />
+                        <PasswordInput
+                            label="Confirm Password"
+                            id="confirmPassword"
+                            value={form.confirmPassword}
+                            onChange={handlechange}
+                            show={showConfirmPassword}
+                            toggle={() => setShowConfirmPassword(prev => !prev)}
                             required
                         />
 
@@ -143,5 +165,25 @@ function FloatingInput({ label, type, id, value, onChange, required }) {
         </div>
     );
 }
+function PasswordInput({ label, id, value, onChange, show, toggle, required }) {
+    return (
+        <div className="floating-group password-group">
+            <input
+                type={show ? 'text' : 'password'}
+                id={id}
+                placeholder=" "
+                value={value}
+                onChange={onChange}
+                required={required}
+            />
+            <label htmlFor={id}>{label}</label>
+            <span className="password-toggle" onClick={toggle}>
+                {show ? <EyeOff size={18} /> : <Eye size={18} />}
+            </span>
+        </div>
+    );
+}
+
+
 
 export default Register;

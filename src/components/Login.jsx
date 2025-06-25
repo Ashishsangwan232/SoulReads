@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Footer from './Footer';
 import { useTotalPostCount } from "../context/CountPostContext";
+import { Eye, EyeOff } from 'lucide-react'; // Lucide icons
 const Login = () => {
   const { refreshMyPosts: refreshpostcount } = useTotalPostCount();
   const { login } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
-
+  const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
@@ -57,13 +58,22 @@ const Login = () => {
               onChange={e => setEmail(e.target.value)}
               required
             />
-            <FloatingInput
+            <PasswordInput
+              label="Password"
+              id="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              show={showPassword}
+              toggle={() => setShowPassword(prev => !prev)}
+              required
+            />
+            {/* <FloatingInput
               label="Password"
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
-            />
+            /> */}
             <div className="fom-opt">
               <label>
                 <input
@@ -116,5 +126,22 @@ function FloatingInput({ label, type, value, onChange, ...rest }) {
     </div>
   );
 }
-
+function PasswordInput({ label, id, value, onChange, show, toggle, required }) {
+  return (
+    <div className="floating-group password-group">
+      <input
+        type={show ? 'text' : 'password'}
+        id={id}
+        placeholder=" "
+        value={value}
+        onChange={onChange}
+        required={required}
+      />
+      <label htmlFor={id}>{label}</label>
+      <span className="password-toggle" onClick={toggle}>
+        {show ? <EyeOff size={18} /> : <Eye size={18} />}
+      </span>
+    </div>
+  );
+}
 export default Login;
