@@ -5,9 +5,9 @@ import React, {
     useMemo,
 } from 'react';
 import axios from 'axios';
-import { createEditor } from 'slate';
-import { withReact } from 'slate-react';
-import { withHistory } from 'slate-history';
+// import { createEditor } from 'slate';
+// import { withReact } from 'slate-react';
+// import { withHistory } from 'slate-history';
 // import './Appmain.css';
 import './wrtingpageslate.css';
 import { AuthContext } from '../context/AuthContext';

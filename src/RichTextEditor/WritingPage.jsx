@@ -44,7 +44,9 @@ export default function WritingPage({
       <div className='wrt-pg-middle'>
         {showRestorePrompt && autosavedData && (
           <div className="restore-popup">
-            <p>Restore last draft from {new Date(autosavedData._autosaveTime).toLocaleString()}?</p>
+            <p>Restore last draft from {new Date(autosavedData._autosaveTime).toLocaleString()}?
+            <span className="material-symbols-outlined" onClick={()=>setShowRestorePrompt(false)}>close</span>
+            </p>
             <div className="popup-buttons">
               <button onClick={() => {
                 setTitle(autosavedData.title);
@@ -74,9 +76,9 @@ export default function WritingPage({
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             >
-              <option value="Story">Story</option>
-              <option value="Journal">Journal</option>
-              <option value="SelfReflection">SelfReflection</option>
+              <option value="story">Story</option>
+              <option value="journal">Journal</option>
+              <option value="selfReflection">SelfReflection</option>
             </select>
           </div>
         </div>
