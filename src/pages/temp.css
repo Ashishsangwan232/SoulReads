@@ -63,6 +63,7 @@
   width: 100%;
 }
 
+/* 
 .sidebar-btn-open,
 .sidebar-btn-close {
   display: none;
@@ -71,7 +72,7 @@
   background: none;
   border: none;
   cursor: pointer;
-}
+} */
 
 /* ===== Main Section Structure ===== */
 .main-dash {
@@ -201,7 +202,9 @@
 }
 
 .tabs_opt {
+  /* border: 2px solid red; */
   display: flex;
+  /* flex-direction: row; */
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
@@ -211,6 +214,7 @@
 
 /* ===== Tab Buttons ===== */
 .tabs {
+  /* border: 2px solid red; */
   display: flex;
   gap: 12px;
   overflow-x: auto;
@@ -224,7 +228,45 @@
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s ease;
-  border: 1px solid transparent;
+  border: none;
+  /* border: 1px solid transparent; */
+}
+
+@media (max-width:486px) {
+  .tabs_opt {
+    position: relative;
+    /* border: 2px solid red; */
+    display: inline-block;
+    flex-direction: row;
+    gap: 12px;
+    width: 100%;
+    height: 80px;
+  }
+
+  .tabs {
+    position: absolute; 
+    display: flex;
+    width: 100%;
+    scrollbar-width: 2px;
+    scroll-snap-type: proximity;
+  }
+
+  .tab {
+    /* border: 2px solid red; */
+    letter-spacing: 0.02em;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+    font-weight: normal;
+  }
+  .sideactivetab h5 {
+    position: absolute;
+    bottom: 0.6rem;
+  }
+  .dash-menuactivity{
+    position: absolute;
+    right: 0;
+    bottom: 0.4rem;
+  }
 }
 
 .tab:hover,
@@ -235,6 +277,7 @@
 }
 
 .sideactivetab h5 {
+  /* border: 2px solid red; */
   color: var(--text-default);
 }
 
@@ -265,39 +308,19 @@
   text-transform: capitalize;
 }
 
-.card h5 {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  margin-bottom: 0.8rem;
-}
-
-.card p {
-  color: var(--text-default);
-  font-size: 15px;
-  line-height: 1.5;
-}
-
-.card a {
-  text-decoration: none;
-}
-@media (max-width:486px) {
-  .card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.2rem;
-
-}
-.namedate-dash{
+.namedate-dash {
   /* border:2px solid red ; */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 .card h5 {
-  font-size: 0.6rem;
-  /* display: flex; */
-  flex-direction: row;
+  font-size: 0.8rem;
   color: var(--text-light);
   margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
 }
 
 .card p {
@@ -309,12 +332,51 @@
 .card a {
   text-decoration: none;
 }
+
+@media (max-width:486px) {
+  .card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+
+  }
+
+  .namedate-dash {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .card h5 {
+    font-size: 0.65rem;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    color: var(--text-light);
+    margin-bottom: 0.8rem;
+  }
+
+  .btn_in_card .dashboard-like {
+    font-size: 0.2rem;
+  }
+
+  .btn_in_card .published {
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+
+  .card a {
+    text-decoration: none;
+  }
+
+  .dashboard-post-content {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
 }
+
 .dashboard-post-content {
   color: var(--text-heading);
   text-transform: capitalize;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   line-height: 1.5;
 }
 
@@ -331,15 +393,20 @@
 
 .btn_in_card {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
 }
 
 .btn_in_card .draft {
   color: var(--text-muted);
   font-weight: 600;
   cursor: pointer;
+}
+
+.btn_in_card .dashboard-like {
+  font-size: 0.9rem;
 }
 
 .btn_in_card .published {
@@ -424,11 +491,5 @@
 }
 
 .post-count-card lord-icon {
-  /* color: #0a84ff; */
   color: var(--text-heading);
 }
-
-/* .togglemenuuu{ */
-  /* position: absolute; */
-  /* z-index: 9999999999999999; */
-/* } */

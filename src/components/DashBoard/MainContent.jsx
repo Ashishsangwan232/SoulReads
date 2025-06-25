@@ -43,7 +43,9 @@ const MainContent = ({
                     deleteCategory={deleteCategory}
                     setDeletedCategory={setDeletedCategory}
                 />
-                <Menu_activity activeTab={activeTab} setActiveTab={setActiveTab} />
+                <motion.div className='dash-menuactivity'>
+                    <Menu_activity activeTab={activeTab} setActiveTab={setActiveTab} />
+                </motion.div>
             </motion.div>
 
             {loading && <p>Loading your posts...</p>}

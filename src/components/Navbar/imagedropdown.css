@@ -66,7 +66,7 @@ body.soulreads-light {
 .dropdown-menu a {
     display: flex;
     /* border: 2px solid red; */
-    background: white;
+    /* background: var(); */
     padding: 10px 5px;
     margin: auto;
     width: 100%;
@@ -78,7 +78,7 @@ body.soulreads-light {
 .dropdown-menu a:hover{
     background-color: var(--bg-hover);
     border-radius: 4px;
-    color: var(--primary-color);
+    color: var(--text-heading);
 }
 
 
@@ -115,8 +115,9 @@ body.soulreads-light {
     width: 16px;
 }
 
+/* border: 2px solid red; */
 .logoutbutton svg path {
-    fill: var(--primary-color);
+    fill: var(--text-default);
 }
 
 /* text */
@@ -151,7 +152,7 @@ body.soulreads-light {
 .lgut-Btn:hover .text {
     opacity: 1;
     width: 70%;
-    color:var(--primary-color);
+    color:var(--text-default);
     transition-duration: .3s;
     padding-right: 10px;
 }

@@ -41,7 +41,7 @@ export const CardsPublished = ({ cards }) => {
                             •{' '}#{card.category}
                         </h5>
                         <h5>
-                            •{' '}{new Date(card.createdAt).toLocaleDateString('en-US', {
+                            {' '}{new Date(card.createdAt).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'short',
                                 day: 'numeric',
@@ -50,11 +50,11 @@ export const CardsPublished = ({ cards }) => {
                     </div>
                     <Link to={`/posts/${card._id}`}>
                         <div className='dashboard-post-content'>
-                            {extractPlainTextFromSlate(card.content)}
+                            {extractPlainTextFromSlate(card.content, 120)}
                         </div>
                     </Link>
                     <div className="btn_in_card">
-                        {card.likesCount} likes <p className="published">{card.status}</p>
+                       <p className='dashboard-like'> {card.likesCount} likes</p> <p className="published">{card.status}</p>
                     </div>
                 </motion.div>
             ))}
@@ -79,7 +79,7 @@ export const CardsDraft = ({ cards }) => (
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
-                    <p> {extractPlainTextFromSlate(card.content)}</p>
+                    <p>{extractPlainTextFromSlate(card.content, 120)}</p>
                     <div className="btn_in_card">
                         <p className='draft'>{card.status}</p>
                     </div>
@@ -105,7 +105,7 @@ export const CardsArchived = ({ cards }) => (
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
-                    <p> {extractPlainTextFromSlate(card.content)}</p>
+                    <p>{extractPlainTextFromSlate(card.content, 120)}</p>
                     <div className="btn_in_card">
                         {card.likesCount} likes{' '}
                         {card.archive === true && <p>Archived</p>}
@@ -131,7 +131,7 @@ export const Cardsdeleted = ({ cards }) => (
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
-                    <p> {extractPlainTextFromSlate(card.content)}</p>
+                    <p> {extractPlainTextFromSlate(card.content, 120)}</p>
                     {/* <p>{card.content?.replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').slice(0, 250)}...</p> */}
                     <div className="btn_in_card">
                         {card.likesCount} likes{' '}
@@ -169,12 +169,7 @@ export const CardsBookmarked = ({ cards }) => (
                             })}{' '}
                             • #{card.category}
                         </h5>
-                        <p>{card.content?.replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').slice(0, 250)}...</p>
-                        {/* <div className="btn_in_card">
-              {card.status === 'published' && <p className="published">Published</p>}
-              {card.status === 'draft' && <p className="draft">Draft</p>}
-              {card.archive && <p className="draft">Archive</p>}
-            </div> */}
+                        <p>{extractPlainTextFromSlate(card.content, 120)}</p>
                     </div>
                 ))
         ) : (

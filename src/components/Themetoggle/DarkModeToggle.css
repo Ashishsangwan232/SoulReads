@@ -20,16 +20,18 @@
 
 .theme-toggle-container span {
   cursor: pointer;
+   color: var(--text-default);
 }
 
 .theme-options {
   position: absolute;
   top: 2rem;
-  background: var(--bg-section, #fff);
+  background: var(--bg-card, #fff);
   border-radius: 4px;
   padding: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   z-index: 999999; /* Ensures dropdown stays above everything */
+  background-color: var(--bg-card);
 }
 
 .theme-optionsdash {
@@ -37,7 +39,7 @@
   /* border: 2px solid red; */
   top: 2rem;
   right: 1rem;
-  background: var(--bg-section, #fff);
+  background-color: var(--bg-card);
   border-radius: 4px;
   padding: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -48,15 +50,19 @@
   font-size: 0.8rem;
   font-weight: 500;
   padding: 0.5rem 0.4rem;
+  background-color: var(--bg-card);
   width: 120px;
   cursor: pointer;
+  color:var(--text-heading);
 }
 
 .theme-option:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  border-radius:0.2rem ;
+  background-color: var(--bg-hover);
 }
 
 .theme-option.active {
   font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.1);
+  border-radius:0.2rem ;
+  background-color: var(--bg-hover);
 }
