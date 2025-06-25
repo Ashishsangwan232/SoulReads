@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RichTextEditor from './RichTextEditor';
 import Checkbox from '../components/checkbox/Checkbox';
 // import './WritingPage.css';
@@ -24,18 +24,24 @@ export default function WritingPage({
   message,
   setShowRestorePrompt,
 }) {
+  const navigate = useNavigate();
+  const handlehome = () => {
+    navigate('/')
+  };
   return (
     <div className="wrt-pg-cont">
       {/* leftside */}
       <div className='home-without-soulreads'>
-        <span className="material-symbols-outlined">Home</span>
+        <span className="material-symbols-outlined" onClick={handlehome}>Home</span>
       </div>
       <div className='wrt-pg-leftside'>
         <div className="wrt-header-logo">
           <div className='home-with-soulreads'>
-            <span className="material-symbols-outlined">Home</span>
-          <hr />
-          <hr />
+            {/* <Link> */}
+            <span className="material-symbols-outlined" onClick={handlehome}>Home</span>
+            {/* </Link> */}
+            <hr />
+            <hr />
           </div>
           <Link to="/" className="wrt-brand">SoulReads</Link>
         </div>
@@ -45,7 +51,7 @@ export default function WritingPage({
         {showRestorePrompt && autosavedData && (
           <div className="restore-popup">
             <p>Restore last draft from {new Date(autosavedData._autosaveTime).toLocaleString()}?
-            <span className="material-symbols-outlined" onClick={()=>setShowRestorePrompt(false)}>close</span>
+              <span className="material-symbols-outlined" onClick={() => setShowRestorePrompt(false)}>close</span>
             </p>
             <div className="popup-buttons">
               <button onClick={() => {
