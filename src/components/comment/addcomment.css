@@ -43,6 +43,7 @@
   padding: 0.6rem 1.2rem;
   border: none;
   border-radius: 0.6rem;
+  /* background-color:; */
   background-color: var(--button);
   color:var(white);
   font-size: 1rem;
@@ -54,6 +55,7 @@
 .postcomment button:hover:not(:disabled) {
   background-color:var(--button);
   transform: translateY(-1px);
+  /* background-color: aqua; */
 }
 
 .postcomment button:disabled {

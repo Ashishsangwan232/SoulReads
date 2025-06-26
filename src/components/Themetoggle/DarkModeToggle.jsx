@@ -17,6 +17,11 @@ const themes = [
   { name: 'deepfern', label: 'Deep Fern 🌲' },
   { name: 'graphiteaqua', label: 'Graphite Aqua 🧊' },
   { name: 'soulreads-light', label: 'soulreads-light' },
+  { name: 'midnightviolet', label: 'midnightviolet' },
+  { name: 'onyxnight', label: 'onyxnight' },
+  { name: 'emeraldvoid', label: 'emeraldvoid' },
+  { name: 'blackviolet', label: 'blackviolet' },
+  { name: 'blackamber', label: 'blackamber' },
 ];
 
 const ThemeToggle = () => {

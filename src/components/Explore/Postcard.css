@@ -51,7 +51,6 @@
   font-style: italic;
   color: var(--text-light);
   background: var(--quotes);
-
   background-size: 200% 200%;
   animation: gradientShift 5s ease infinite;
   border-left: 4px solid var(--primary-color-dark);
