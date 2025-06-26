@@ -21,7 +21,7 @@ export const BookmarksProvider = ({ children }) => {
       try {
         const res = await axios.get(`${API_URL}/bookmark/bookmarked`);
         setBookmarks(res.data); // each item includes a `post` field if populated
-        console.log(res.data);
+        // console.log(res.data);
       } catch (err) {
         console.error('Failed to fetch bookmarks:', err.message);
       } finally {
