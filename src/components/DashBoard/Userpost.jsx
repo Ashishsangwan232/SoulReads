@@ -17,10 +17,10 @@ const fadeUpVariant = {
     }),
 };
 
-export const CardsPublished = ({ cards }) => {
-    return (
-        <div className="card-container">
-            {cards.map((card, idx) => (
+export const CardsPublished = ({ cards }) => (
+    <div className="card-container">
+        {cards.length > 0 ? (
+            cards.map((card, idx) => (
                 <motion.div
                     className="card"
                     key={card._id || idx}
@@ -54,23 +54,36 @@ export const CardsPublished = ({ cards }) => {
                         </div>
                     </Link>
                     <div className="btn_in_card">
-                       <p className='dashboard-like'> {card.likesCount} likes</p> <p className="published">{card.status}</p>
+                        <p className='dashboard-like'> {card.likesCount} likes</p> <p className="published">{card.status}</p>
                     </div>
                 </motion.div>
-            ))}
-        </div>
-    );
-};
+            ))
+        ) : (
+            <p>No posts yet.</p>
+        )}
+    </div>
+);
 
 
 export const CardsDraft = ({ cards }) => (
     <div className="card-container">
         {cards.length > 0 ? (
             cards.map((card, idx) => (
-                <div className="card" key={idx} data-category={card.category}>
+                // <div className="card" key={idx} data-category={card.category}>
+                <motion.div
+                    className="card"
+                    key={card._id || idx}
+                    custom={idx}
+                    initial="hidden"
+                    animate="visible"
+                    variants={fadeUpVariant}
+                    data-category={card.category}
+                >
+
                     <div className="top_div">
-                        <h3>{card.title}</h3>
-                        {/* <OptionsMenu postId={card._id} archivestatus={card.archive} /> */}
+                        <Link to={`/posts/${card._id}`}>
+                            <h3>{card.title}</h3>
+                        </Link>
                         <OptionsMenu postId={card._id} archivestatus={card.archive} status={card.status} />
 
                     </div>
@@ -79,11 +92,15 @@ export const CardsDraft = ({ cards }) => (
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
-                    <p>{extractPlainTextFromSlate(card.content, 120)}</p>
+                    <Link to={`/posts/${card._id}`}>
+                        <div className='dashboard-post-content'>
+                            {extractPlainTextFromSlate(card.content, 120)}
+                        </div>
+                    </Link>
                     <div className="btn_in_card">
                         <p className='draft'>{card.status}</p>
                     </div>
-                </div>
+                </motion.div>
             ))
         ) : (
             <p>No posts found in this category.</p>
@@ -121,9 +138,20 @@ export const Cardsdeleted = ({ cards }) => (
     <div className="card-container">
         {cards.length > 0 ? (
             cards.map((card, idx) => (
-                <div className="card" key={idx} data-category={card.category}>
+                <motion.div
+                    className="card"
+                    key={card._id || idx}
+                    custom={idx}
+                    initial="hidden"
+                    animate="visible"
+                    variants={fadeUpVariant}
+                    data-category={card.category}
+                >
+
                     <div className="top_div">
-                        <h3>{card.title}</h3>
+                        <Link to={`/posts/${card._id}`}>
+                            <h3>{card.title}</h3>
+                        </Link>
                         <OptionsMenu postId={card._id} archivestatus={card.archive} status={card.status} />
                     </div>
                     <h5>
@@ -131,7 +159,11 @@ export const Cardsdeleted = ({ cards }) => (
                             year: 'numeric', month: 'short', day: 'numeric'
                         })} • #{card.category}
                     </h5>
-                    <p> {extractPlainTextFromSlate(card.content, 120)}</p>
+                    <Link to={`/posts/${card._id}`}>
+                        <div className='dashboard-post-content'>
+                            {extractPlainTextFromSlate(card.content, 120)}
+                        </div>
+                    </Link>
                     {/* <p>{card.content?.replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').slice(0, 250)}...</p> */}
                     <div className="btn_in_card">
                         {card.likesCount} likes{' '}
@@ -140,7 +172,7 @@ export const Cardsdeleted = ({ cards }) => (
                         {card.isDeleted === true && <p>true</p>}
                         {card.isDeleted === false && <p>False</p>}
                     </div>
-                </div>
+                </motion.div>
             ))
         ) : (
             <p>No posts found in this category.</p>
@@ -153,15 +185,28 @@ export const CardsBookmarked = ({ cards }) => (
     <div className="card-container">
         {cards.length > 0 ? (
             cards
-                .filter(card => !card.archive) // Show only archived cards
+                .filter(card => !card.archive)
                 .map((card, idx) => (
-                    <div className="card" key={card._id || idx} data-category={card.category}>
+                    // <div className="card" key={card._id || idx} data-category={card.category}>
+                    <motion.div
+                        className="card"
+                        key={card._id || idx}
+                        custom={idx}
+                        initial="hidden"
+                        animate="visible"
+                        variants={fadeUpVariant}
+                        data-category={card.category}
+                    >
+
                         <div className="top_div">
-                            <h3>{card.title}</h3>
+                            <Link to={`/posts/${card._id}`}>
+                                <h3>{card.title}</h3>
+                            </Link>
                             <BookmarkButton postId={card._id} />
                         </div>
                         <h5>
-                            {card.authorId.username} •{' '}
+                            {card.authorId?.username}•{' '}
+                            {/* {card.username}  •{' '} */}
                             {new Date(card.createdAt).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'short',
@@ -169,11 +214,15 @@ export const CardsBookmarked = ({ cards }) => (
                             })}{' '}
                             • #{card.category}
                         </h5>
-                        <p>{extractPlainTextFromSlate(card.content, 120)}</p>
-                    </div>
+                        <Link to={`/posts/${card._id}`}>
+                            <div className='dashboard-post-content'>
+                                {extractPlainTextFromSlate(card.content, 120)}
+                            </div>
+                        </Link>
+                    </motion.div>
                 ))
         ) : (
             <p>No posts found in this category.</p>
         )}
-    </div>
+    </div >
 );

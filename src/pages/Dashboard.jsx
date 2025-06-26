@@ -311,14 +311,14 @@ const Dashboard = () => {
       return matchStatus && matchCategory;
     });
   };
-
+  // console.log(bookmarkedCards)
   const publishedCards = filterByCategory(myPosts, publishedCategory, 'published');
   const draftCards = filterByCategory(myPosts, draftCategory, 'draft');
   const DeleteCards = filterByCategory(myPostsDeleted, deleteCategory);
   const archivedCards = filterByCategory(myPostsArchived, archiveCategory);
   const bookmarkedCards = filterByCategory(bookmarks.map((b) => b.post), bookmarkCategory);
 
-  // Detect screen resize
+  // Detect screen resiz
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 786;
