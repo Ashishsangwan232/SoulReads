@@ -77,7 +77,7 @@ function Navbar() {
         </Link>
       </div>
       <div className='DarkModetogglemenu'>
-        <DarkModeTogglemenu dash={false}/>
+        <DarkModeTogglemenu dash={false} />
       </div>
       <div className='DarkModetoggle'>
         <DarkModeToggle />
@@ -95,14 +95,24 @@ function Navbar() {
             <ImageDropdown />
           </div>
         ) : (
-          <button
-            className="signin-btn"
-            onClick={() => navigate('/login')}
-            data-aos="zoom-in"
-            data-aos-duration="800"
-          >
-            Sign In
-          </button>
+          <div className='User-login-handle'>
+            <button
+              className="login-btn"
+              onClick={() => navigate('/login')}
+              data-aos="zoom-in"
+              data-aos-duration="800"
+            >
+              Login
+            </button>
+            <button
+              className="signup-btn"
+              onClick={() => navigate('/register')}
+              data-aos="zoom-in"
+              data-aos-duration="800"
+            >
+              Sign up
+            </button>
+          </div>
 
         )
       )}

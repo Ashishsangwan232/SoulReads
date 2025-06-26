@@ -76,19 +76,38 @@
 .aos-link:hover {
   color: var(--primary-color);
 }
+.User-login-handle{
+  display: flex;
+  gap: 10px;
+}
 
-.signin-btn {
+.login-btn {
+  background:transparent;
+  color: var(--text-default);
+  padding: 8px 20px;
+  /* width: 100px; */
+  border: 2px solid var(--primary-color);
+  /* border: none; */
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: var(--primary-color);
+}
+.signup-btn {
   background-color: var(--primary-color);
   color: var(--text-default);
-  padding: 8px 16px;
-  width: 100px;
+  padding: 8px 20px;
+  /* width: 100px; */
   border: none;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.signin-btn:hover {
+.signup-btn:hover {
   background-color: var(--primary-color-dark);
 }
 
