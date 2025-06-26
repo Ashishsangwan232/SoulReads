@@ -29,7 +29,6 @@ const TagScroller = ({ onSearch }) => {
     <div className="tags">
       <div className='tags-span'>
         <span>#SelfDiscovery</span>
-        <span>#Romance</span>
         <span>#BookReview</span>
         <span>#Journal</span>
         <span>#Memoir</span>
