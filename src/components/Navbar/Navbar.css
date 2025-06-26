@@ -251,17 +251,27 @@
     display: none;
   }
 
-  /* .signin-btn {
-    position: absolute;
-    margin-top: 0.2rem;
-    right: 0.6rem;
+  .login-btn {
+    /* position: absolute; */
+    /* margin-top: 0.2rem; */
+    /* right: 0.6rem; */
     padding: 6px 10px;
     max-width: 150px;
-  } */
+    font-size: 0.6rem;
+  }
+  .signup-btn {
+    /* position: absolute; */
+    /* margin-top: 0.2rem; */
+    /* right: 0.6rem; */
+    padding: 6px 10px;
+    max-width: 150px;
+    font-size: 0.6rem;
+  }
   .User-login-handle {
     position: absolute;
-    margin-top: 0.2rem;
+    /* margin-top: 0.2rem; */
     right: 0.6rem;
+    top: 0.2rem;
     padding: 6px 10px;
     max-width: 150px;
   }
