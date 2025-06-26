@@ -28,6 +28,15 @@
   object-fit: contain;
   cursor: pointer;
 }
+.dash-logo p {
+  /* font-family:'Times New Roman', Times, serif; */
+  height: 40px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--text-default);
+  object-fit: contain;
+  cursor: pointer;
+}
 
 .dashboard-topnavlink {
   display: flex;
