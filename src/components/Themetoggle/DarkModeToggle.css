@@ -1,8 +1,10 @@
 .theme-toggle-lap-container {
   display: inline-block;
   margin: 0 10px;
-  position: relative; /* Enables z-index */
-  z-index: 999; /* Stays above normal UI */
+  position: relative;
+  /* Enables z-index */
+  z-index: 999;
+  /* Stays above normal UI */
 }
 
 .theme-lap-selector {
@@ -20,7 +22,7 @@
 
 .theme-toggle-container span {
   cursor: pointer;
-   color: var(--text-default);
+  color: var(--text-default);
 }
 
 .theme-options {
@@ -30,7 +32,8 @@
   border-radius: 4px;
   padding: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 999999; /* Ensures dropdown stays above everything */
+  z-index: 999999;
+  /* Ensures dropdown stays above everything */
   background-color: var(--bg-card);
 }
 
@@ -43,7 +46,8 @@
   border-radius: 4px;
   padding: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 9999; /* Stays on top */
+  z-index: 9999;
+  /* Stays on top */
 }
 
 .theme-option {
@@ -53,16 +57,16 @@
   background-color: var(--bg-card);
   width: 120px;
   cursor: pointer;
-  color:var(--text-heading);
+  color: var(--text-heading);
 }
 
 .theme-option:hover {
-  border-radius:0.2rem ;
+  border-radius: 0.2rem;
   background-color: var(--bg-hover);
 }
 
 .theme-option.active {
   font-weight: bold;
-  border-radius:0.2rem ;
+  border-radius: 0.2rem;
   background-color: var(--bg-hover);
 }
