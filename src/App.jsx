@@ -20,7 +20,9 @@ import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import AddComment from './components/comment/Addcomment';
 import About from './components/About/About';
+import useFCMNotifications from './firbase/useFCMNotifications';
 function App() {
+  useFCMNotifications();
   const location = useLocation();
   const ispage = location.pathname === '/login' || location.pathname === '/register' || location.pathname == '/dashboard' || location.pathname == "/writing" || location.pathname == "/richtext";
   return (
