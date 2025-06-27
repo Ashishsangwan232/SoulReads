@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { messaging, getToken, onMessage } from './firebase';
 
-const VAPID_KEY = import.meta.env.VITE_FIREBASE_APPID;
+const VAPID_KEY = import.meta.env.VITE_FIREBASE_VAPID_KEY;
 
 const useFCMNotifications = () => {
     useEffect(() => {
