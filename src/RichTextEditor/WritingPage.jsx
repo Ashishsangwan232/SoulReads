@@ -23,6 +23,7 @@ export default function WritingPage({
   handleManualSave,
   message,
   setShowRestorePrompt,
+  saving,
 }) {
   const navigate = useNavigate();
   const handlehome = () => {
@@ -37,9 +38,7 @@ export default function WritingPage({
       <div className='wrt-pg-leftside'>
         <div className="wrt-header-logo">
           <div className='home-with-soulreads'>
-            {/* <Link> */}
             <span className="material-symbols-outlined" onClick={handlehome}>Home</span>
-            {/* </Link> */}
             <hr />
             <hr />
           </div>
@@ -104,7 +103,9 @@ export default function WritingPage({
         <footer className="wrt-footer">
           <div className="wrt-wordcount">{wordCount} words</div>
           <div className="footer-buttons">
-            <button onClick={() => handleSave(false)}>Publish</button>
+            <button onClick={() => handleSave(false)} disabled={saving}>
+              {saving ? 'Saving...' : 'Publish'}
+            </button>
             <button onClick={() => handleSave(true)}>Save as Draft</button>
             <button onClick={handleManualSave}>Save Version</button>
           </div>
