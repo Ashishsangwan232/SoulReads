@@ -2,12 +2,12 @@ importScripts('https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js
 importScripts('https://www.gstatic.com/firebasejs/10.12.0/firebase-messaging-compat.js');
 
 firebase.initializeApp({
-    apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGEBUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_FIREBASE_APPID,
+    apiKey: 'AIzaSyCQ3I9WBXcgXiGTPe57TJm7P3V09TGth6o',
+    authDomain:'soulreads-eta.vercel.app',
+    projectId:'soulreads-d5049',
+    storageBucket: 'soulreads-d5049.firebasestorage.app',
+    messagingSenderId:'814495369647',
+    appId:'1:814495369647:web:621cd6aaceb559a770875a',
 });
 
 const messaging = firebase.messaging();
