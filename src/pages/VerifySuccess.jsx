@@ -6,15 +6,13 @@ const VerifySuccess = () => {
   const navigate = useNavigate();
 
   // setTimeout(() => {
-  //   navigate('/login');
+    // navigate('/login');
   // }, 3000);
 
   return (
     <motion.div
       className="verify-success"
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}
     >
       <h2>Email Verified Successfully!</h2>
       <p>Redirecting to login...</p>
