@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { messaging, getToken, onMessage } from './firebase';
-import { saveFcmToken } from './api/saveFcmToken';
+import { saveFcmToken } from './firebaseaxios';
 
 const VAPID_KEY = import.meta.env.VITE_FIREBASE_VAPID_KEY;
 
