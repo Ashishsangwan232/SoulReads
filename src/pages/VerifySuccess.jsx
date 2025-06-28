@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const VerifySuccess = () => {
   const navigate = useNavigate();
 
-  setTimeout(() => {
-    navigate('/login');
-  }, 3000);
+  // setTimeout(() => {
+  //   navigate('/login');
+  // }, 3000);
 
   return (
     <motion.div
