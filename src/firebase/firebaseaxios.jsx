@@ -5,7 +5,7 @@ const API_URL = import.meta.env.VITE_API_URL; // Already in your environment con
 export const saveFcmToken = async (token) => {
     try {
         const response = await axios.post(
-            `${API_URL}/api/save-token`,
+            `${API_URL}/save-token`,
             { token },
             { withCredentials: true } // Ensures cookies (auth) sent
         );
