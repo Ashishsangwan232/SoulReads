@@ -19,8 +19,10 @@ import WritingPageSlateEditing from './RichTextEditor/WritingPageSlateEditing';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import AddComment from './components/comment/Addcomment';
-import About from './components/About/About';
+import About from './components/About/About'; 
+import UserProfile from './components/userdetails/UserProfile'
 import useFCMNotifications from './firebase/useFCMNotifications';
+
 function App() {
   useFCMNotifications();
   const location = useLocation();
@@ -39,6 +41,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/editing/:id?" element={<WritingPageSlateEditing />} />
         <Route path="/autosave-history" element={<AutosaveHistory />} />
+        <Route path="/userprofile" element={<UserProfile />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/addcomment" element={<AddComment />} />

@@ -75,6 +75,15 @@ function Navbar() {
         ><span className="material-symbols-outlined">info</span>
           <p>About</p>
         </Link>
+        <Link
+          to="/userprofile"
+          className={`aos-link ${location.pathname === '/about' ? 'active' : ''}`}
+          data-aos="fade-down"
+          data-aos-duration="1100"
+        >
+          <span className="material-symbols-outlined">user</span>
+          <p>userprofile</p>
+        </Link>
       </div>
       <div className='DarkModetogglemenu'>
         <DarkModeTogglemenu dash={false} />
