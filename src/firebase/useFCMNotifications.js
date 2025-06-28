@@ -1,20 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { messaging, getToken, onMessage } from './firebase';
 import { saveFcmToken } from './firebaseaxios';
+import { AuthContext } from '../context/AuthContext'; 
 
 const VAPID_KEY = import.meta.env.VITE_FIREBASE_VAPID_KEY;
 
 const useFCMNotifications = () => {
+    const { user } = useContext(AuthContext);
+
     useEffect(() => {
+        if (!user?.id) return; // Don't run if user not logged in
+
         Notification.requestPermission().then(permission => {
-            console.log('Notification permission:', permission);
+            console.log('🔔 Notification permission:', permission);
             if (permission === 'granted') {
                 getToken(messaging, { vapidKey: VAPID_KEY })
                     .then(currentToken => {
                         if (currentToken) {
                             console.log('✅ FCM Token:', currentToken);
-                            saveFcmToken(currentToken);
-                            // Optional: Send token to your server
+                            saveFcmToken(currentToken); // Pass userId too
                         } else {
                             console.log('⚠️ No registration token available.');
                         }
@@ -32,7 +36,7 @@ const useFCMNotifications = () => {
                 icon: '/images/logo SR.svg',
             });
         });
-    }, []);
+    }, [user?.id]); // Only re-run if user ID changes
 };
 
 export default useFCMNotifications;
