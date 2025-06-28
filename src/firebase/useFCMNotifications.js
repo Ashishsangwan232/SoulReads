@@ -18,7 +18,7 @@ const useFCMNotifications = () => {
                     .then(currentToken => {
                         if (currentToken) {
                             console.log('✅ FCM Token:', currentToken);
-                            saveFcmToken(currentToken); // Pass userId too
+                            saveFcmToken(currentToken, user.id); // Pass userId too
                         } else {
                             console.log('⚠️ No registration token available.');
                         }

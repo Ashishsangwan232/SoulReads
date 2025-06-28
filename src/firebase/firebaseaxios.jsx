@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const saveFcmToken = async (token) => {
+export const saveFcmToken = async (token, userId) => {
     if (!token || !userId) {
         console.warn('Missing token or userId while saving FCM token.');
         return;
@@ -11,7 +11,7 @@ export const saveFcmToken = async (token) => {
     try {
         const response = await axios.post(
             `${API_URL}/save-token`,
-            { token},
+            { token, userId },
             { withCredentials: true }
         );
 
