@@ -24,10 +24,16 @@ try {
             self.registration.showNotification(title || 'Notification', {
                 body: body || '',
                 icon: icon || '/images/logo SR.svg',
+                data: { url: payload.notification.click_action },
             });
         } else {
             console.warn('[Service Worker] Payload missing notification object:', payload);
         }
+    });
+    self.addEventListener('notificationclick', function (event) {
+        event.notification.close();
+        const url = event.notification.data?.url || 'https://soulreads-eta.vercel.app/';
+        event.waitUntil(clients.openWindow(url));
     });
 
     console.log('[Service Worker] Firebase Messaging initialized successfully.');
