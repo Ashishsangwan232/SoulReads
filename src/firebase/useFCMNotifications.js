@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { messaging, getToken, onMessage } from './firebase';
+import { saveFcmToken } from './api/saveFcmToken';
 
 const VAPID_KEY = import.meta.env.VITE_FIREBASE_VAPID_KEY;
 
@@ -12,6 +13,7 @@ const useFCMNotifications = () => {
                     .then(currentToken => {
                         if (currentToken) {
                             console.log('✅ FCM Token:', currentToken);
+                            saveFcmToken(currentToken);
                             // Optional: Send token to your server
                         } else {
                             console.log('⚠️ No registration token available.');

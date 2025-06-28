@@ -20,7 +20,7 @@ import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import AddComment from './components/comment/Addcomment';
 import About from './components/About/About';
-import useFCMNotifications from './firbase/useFCMNotifications';
+import useFCMNotifications from './firebase/useFCMNotifications';
 function App() {
   useFCMNotifications();
   const location = useLocation();
