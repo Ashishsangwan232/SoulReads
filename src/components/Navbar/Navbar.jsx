@@ -42,57 +42,45 @@ function Navbar() {
     <nav className={`navbar ${isWritingPage ? 'writingnavbar' : ''}`}>
 
       <div className="logo" data-aos="fade-down" data-aos-duration="1000">
-        {/* <img src="/images/logo SR.png"  */}
         <p>SoulReads</p>
-        {/* <img  
-        alt="SoulReads" /> */}
       </div>
 
-      <div className="nav-links">
-        <Link
-          to="/"
-          className={`aos-link ${location.pathname === '/' ? 'active' : ''}`}
-          data-aos="fade-down"
-          data-aos-duration="800"
-        >
-          <span className="material-symbols-outlined">Home</span>
-          <p>Home</p>
-        </Link>
-        <Link
-          to="/explore"
-          className={`aos-link ${location.pathname === '/explore' ? 'active' : ''}`}
-          data-aos="fade-down"
-          data-aos-duration="1000"
-        >
-          <span className="material-symbols-outlined">Browse</span>
-          <p>Explore</p>
-        </Link>
-        <Link
-          to="/about"
-          className={`aos-link ${location.pathname === '/about' ? 'active' : ''}`}
-          data-aos="fade-down"
-          data-aos-duration="1100"
-        ><span className="material-symbols-outlined">info</span>
-          <p>About</p>
-        </Link>
-        {/* <Link
-          to="/userprofile"
-          className={`aos-link ${location.pathname === '/about' ? 'active' : ''}`}
-          data-aos="fade-down"
-          data-aos-duration="1100"
-        >
-          <span className="material-symbols-outlined">user</span>
-          <p>userprofile</p>
-          </Link> */}
-        {/* <Link to="/updates">🚀 New Updates</Link> */}
-
-      <div className='DarkModetoggle'>
-          <DarkModeTogglemenu dash={false} />
-  </div> 
-      </div>
+      <div className='nav-links-smallerscreen'>
         <div className='DarkModetogglemenu'>
           <DarkModeTogglemenu dash={false} />
         </div>
+        <div className="nav-links">
+          <Link
+            to="/"
+            className={`aos-link ${location.pathname === '/' ? 'active' : ''}`}
+            data-aos="fade-down"
+            data-aos-duration="800"
+          >
+            <span className="material-symbols-outlined">Home</span>
+            <p>Home</p>
+          </Link>
+          <Link
+            to="/explore"
+            className={`aos-link ${location.pathname === '/explore' ? 'active' : ''}`}
+            data-aos="fade-down"
+            data-aos-duration="1000"
+          >
+            <span className="material-symbols-outlined">Browse</span>
+            <p>Explore</p>
+          </Link>
+          <Link
+            to="/about"
+            className={`aos-link ${location.pathname === '/about' ? 'active' : ''}`}
+            data-aos="fade-down"
+            data-aos-duration="1100"
+          ><span className="material-symbols-outlined">info</span>
+            <p>About</p>
+          </Link>
+          <div className='DarkModetoggle'>
+            <DarkModeTogglemenu dash={false} />
+          </div>
+        </div>
+      </div>
       {!isAuthPage && (
         user ? (
           <div

@@ -1,72 +1,72 @@
-.theme-toggle-lap-container {
+.darkmode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base Slider Switch */
+.switch {
+  position: relative;
   display: inline-block;
-  margin: 0 10px;
-  position: relative;
-  /* Enables z-index */
-  z-index: 999;
-  /* Stays above normal UI */
+  width: 45px;
+  height: 22px;
 }
 
-.theme-lap-selector {
-  padding: 6px 10px;
-  font-size: 0.95rem;
-  border-radius: 6px;
-  border: 1px solid var(--primary-color);
-  background-color: var(--bg-card);
-  color: var(--text-default);
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.theme-toggle-container {
-  position: relative;
-}
-
-.theme-toggle-container span {
-  cursor: pointer;
-  color: var(--text-default);
-}
-
-.theme-options {
+/* Slider Track */
+.slider {
   position: absolute;
-  top: 2rem;
-  background: var(--bg-card, #fff);
-  border-radius: 4px;
-  padding: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 999999;
-  /* Ensures dropdown stays above everything */
-  background-color: var(--bg-card);
-}
-
-.theme-optionsdash {
-  position: absolute;
-  /* border: 2px solid red; */
-  top: 2rem;
-  right: 1rem;
-  background-color: var(--bg-card);
-  border-radius: 4px;
-  padding: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
-  /* Stays on top */
-}
-
-.theme-option {
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.5rem 0.4rem;
-  background-color: var(--bg-card);
-  width: 120px;
   cursor: pointer;
-  color: var(--text-heading);
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
 }
 
-.theme-option:hover {
-  border-radius: 0.2rem;
-  background-color: var(--bg-hover);
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
 }
 
-.theme-option.active {
-  font-weight: bold;
-  border-radius: 0.2rem;
-  background-color: var(--bg-hover);
+/* Checked State */
+input:checked + .slider {
+  background-color: #4b0082;
+}
+
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* Responsive - Smaller for screens below 500px */
+@media (max-width: 500px) {
+  .switch {
+    width: 40px;
+    height: 20px;
+  }
+
+  .slider::before {
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+  }
+
+  input:checked + .slider::before {
+    transform: translateX(18px);
+  }
 }

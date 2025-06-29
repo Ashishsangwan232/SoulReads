@@ -214,24 +214,38 @@
   }
 
   .DarkModetogglemenu {
-    position: absolute;
-    left: 0.8rem;
-    bottom: 1rem;
-    display: block;
+    /* position: absolute; */
+    /* left: 0.8rem; */
+    /* bottom: 1rem; */
+    /* display: block; */
   }
 
   .DarkModetoggle {
     display: none;
   }
 
-  .nav-links {
+  .nav-links-smallerscreen {
+    /* border: 2px solid red; */
+    position: absolute;
+    left: 0;
+    bottom: 1rem;
+    padding:0px 1rem 0px 0.8rem ;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(118, 118, 118, 0.062);
+
+  }
+
+  /* .nav-links {
     position: absolute;
     width: 100%;
     left: 0;
     bottom: 1rem;
     display: flex;
     box-shadow: 0px 0px 10px rgba(118, 118, 118, 0.062);
-    /* border: 2px solid rgb(0, 0, 0); */
     gap: 2rem;
     padding-right: 1rem;
     padding: 0.2rem;
@@ -240,6 +254,12 @@
     flex-direction: row;
     justify-content: end;
     align-items: center;
+  } */
+  .nav-links {
+    /* border: 2px solid red; */
+    display: flex;
+    margin: 0;
+    flex-direction: row;
   }
 
   .aos-link span {
@@ -259,6 +279,7 @@
     max-width: 150px;
     font-size: 0.6rem;
   }
+
   .signup-btn {
     /* position: absolute; */
     /* margin-top: 0.2rem; */
@@ -267,6 +288,7 @@
     max-width: 150px;
     font-size: 0.6rem;
   }
+
   .User-login-handle {
     position: absolute;
     /* margin-top: 0.2rem; */
@@ -281,15 +303,15 @@
     font-size: 0.7rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content:center;
+    justify-content: center;
   }
-  
+
   .user-actions {
     position: absolute;
     right: 0.6rem;
     text-align: left;
     align-items: center;
-    max-width:150px;
+    max-width: 150px;
     gap: 8px;
   }
 }
