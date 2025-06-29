@@ -105,7 +105,7 @@ const UserProfile = ({ userId, onClose }) => {
   const [error, setError] = useState(null);  // Track error status
   const API_URL = import.meta.env.VITE_API_URL;
 
-  console.log('userprofile id:', userId);
+  // console.log('userprofile id:', userId);
 
   useEffect(() => {
     if (!userId) {

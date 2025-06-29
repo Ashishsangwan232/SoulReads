@@ -26,11 +26,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <AllPostsProvider>
-          <MyPostsProvider>
-            <BookmarksProvider>
-              <UpdatePostProvider>
-                <LikeProvider>
+        <LikeProvider>
+          <AllPostsProvider>
+            <MyPostsProvider>
+              <BookmarksProvider>
+                <UpdatePostProvider>
                   <DraftsProvider>
                     <DeleteProvider>
                       <TrashProvider>
@@ -50,11 +50,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                       </TrashProvider>
                     </DeleteProvider>
                   </DraftsProvider>
-                </LikeProvider>
-              </UpdatePostProvider>
-            </BookmarksProvider>
-          </MyPostsProvider>
-        </AllPostsProvider>
+                </UpdatePostProvider>
+              </BookmarksProvider>
+            </MyPostsProvider>
+          </AllPostsProvider>
+        </LikeProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

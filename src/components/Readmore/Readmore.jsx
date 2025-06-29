@@ -31,6 +31,9 @@ const ReadMore = () => {
   const isOwner = useMemo(() => {
     return post && user && String(post.authorId._id) === String(user._id);
   }, [post, user]);
+  // console.log("user info: ", post.authorId.profilePic);
+  // console.log("user info: ", post);
+  // console.log("user comment info: ", comments);
 
   useEffect(() => {
     if (postId && (!post || String(post._id) !== postId)) {
@@ -108,11 +111,11 @@ const ReadMore = () => {
         <h1>{post.title}</h1>
 
         <div className="meta-info">
-          <h4 onClick={() => setShowPopup(true) } className='meta-info-name'>
-          {/* <img
-            src={post.profilePicture || '/default-avatar.png'}
-            alt="Profile"
-          /> */}
+          <h4 onClick={() => setShowPopup(true)} className='meta-info-name'>
+            <img
+              src={post.authorId.profilePic || '/default-avatar.png'}
+              alt="Profile"
+            />
             {displayAuthor} • #{post.category}</h4>
           <h4>{new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</h4>
         </div>
@@ -208,6 +211,10 @@ const ReadMore = () => {
                       className="comment-author"
                       onClick={() => setPopupCommentUserId(comment.authorId?._id)}
                     >
+                      <img
+                        src={post.authorId.profilePic || '/avatar/oggy.jpg'}
+                        alt="Profile"
+                      />
                       @{comment.authorName}
                     </span>
                     <Time_ago createdAt={comment.createdAt} />

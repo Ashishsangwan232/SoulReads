@@ -36,7 +36,7 @@ const Settings = ({ setSettingtab }) => {
         if (score === 3) return 'Strong';
         if (score === 4) return 'Perfect';
     };
-    console.log('pic: ', user.profilePicKey);
+    // console.log('pic: ', user.profilePicKey);
     useEffect(() => {
         if (user) {
             setUsername(user.username || '');

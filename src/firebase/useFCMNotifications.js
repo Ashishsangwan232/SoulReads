@@ -15,7 +15,7 @@ const useFCMNotifications = () => {
             getToken(messaging, { vapidKey: VAPID_KEY })
                 .then(currentToken => {
                     if (currentToken) {
-                        console.log('✅ FCM Token:', currentToken);
+                        // console.log('✅ FCM Token:', currentToken);
                         saveFcmToken(currentToken, user.id);
                     } else {
                         console.warn('⚠️ No registration token available.');

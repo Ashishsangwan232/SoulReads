@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './addcomment.css';
 import { useComments } from '../../context/CommentsContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const AddComment = ({ postId, onCommentAdded }) => {
+  const {user}=useContext(AuthContext);
   const [commentText, setCommentText] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const { addComment } = useComments(); // From context
 
   const handleSubmit = async () => {
+    if(!user) return alert('You need to login first!');
     const trimmedComment = commentText.trim();
     if (!trimmedComment) return;
 

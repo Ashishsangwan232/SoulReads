@@ -61,7 +61,7 @@
   z-index: 5;
   width: 42px;
   height: 70px;
-  background: var(--arrow-bg-color, rgba(0, 0, 0, 0.4));
+  background: var(--arrow-bg-color, rgba(0, 0, 0, 0.1));
   border: 1px solid var(--text-muted);
   color: var(--text-default);
   font-size: 1.7rem;
@@ -71,23 +71,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(2px);
+  /* transform: translateY(0); */
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .netflix-arrow:hover {
   background-color: var(--arrow-bg-color-hover, rgba(0, 0, 0, 0.6));
+  /* transform: translateY(10px); */
   transform: translateY(-50%) scale(1.15);
 }
 
-.netflix-arrow.left {
+.netflix-arrow.left:hover {
   left: 0;
+
+}
+.netflix-arrow.left {
+  left: -15px;
   box-shadow: -4px 0px 10px rgba(230, 245, 255, 0.15) inset;
   border-radius: 0px 14px 14px 0px;
 }
 
-.netflix-arrow.right {
+.netflix-arrow.right:hover {
   right: 0;
+}
+.netflix-arrow.right {
+  right: -15px;
   box-shadow: 4px 0px 10px rgba(230, 245, 255, 0.15) inset;
   border-radius: 14px 0px 0px 14px;
 }

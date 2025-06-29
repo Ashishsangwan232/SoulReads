@@ -11,8 +11,9 @@ export const DeleteProvider = ({ children }) => {
     const [myPostsDeleted, setMyPostsDeleted] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
     const API_URL = import.meta.env.VITE_API_URL;
-    
+
     const softDelete = async (postId) => {
         try {
             setLoading(true);
