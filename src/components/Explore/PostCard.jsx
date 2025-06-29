@@ -5,10 +5,10 @@ import LikeButton from "../LikeButton/Likebutton";
 import { useLikeContext } from '../../context/Likecontext';
 import { AllPostsContext } from "../../context/AllPostsContext";
 
-export default function PostCard({ type, author, date, title, quote, excerpt, link, likes, postId }) {
+export default function PostCard({ type, author, date, title, quote, excerpt, link, likes, commentsCount, postId }) {
   const { posts } = useContext(AllPostsContext)
 
-  const { checkUserLikeStatus } = useLikeContext(); 
+  const { checkUserLikeStatus } = useLikeContext();
   const [isCurrentUserLiked, setIsCurrentUserLiked] = useState(false);
   const [currentLikesCount, setCurrentLikesCount] = useState(0);
   const [initialLikeStatusLoading, setInitialLikeStatusLoading] = useState(true);
@@ -46,20 +46,28 @@ export default function PostCard({ type, author, date, title, quote, excerpt, li
         <Link to={link} className="read-more">
           Read full {type} →
         </Link>
+        <div className="explore-like-btn">
+          <div className="explore-comment-count">
+            <span className="material-symbols-outlined">
+              chat
+            </span>
+            {commentsCount}
+          </div>
+          <div className="explore-like-count">
+            {!initialLikeStatusLoading ? (
+              <LikeButton
+                targetId={postId}
+                targetType="Post"
+                atpage="explore"
+                initialLikesCount={currentLikesCount}
+                initialIsLiked={isCurrentUserLiked}
+              />
+            ) : (
+              <p>like</p>
+            )}
 
-       <div className="explore-like-btn">
-         {!initialLikeStatusLoading ? (
-          <LikeButton
-            targetId={postId}
-            targetType="Post"
-            atpage="explore"
-            initialLikesCount={currentLikesCount}
-            initialIsLiked={isCurrentUserLiked}
-          />
-        ) : (
-          <p>like</p>
-        )}
-       </div>
+          </div>
+        </div>
       </div>
     </div>
   );

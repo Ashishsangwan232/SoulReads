@@ -1,3 +1,97 @@
+// import React, { useState, useRef, useEffect, useContext } from 'react';
+// import { gsap } from 'gsap';
+// import './imagedropdown.css';
+// import { AuthContext } from '../../context/AuthContext';
+// import { Link, useNavigate } from 'react-router-dom';
+
+// const ImageDropdown = () => {
+//     const [open, setOpen] = useState(false);
+//     const menuRef = useRef();
+//     const containerRef = useRef();
+//     const navigate = useNavigate
+//     const { user, logout } = useContext(AuthContext);
+//     const handleLogout = async () => {
+//         const isconfirm = window.confirm("proced for logout")
+//         if (!isconfirm) return;
+//         try {
+//             await logout();
+//             navigate('/');
+//         } catch (error) {
+//             console.error("Logout failed:", error.message);
+//         }
+//     };
+
+
+//     useEffect(() => {
+//         const handleClickOutside = (e) => {
+//             if (containerRef.current && !containerRef.current.contains(e.target)) {
+//                 setOpen(false);
+//             }
+//         };
+//         document.addEventListener('mousedown', handleClickOutside);
+//         return () => document.removeEventListener('mousedown', handleClickOutside);
+//     }, []);
+
+//     useEffect(() => {
+//         if (open) {
+//             gsap.fromTo(menuRef.current,
+//                 { opacity: 0, y: -10 },
+//                 { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+//             );
+//         } else {
+//             gsap.to(menuRef.current, {
+//                 opacity: 0,
+//                 y: -10,
+//                 duration: 0.2,
+//                 ease: 'power2.in',
+//                 onComplete: () => {
+//                     if (menuRef.current) menuRef.current.style.display = 'none';
+//                 },
+//             });
+//         }
+//     }, [open]);
+
+//     return (
+//         <div className="image-dropdown" ref={containerRef}>
+//             <img
+//                 src={user.profilePic}
+//                 alt="Profile"
+//                 className="profile-button"
+//                 onClick={() => {
+//                     setOpen((prev) => !prev);
+//                     if (menuRef.current) menuRef.current.style.display = 'block';
+//                 }}
+//             />
+//             <ul className="dropdown-menu" ref={menuRef} style={{ display: 'none' }}>
+//                 <li><Link to="/dashboard">
+//                     Dashboard
+//                 </Link></li>
+//                 <li><Link to="/dashboard?tab=settings">Settings</Link></li>
+//                 {/* <li>Logout</li> */}
+//                 <li style={{ padding: '0px 10px' }} >
+//                     <button className="lgut-Btn" onClick={handleLogout}>
+
+//                         <div className="logoutbutton"><svg viewBox="0 0 512 512">
+
+//                             <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 
+//                             9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 
+//                             15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 
+//                             0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 
+//                             32z"></path></svg></div>
+
+//                         <div className="text">Logout</div>
+
+//                     </button>
+//                 </li>
+//             </ul>
+//         </div>
+//     );
+// };
+
+// export default ImageDropdown;
+
+
+
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { gsap } from 'gsap';
 import './imagedropdown.css';
@@ -8,11 +102,12 @@ const ImageDropdown = () => {
     const [open, setOpen] = useState(false);
     const menuRef = useRef();
     const containerRef = useRef();
-    const navigate = useNavigate
+    const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
+
     const handleLogout = async () => {
-        const isconfirm = window.confirm("proced for logout")
-        if (!isconfirm) return;
+        const isConfirm = window.confirm("Proceed with logout?");
+        if (!isConfirm) return;
         try {
             await logout();
             navigate('/');
@@ -20,7 +115,6 @@ const ImageDropdown = () => {
             console.error("Logout failed:", error.message);
         }
     };
-
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -33,7 +127,10 @@ const ImageDropdown = () => {
     }, []);
 
     useEffect(() => {
+        if (!menuRef.current) return;
+
         if (open) {
+            gsap.set(menuRef.current, { display: 'block' });
             gsap.fromTo(menuRef.current,
                 { opacity: 0, y: -10 },
                 { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
@@ -45,7 +142,7 @@ const ImageDropdown = () => {
                 duration: 0.2,
                 ease: 'power2.in',
                 onComplete: () => {
-                    if (menuRef.current) menuRef.current.style.display = 'none';
+                    if (menuRef.current) gsap.set(menuRef.current, { display: 'none' });
                 },
             });
         }
@@ -54,33 +151,30 @@ const ImageDropdown = () => {
     return (
         <div className="image-dropdown" ref={containerRef}>
             <img
-                src={user.profilePic}
+                src={user?.profilePic || '/default-avatar.png'}
                 alt="Profile"
                 className="profile-button"
-                onClick={() => {
-                    setOpen((prev) => !prev);
-                    if (menuRef.current) menuRef.current.style.display = 'block';
-                }}
+                onClick={() => setOpen(prev => !prev)}
             />
             <ul className="dropdown-menu" ref={menuRef} style={{ display: 'none' }}>
-                <li><Link to="/dashboard">
-                    Dashboard
-                </Link></li>
-                <li><Link to="/dashboard?tab=settings">Settings</Link></li>
-                {/* <li>Logout</li> */}
-                <li style={{ padding: '0px 10px' }} >
+                <li>
+                    <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                    <Link to="/dashboard?tab=settings">Settings</Link>
+                </li>
+                <li style={{ padding: '0 10px' }}>
                     <button className="lgut-Btn" onClick={handleLogout}>
-
-                        <div className="logoutbutton"><svg viewBox="0 0 512 512">
-
-                            <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 
+                        <div className="logoutbutton">
+                            <svg viewBox="0 0 512 512">
+                                <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 
                             9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 
                             15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 
                             0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 
-                            32z"></path></svg></div>
-
+                            32z"></path>
+                            </svg>
+                        </div>
                         <div className="text">Logout</div>
-
                     </button>
                 </li>
             </ul>

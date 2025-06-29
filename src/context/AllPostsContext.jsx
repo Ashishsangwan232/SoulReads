@@ -1,4 +1,3 @@
-// AllPostsContext.jsx
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -15,10 +14,10 @@ export const AllPostsProvider = ({ children }) => {
       setLoading(true);
       setError(null);
       const res = await axios.get(`${API_URL}/posts/getAll`);
-      setPosts(res.data);
+      setPosts(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error('Error fetching all posts:', err);
-      setError('Failed to load posts.'); // <-- set error state
+      setError('Failed to load posts.');
     } finally {
       setLoading(false);
     }
@@ -35,4 +34,4 @@ export const AllPostsProvider = ({ children }) => {
   );
 };
 
-export const useAllPosts = () => useContext(AllPostsContext); // still useful if using this hook in other components
+export const useAllPosts = () => useContext(AllPostsContext);

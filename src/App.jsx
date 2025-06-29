@@ -22,6 +22,8 @@ import AddComment from './components/comment/Addcomment';
 import About from './components/About/About'; 
 import UserProfile from './components/userdetails/UserProfile'
 import useFCMNotifications from './firebase/useFCMNotifications';
+import NewUpdates from './Newupdates/NewUpdates';
+import TopbarUpdate from './Newupdates/TopbarUpdate';
 
 function App() {
   useFCMNotifications();
@@ -29,6 +31,7 @@ function App() {
   const ispage = location.pathname === '/login' || location.pathname === '/register' || location.pathname == '/dashboard' || location.pathname == "/writing" || location.pathname == "/richtext";
   return (
     <>
+    <TopbarUpdate/>
       {!ispage && <Navbar />
       }
       <Routes>
@@ -42,6 +45,7 @@ function App() {
         <Route path="/editing/:id?" element={<WritingPageSlateEditing />} />
         <Route path="/autosave-history" element={<AutosaveHistory />} />
         <Route path="/userprofile" element={<UserProfile />} />
+        <Route path="/updates" element={<NewUpdates />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/addcomment" element={<AddComment />} />

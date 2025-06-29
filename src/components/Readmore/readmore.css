@@ -19,6 +19,9 @@
   letter-spacing: 0.05em;
   color: var(--text-light);
 }
+.meta-info-name{
+  cursor: pointer;
+}
 
 .add-fav {
   cursor: pointer;
@@ -102,13 +105,15 @@
   color: var(--text-heading);
   font-size: 0.8rem;
   font-weight: 600;
-
 }
 
 .reamdome-comment-author p {
   font-size: 0.8rem;
   color: var(--text-light);
 
+}
+.comment-author{
+  cursor: pointer;
 }
 
 .back {
@@ -152,4 +157,39 @@
   color: var(--text-muted);
   display: flex;
   justify-content: space-between;
+}
+.userprofile-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.3); /* Subtle overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.delete-comment-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .delete-comment-btn:hover svg {
+  color: red;
+  transform: scale(1.1);
+  transition: 0.2s ease;
+} */
+.reamdome-comment-author-option{
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
 }

@@ -75,7 +75,7 @@ function Navbar() {
         ><span className="material-symbols-outlined">info</span>
           <p>About</p>
         </Link>
-        <Link
+        {/* <Link
           to="/userprofile"
           className={`aos-link ${location.pathname === '/about' ? 'active' : ''}`}
           data-aos="fade-down"
@@ -83,14 +83,16 @@ function Navbar() {
         >
           <span className="material-symbols-outlined">user</span>
           <p>userprofile</p>
-        </Link>
-      </div>
-      <div className='DarkModetogglemenu'>
-        <DarkModeTogglemenu dash={false} />
-      </div>
+          </Link> */}
+        {/* <Link to="/updates">🚀 New Updates</Link> */}
+
       <div className='DarkModetoggle'>
-        <DarkModeToggle />
+          <DarkModeTogglemenu dash={false} />
+  </div> 
       </div>
+        <div className='DarkModetogglemenu'>
+          <DarkModeTogglemenu dash={false} />
+        </div>
       {!isAuthPage && (
         user ? (
           <div

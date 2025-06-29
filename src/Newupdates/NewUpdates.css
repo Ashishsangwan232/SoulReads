@@ -1,0 +1,87 @@
+.newupdates-wrapper {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.update-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.update-card.left .update-content {
+  order: 1;
+  text-align: left;
+}
+
+.update-card.left .update-image {
+  order: 2;
+}
+
+.update-card.right .update-content {
+  order: 2;
+  text-align: right;
+}
+
+.update-card.right .update-image {
+  order: 1;
+}
+
+.update-content {
+  flex: 1 1 50%;
+  padding: 1rem;
+}
+
+.update-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.update-content p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.update-image {
+  flex: 1 1 20%;
+  text-align: center;
+}
+
+.update-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.update-image img:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .update-card {
+    flex-direction: column;
+  }
+  
+  .update-card.left .update-content,
+  .update-card.right .update-content,
+  .update-card.left .update-image,
+  .update-card.right .update-image {
+    order: unset;
+    text-align: center;
+  }
+}

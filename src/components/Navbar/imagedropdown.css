@@ -159,6 +159,5 @@ body.soulreads-light {
 
 /* button click effect*/
 .lgut-Btn:active {
-    border: 2px solid red;
     transform: translate(2px, 2px);
 }

@@ -3,7 +3,7 @@ import { useArchive } from '../../context/ArchiveContext';
 import { useDelete } from '../../context/DeleteContext';
 import './optionmenu.css';
 import { useMyPostsArchived } from '../../context/MyPostsContextArchieved';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useMyPosts } from '../../context/MyPostsContext';
 
 const OptionsMenu = ({ postId, archivestatus, status }) => {
@@ -15,7 +15,7 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
   const { toggleArchive } = useArchive();
   const [statusMessage, setStatusMessage] = useState(null);
   const navigate = useNavigate();
-
+  // const location =useLocation();
   const handleHardDelete = async () => {
     const confirmed = window.confirm("Are you sure you want to move this post to trash?");
     if (!confirmed) return;

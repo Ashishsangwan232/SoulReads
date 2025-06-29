@@ -1,0 +1,25 @@
+.topbar-update {
+  background-color: var(--primary-color);
+  color: var(--bg-default);
+  text-align: center;
+  padding: 0.4rem 1rem;
+  font-size: 0.95rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.topbar-update p {
+  margin: 0;
+}
+
+.topbar-update a {
+  color: var(--bg-default);
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.topbar-update a:hover {
+  color: #ffe98a;
+}

@@ -97,10 +97,54 @@
   justify-content: space-between;
   align-items: center;
 }
+/* .explore-like-btn{
+  border: 2px solid red;
+  display: flex;
+  align-items: center;
+} */
 
-.explore-like-btn {
+/* .explore-like-btn {
+  display: flex;
+  border: 2px solid red;
+  justify-content: center;
+  align-items: center;
+  
+  gap: 10px;
+
   transform: scale(0.8);
   pointer-events: none;
   height: 1em;
+  color: var(--text-default); */
+/* } */
+/* .explore-comment-count{
+  border: 2px solid red;
+  display: flex;
+  align-items:center ;
+  gap: 4px;
+}
+.explore-like-count{
+  border: 2px solid red;
+  align-items: center;
+} */
+
+.explore-like-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transform: scale(0.9);
+  pointer-events: none;
+  height: 1.2em;
   color: var(--text-default);
+}
+
+.explore-comment-count span{
+  margin-top: 0.3rem;
+}
+.explore-comment-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-default);
+  font-size: 0.9rem;
 }

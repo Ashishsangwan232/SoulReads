@@ -50,6 +50,7 @@ export default function Explore() {
               // quote={post.content.replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').slice(0, 60) + "..."}
               excerpt={extractPlainTextFromSlate(post.content, 120)}
               likes={post.likesCount}
+              commentsCount={post.commentsCount}
               postId={post._id}
               link={`/posts/${post._id}`}
             />
