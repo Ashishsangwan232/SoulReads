@@ -184,6 +184,7 @@ const UserProfile = ({ userId, onClose }) => {
         <div className="userprofile-other-details">
           <h5>@{user.username}</h5>
         </div>
+        
 
         <div className="userprofile-table">
           <table>
