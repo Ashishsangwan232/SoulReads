@@ -14,6 +14,7 @@ import RichTextViewer from '../../RichTextEditor/RichTextViewer.jsx';
 import Time_ago from '../Time_ago/Time_ago.jsx';
 import UserProfile from '../userdetails/UserProfile';
 import CommentDeleteoption from '../DashBoard/CommentDeleteoption';
+import PostLoading from './PostLoading';
 
 const ReadMore = () => {
   const { id: postId } = useParams();
@@ -28,60 +29,58 @@ const ReadMore = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupCommentUserId, setPopupCommentUserId] = useState(null);
 
-  const isOwner = useMemo(() => {
-    return post && user && String(post.authorId._id) === String(user._id);
-  }, [post, user]);
-  // console.log("user info: ", post.authorId.profilePic);
-  // console.log("user info: ", post);
-  // console.log("user comment info: ", comments);
+  const isOwner = useMemo(() => (
+    post && user && String(post.authorId?._id) === String(user._id)
+  ), [post, user]);
 
   useEffect(() => {
     if (postId && (!post || String(post._id) !== postId)) {
       fetchPostById(postId);
     }
-  }, [postId, post, fetchPostById]);
+  }, [postId]);
 
   useEffect(() => {
-    if (postId) {
-      fetchComments(postId);
-    }
-  }, [postId, fetchComments]);
+    if (postId) fetchComments(postId);
+  }, [postId]);
 
   useEffect(() => {
-    if (post && postId && String(post._id) === postId) {
+    if (post && String(post._id) === postId) {
       setCurrentLikesCount(post.likesCount || 0);
+
       const fetchStatus = async () => {
         setInitialLikeStatusLoading(true);
         try {
           const statusData = await checkUserLikeStatus(postId, 'Post');
           setIsCurrentUserLiked(statusData.liked);
         } catch (error) {
-          console.error("ReadMore: Failed to fetch like status:", error);
+          console.error("Failed to fetch like status:", error);
           setIsCurrentUserLiked(false);
         } finally {
           setInitialLikeStatusLoading(false);
         }
       };
+
       fetchStatus();
     }
-  }, [postId, post, checkUserLikeStatus]);
+  }, [post]);
 
-  if (postLoading || (post && String(post._id) !== postId)) {
-    return <div className="post-detail"><h2>Loading Post...</h2></div>;
+  if (postLoading) {
+    return <div className="post-detail-loading"><PostLoading /></div>;
   }
 
   if (!post) {
-    return <div className="post-detail"><h2>Post not found.</h2></div>;
+    return <div className="post-detail-notfound"><h2>Post not found.</h2></div>;
   }
 
-  const displayAuthor = post.authorId.username || 'Unknown Author';
+  const displayAuthor = post.authorId?.username || 'Unknown Author';
+  const authorProfilePic = post.authorId?.profilePic || '/default-avatar.png';
 
   return (
     <div className='readmore-container-div'>
 
       {showPopup && (
         <div className='userprofile-popup'>
-          <UserProfile userId={post.authorId._id} onClose={() => setShowPopup(false)} />
+          <UserProfile userId={post.authorId?._id} onClose={() => setShowPopup(false)} />
         </div>
       )}
 
@@ -112,11 +111,9 @@ const ReadMore = () => {
 
         <div className="meta-info">
           <h4 onClick={() => setShowPopup(true)} className='meta-info-name'>
-            <img
-              src={post.authorId.profilePic || '/default-avatar.png'}
-              alt="Profile"
-            />
-            {displayAuthor} • #{post.category}</h4>
+            <img src={authorProfilePic} alt="Profile" />
+            {displayAuthor} • #{post.category}
+          </h4>
           <h4>{new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</h4>
         </div>
 
@@ -138,7 +135,13 @@ const ReadMore = () => {
 
           <div className='readmore-share'>
             <ShareButton />
-            {isOwner && <OptionsMenu postId={post._id} archivestatus={post.archive} status={post.status} />}
+            {isOwner && (
+              <OptionsMenu
+                postId={post._id}
+                archivestatus={post.archive}
+                status={post.status}
+              />
+            )}
           </div>
         </div>
 
@@ -149,51 +152,6 @@ const ReadMore = () => {
           </div>
         )}
 
-        {/* <div className="comments-section">
-          <h3>Comments</h3>
-
-          {loadingComments ? (
-            <p>Loading comments...</p>
-          ) : commentsError ? (
-            <p className="error">{commentsError}</p>
-          ) : comments.length > 0 ? (
-            comments.map((comment) => (
-              <div key={comment._id} className="comment">
-
-                <div className='reamdome-comment-author'>
-                  <span
-                    className="comment-author"
-                    onClick={() => setPopupCommentUserId(comment.authorId?._id)}
-                  >
-                    @{comment.authorName}
-                  </span>
-                  <Time_ago createdAt={comment.createdAt} />
-                </div>
-
-                <div className='readmore-comment-content'>
-                  <p>{comment.content}</p>
-                  <LikeButton
-                    targetId={comment._id}
-                    targetType="Comment"
-                    initialLikesCount={comment.likesCount}
-                    initialIsLiked={comment.isLikedByCurrentUser}
-                  />
-                  {(String(comment.authorId?._id) === user?._id || String(post.authorId._id) === user?._id) && (
-                    <CommentDeleteoption
-                      commentId={comment._id}
-                      postId={postId}
-                      deleteComment={deleteComment}
-                    />
-                  )}
-
-                </div>
-
-              </div>
-            ))
-          ) : (
-            <p className='Nocomments'>No comments yet.</p>
-          )}
-        </div> */}
         <div className="comments-section">
           <h3>Comments</h3>
 
@@ -202,44 +160,44 @@ const ReadMore = () => {
           ) : commentsError ? (
             <p className="error">{commentsError}</p>
           ) : comments.length > 0 ? (
-            comments.map((comment) => (
-              <div key={comment._id} className="comment">
+            comments.map((comment) => {
+              const commentProfilePic = comment.authorProfilePic || '/avatar/oggy.jpg';
+              const commentAuthorId = comment.authorId?._id;
 
-                <div className='reamdome-comment-author-option'>
-                  <div className='reamdome-comment-author'>
-                    <span
-                      className="comment-author"
-                      onClick={() => setPopupCommentUserId(comment.authorId?._id)}
-                    >
-                      <img
-                        src={post.authorId.profilePic || '/avatar/oggy.jpg'}
-                        alt="Profile"
+              return (
+                <div key={comment._id} className="comment">
+                  <div className='reamdome-comment-author-option'>
+                    <div className='reamdome-comment-author'>
+                      <span
+                        className="comment-author"
+                        onClick={() => setPopupCommentUserId(commentAuthorId)}
+                      >
+                        <img src={commentProfilePic} alt="Profile" />
+                        @{comment.authorName}
+                      </span>
+                      <Time_ago createdAt={comment.createdAt} />
+                    </div>
+                    {(String(commentAuthorId) === user?._id || String(post.authorId?._id) === user?._id) && (
+                      <CommentDeleteoption
+                        commentId={comment._id}
+                        postId={postId}
+                        deleteComment={deleteComment}
                       />
-                      @{comment.authorName}
-                    </span>
-                    <Time_ago createdAt={comment.createdAt} />
+                    )}
                   </div>
-                  {(String(comment.authorId?._id) === user?._id || String(post.authorId._id) === user?._id) && (
-                    <CommentDeleteoption
-                      commentId={comment._id}
-                      postId={postId}
-                      deleteComment={deleteComment}
+
+                  <div className='readmore-comment-content'>
+                    <p>{comment.content}</p>
+                    <LikeButton
+                      targetId={comment._id}
+                      targetType="Comment"
+                      initialLikesCount={comment.likesCount}
+                      initialIsLiked={comment.isLikedByCurrentUser}
                     />
-                  )}
+                  </div>
                 </div>
-
-                <div className='readmore-comment-content'>
-                  <p>{comment.content}</p>
-                  <LikeButton
-                    targetId={comment._id}
-                    targetType="Comment"
-                    initialLikesCount={comment.likesCount}
-                    initialIsLiked={comment.isLikedByCurrentUser}
-                  />
-                </div>
-
-              </div>
-            ))
+              );
+            })
           ) : (
             <p className='Nocomments'>No comments yet.</p>
           )}
@@ -253,73 +211,3 @@ const ReadMore = () => {
 };
 
 export default ReadMore;
-
-
-
-
-
-
-
-
-
-
-{/* <div className="comments-section">
-  <h3>Comments</h3>
-  {loadingComments ? (
-    <p>Loading comments...</p>
-  ) : commentsError ? (
-    <p className="error">{commentsError}</p>
-  ) : comments.length > 0 ? (
-    comments.map((comment) => (
-      <div key={comment._id} className="comment">
-
-        <div className='reamdome-comment-author'>
-          <span
-            className="comment-author"
-            onClick={() => {
-              if (comment.authorId?._id) {
-                setPopupcommentId(comment.authorId._id);
-              } else {
-                setPopupcommentId('USER_NOT_FOUND');
-              }
-            }}
-          >
-            @{comment.authorName || 'Unknown'}
-          </span>
-          <Time_ago createdAt={comment.createdAt} />
-        </div>
-
-        <div className='readmore-comment-content'>
-          <p>{comment.content}</p>
-          <LikeButton
-            targetId={comment._id}
-            targetType="Comment"
-            initialLikesCount={comment.likesCount}
-            initialIsLiked={comment.isLikedByCurrentUser}
-          />
-        </div>
-      </div>
-    ))
-  ) : (
-    <p className='Nocomments'>No comments yet.</p>
-  )}
-</div>
-{PopupcommentId && (
-  <div className='userprofile-popup'>
-    {PopupcommentId === 'USER_NOT_FOUND' ? (
-      <div className="user-not-found">
-        <span className="material-symbols-outlined" onClick={() => setPopupcommentId(null)}>
-          close
-        </span>
-        <h3>User Not Found</h3>
-
-      </div>
-    ) : (
-      <UserProfile
-        userId={PopupcommentId}
-        onClose={() => setPopupcommentId(null)}
-      />
-    )}
-  </div>
-)} */}
-

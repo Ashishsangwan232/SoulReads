@@ -28,6 +28,7 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
       refreshArchived?.();
       refreshDeleted?.();
       // refreshMyPosts();
+
     } catch (err) {
       alert("Hard Delete failed: " + (err.response?.data?.message || err.message));
       console.error("Delete error:", err.response?.data);
@@ -83,23 +84,23 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
     <div className="optionss" ref={wrapperRef}>
       <div className='svgoption'>
         <svg
-        className='circle'
-        onClick={() => setIsOpen(!isOpen)}
-        width="24"
-        height="24"
-        fill="#ffffff"
-        viewBox="0 0 24 24"
-        role="button"
-        aria-label="Options menu"
-        tabIndex="0"
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') setIsOpen(!isOpen);
-        }}
-      >
-        <circle cx="12" cy="5" r="2" />
-        <circle cx="12" cy="12" r="2" />
-        <circle cx="12" cy="19" r="2" />
-      </svg>
+          className='circle'
+          onClick={() => setIsOpen(!isOpen)}
+          width="24"
+          height="24"
+          fill="#ffffff"
+          viewBox="0 0 24 24"
+          role="button"
+          aria-label="Options menu"
+          tabIndex="0"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') setIsOpen(!isOpen);
+          }}
+        >
+          <circle cx="12" cy="5" r="2" />
+          <circle cx="12" cy="12" r="2" />
+          <circle cx="12" cy="19" r="2" />
+        </svg>
       </div>
 
       {isOpen && (

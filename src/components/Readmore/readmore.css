@@ -219,3 +219,15 @@
   align-items: center;
   margin-bottom: 0.2rem;
 }
+.post-detail-notfound{
+  color: var(--text-default);
+  display: flex;
+  margin-top: 5rem;
+  justify-content:center;
+}
+.post-detail-loading{
+  display: flex;
+  margin-top: 5rem;
+  justify-content: center;
+  /* border: 2px solid red; */
+}
