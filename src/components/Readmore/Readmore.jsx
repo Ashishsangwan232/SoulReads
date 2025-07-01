@@ -107,7 +107,7 @@ const ReadMore = () => {
 
         <div className='readmore-animation-line'><hr /></div>
 
-        <h1>{post.title}</h1>
+        <h1 className='readmore-title'>{post.title}</h1>
 
         <div className="meta-info">
           <h4 onClick={() => setShowPopup(true)} className='meta-info-name'>
