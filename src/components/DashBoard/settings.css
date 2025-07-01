@@ -103,6 +103,37 @@
   .settings-label {
     margin-bottom: 0.3rem;
   }
+
+  .settings-back-btn {
+    transform: scale(0.9);
+  }
+
+  .Settings-head-name h1 {
+    font-size: 1.8rem;
+  }
+
+  .Settings-saveanddiscard-btn {
+    display: flex;
+    gap: 4px;
+    flex-direction: row;
+
+  }
+
+  .Settings-saveanddiscard-btn button {
+    /* flex-direction: column; */
+    padding: 0.6rem 1.2rem;
+    margin-right: 0;
+    font-size: 0.7rem;
+    font-weight: 500;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+  }
 }
 
 /* .setting-password{
@@ -164,6 +195,7 @@
   height: 60px;
   border-radius: 50%;
   cursor: pointer;
+  object-fit: cover;
   border: 2px solid transparent;
   transition: border 0.2s ease;
 }

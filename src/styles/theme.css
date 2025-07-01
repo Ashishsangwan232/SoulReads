@@ -27,7 +27,6 @@ body.soulreads-light {
   --button: #6366F1;
   --arrow-bg-color-hover: #e8edff61;
   --quotes: linear-gradient(to right, #dae5ff1d, #dae5ff77, transparent, #dae5ff36, transparent, #dae5ff47);
-  /* --highlight-bg: #d0dfff41; */
   --gradient-muted: linear-gradient(135deg, #F5F7FA, #E5E7EB);
 }
 
@@ -58,9 +57,11 @@ body.blackviolet {
   --arrow-bg-color-hover: #2a2a3f46;
   --quotes: linear-gradient(to right, #3a255b44, #4e348241, transparent, #5f429a36, transparent, #b28cff68);
   --highlight-bg: #322652;
+  --card-shadow:#1400465b;
+  --card-shadow-hover:#2000715b;
   --gradient-muted: linear-gradient(135deg, #14141d, #1d1d2b);
 }
-
+/* 
 body.sandstonetheme {
   --bg-default: #f9f5f1;
   --bg-section: #eee5db;
@@ -116,7 +117,6 @@ body.oceantheme {
   --shadow-hover: rgba(0, 0, 0, 0.06);
   --arrow-bg-color: #cce3e8;
   --arrow-bg-color-hover: #b5d7df;
-  /* --quotes: #ebf7f9; */
   --quotes: linear-gradient(to right, #42dfff44, #bcefff41, transparent, #93e6ff36, transparent, #9ae7ff68);
   --highlight-bg: #ddf9ff;
   --gradient-muted: linear-gradient(135deg, #f2f9fa, #dceff2);
@@ -147,7 +147,6 @@ body.auratheme {
   --shadow-hover: rgba(0, 0, 0, 0.06);
   --arrow-bg-color: #dee1e7;
   --arrow-bg-color-hover: #cfd3db;
-  /* --quotes: linear-gradient(to right, #42dfff44, #bcefff41, transparent, #93e6ff36, transparent, #9ae7ff68); */
   --quotes: linear-gradient(to right, #cdd4e244, #d4d6db41, transparent, #bfc4cc36, transparent, #aab5c268);
 
   --highlight-bg: #fef9c3;
@@ -187,7 +186,6 @@ body.naturegreentheme {
   --arrow-bg-color-hover: #41463f;
   --quotes: linear-gradient(to right, #4a594444, #7a8a7041, transparent, #6e7f6236, transparent, #a2b09c68);
 
-  /* --quotes: linear-gradient(to right, #42dfff44, #bcefff41, transparent, #93e6ff36, transparent, #9ae7ff68); */
   --highlight-bg: #555f45;
   --gradient-muted: linear-gradient(135deg, #1a1a19, #899878);
 }
@@ -220,7 +218,6 @@ body.frenchgrayscale {
   --arrow-bg-color-hover: #c5c3bb;
   --quotes: linear-gradient(to right, #b0b3ac44, #d2d7df41, transparent, #c3c5be36, transparent, #aaaaa268);
 
-  /* --quotes: linear-gradient(to right, #42dfff44, #bcefff41, transparent, #93e6ff36, transparent, #9ae7ff68); */
   --highlight-bg: #fef9c3;
   --gradient-muted: linear-gradient(135deg, #f5f5f5, #d2d7df);
 }
@@ -252,7 +249,6 @@ body.rosedusk {
   --arrow-bg-color-hover: #d6bfb9;
   --quotes: linear-gradient(to right, #d8c1bc44, #f3eae841, transparent, #e7d5d336, transparent, #aa8f8c68);
 
-  /* --quotes: linear-gradient(to right, #42dfff44, #bcefff41, transparent, #93e6ff36, transparent, #9ae7ff68); */
   --highlight-bg: #ffe8e1;
   --gradient-muted: linear-gradient(135deg, #eff9f0, #ddc8c4);
 }
@@ -284,7 +280,6 @@ body.sagewood {
   --arrow-bg-color-hover: #dbe8ab;
   --quotes: linear-gradient(to right, #c7e4aa44, #e7f3b241, transparent, #dbe8ab36, transparent, #a57b7b68);
 
-  /* --quotes: linear-gradient(to right, #42dfff44, #bcefff41, transparent, #93e6ff36, transparent, #9ae7ff68); */
   --highlight-bg: #fef5ba;
   --gradient-muted: linear-gradient(135deg, #f0ffce, #e7f3b2);
 }
@@ -314,7 +309,6 @@ body.rosequartz {
   --shadow-hover: rgba(0, 0, 0, 0.06);
   --arrow-bg-color: #e0dce4;
   --arrow-bg-color-hover: #d2cbd4;
-  /* --quotes: #f9f5fb; */
   --button: #a4969b;
   --quotes: linear-gradient(to right, #d7cad344, #eae7ee41, transparent, #d2c6cc36, transparent, #c7bcc268);
 
@@ -346,7 +340,6 @@ body.siennasteel {
   --shadow-hover: rgba(0, 0, 0, 0.06);
   --arrow-bg-color: #e8e1e3;
   --arrow-bg-color-hover: #dcd2d4;
-  /* --quotes: #fbf8f8; */
   --button: #d77a61;
   --quotes: linear-gradient(to right, #e6c9c044, #f4ecee41, transparent, #e2d3cd36, transparent, #e89a8768);
 
@@ -378,7 +371,6 @@ body.deepfern {
   --shadow-hover: rgba(0, 0, 0, 0.45);
   --arrow-bg-color: #2a3b26;
   --arrow-bg-color-hover: #3a4e35;
-  /* --quotes: #1d2b17; */
   --button: #1f7d53;
   --quotes: linear-gradient(to right, #2c3f2744, #255f3841, transparent, #234d3336, transparent, #3d996f68);
 
@@ -410,7 +402,6 @@ body.graphiteaqua {
   --shadow-hover: rgba(0, 0, 0, 0.3);
   --arrow-bg-color: #2f343e;
   --arrow-bg-color-hover: #3e454f;
-  /* --quotes: #2b313a; */
   --button: #76abae;
   --quotes: linear-gradient(to right, #42525944, #2a2f3841, transparent, #3e454f36, transparent, #9ed0d368);
 
@@ -430,40 +421,23 @@ body.graphiteaqua {
   --black: #000000;
   --gradient-hero: linear-gradient(135deg, #f0f0f0, #fbfbfa, #ffffff);
 
-  /* Extended Shades */
   --bg-subtle: #f6f6f5;
-  /* Soft alternate section background */
   --bg-hover: #efefef;
-  /* Hover state background */
   --text-light: #9b9b9b;
-  /* Light/inactive/placeholder text */
   --text-heading: #1a1a1a;
-  /* Stronger header text */
   --text-link: #3e3e4e;
-  /* Link text */
   --primary-light: #86879a;
-  /* Tint of primary */
   --primary-soft: #ececf3;
-  /* Soft background tint */
   --border-color: #d8d8d8;
-  /* Border for cards/inputs */
   --shadow-color: rgba(0, 0, 0, 0.04);
-  /* Card shadows */
   --shadow-hover: rgba(0, 0, 0, 0.07);
-  /* Hover shadow */
   --arrow-bg-color: #eaeaea;
-  /* For button arrows */
   --arrow-bg-color-hover: #dcdcdc;
-  /* Hover state for arrows */
-  /* --quotes: #f7f7f4; */
   --button: #5a5a72;
   --quotes: linear-gradient(to right, #dedee344, #ffffff41, transparent, #ececf336, transparent, #86879a68);
 
-  /* Blockquote background */
   --highlight-bg: #fffacd;
-  /* Inline highlights or markers */
   --gradient-muted: linear-gradient(135deg, #fbfbfa, #f0f0f0);
-  /* Subtle gradient */
 }
 
 body.midnightviolet {
@@ -585,4 +559,4 @@ body.blackamber {
   --quotes: linear-gradient(to right, #4a391944, #6b552841, transparent, #8b733236, transparent, #f4bd7068);
   --highlight-bg: #493a24;
   --gradient-muted: linear-gradient(135deg, #0d0c08, #262419);
-}
+} */

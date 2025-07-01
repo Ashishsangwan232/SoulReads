@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import LikeButton from "../LikeButton/Likebutton";
 import { useLikeContext } from '../../context/Likecontext';
 import { AllPostsContext } from "../../context/AllPostsContext";
+import Loading from "../loader/Loading";
+import Loadingerror from "../loader/Loadingerror";
 
-export default function PostCard({ type, author, date, title, quote, excerpt, link, likes, commentsCount, postId }) {
+export default function PostCard({ type, author, date, title, quote, excerpt, link, likes, commentsCount, postId, error, loading }) {
   const { posts } = useContext(AllPostsContext)
 
   const { checkUserLikeStatus } = useLikeContext();
@@ -33,6 +35,7 @@ export default function PostCard({ type, author, date, title, quote, excerpt, li
     }
   }, [postId, likes, checkUserLikeStatus]);
 
+ 
   return (
     <div className="post-card">
       <div className="card-header">

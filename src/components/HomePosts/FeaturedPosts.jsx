@@ -2,6 +2,8 @@ import React, { useContext, useMemo, useRef } from 'react';
 import { AllPostsContext } from '../../context/AllPostsContext.jsx';
 import FeaturedRow from './FeaturedRow.jsx';
 import './FeaturedPost.css';
+import Loading from '../loader/Loading.jsx';
+import Loadingerror from '../loader/Loadingerror.jsx';
 
 const MAX_FEATURED = 100;
 
@@ -24,8 +26,9 @@ const FeaturedPosts = () => {
 
   const categories = Object.entries(grouped);
 
-  if (loading) return <p className="featured-posts-message">Loading featured posts...</p>;
-  if (error) return <p className="featured-posts-message featured-posts-error">Error: {error?.message || error}</p>;
+  if (loading) return <div className="featured-posts-message"><Loading /></div>;
+  const Posterror= error?.message || error;
+  if (error) return <p className="featured-posts-message featured-posts-error"><Loadingerror  error={Posterror}/></p>;
   if (!featured.length) return <p className="featured-posts-message">No featured posts available.</p>;
 
   return (

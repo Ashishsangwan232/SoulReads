@@ -22,10 +22,11 @@
 .dash-logo img {
   /* font-family:'Times New Roman', Times, serif; */
   height: 40px;
+  /* width: 40px; */
   font-size: 1.6rem;
   font-weight: bold;
   color: var(--text-default);
-  object-fit: contain;
+  object-fit: cover;
   cursor: pointer;
 }
 .dash-logo p {
@@ -34,7 +35,7 @@
   font-size: 1.6rem;
   font-weight: bold;
   color: var(--text-default);
-  object-fit: contain;
+  /* object-fit: contain; */
   cursor: pointer;
 }
 
@@ -83,7 +84,6 @@
 
 .sidebar {
   position: none;
-  /* border: 2PX solid red; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,9 +119,8 @@
 .profile-pic {
   width: 110px;
   height: 110px;
-  display: flex;
-  margin: auto;
   margin-top: 1rem;
+  object-fit: cover;
   margin-bottom: 1rem;
   border-radius: 50%;
 }
@@ -208,7 +207,7 @@
   border-radius: 0.2rem;
   background-color: var(--bg-subtle);
   color: var(--text-heading);
-  box-shadow: 0 0 8px rgba(193, 193, 193, 0.474);
+  box-shadow: 0 0 8px var(--card-shadow-hover);
 }
 
 .dashbaord-sidebar-logout-btn span {
@@ -321,13 +320,14 @@
   background: var(--bg-card);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 6px 16px rgba(124, 124, 124, 0.2);
+  box-shadow: 0 6px 16px var(--card-shadow);
+  /* box-shadow: 0 6px 16px rgba(124, 124, 124, 0.2); */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(171, 171, 171, 0.3);
+  box-shadow: 0 8px 24px var(--card-shadow-hover);
 }
 
 .card h3 {
