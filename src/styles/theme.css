@@ -2,16 +2,18 @@ body.soulreads-light {
   --bg-default: #F5F7FA;
   --bg-section: #E5E7EB;
   --bg-card: #FFFFFF;
-
+  
   --text-default: #2E2E2E;
   --text-muted: #6B7280;
-
+  
   --primary-color: #6366F1;
   --primary-color-dark: #4F46E5;
   --white: #FFFFFF;
   --black: #000000;
-  --gradient-hero: linear-gradient(145deg, #F5F7FA, #E0E7FF, #F5F7FA);
-
+  /* --gradient-hero: linear-gradient(135deg, #F5F7FA, #E0E7FF, #F5F7FA); */
+  --gradient-hero: linear-gradient(135deg, transparent,transparent,#e6e6e6,transparent,#e6e6e6,transparent,#e6e6e6,transparent,transparent);
+  /* --gradient-hero: linear-gradient(135deg, #F5F7FA, #E0E7FF, #F5F7FA); */
+  --opacity:1;
   --bg-subtle: #f0f2f6;
   --bg-hover: #e6e8ee;
   --text-light: #9CA3AF;
@@ -42,6 +44,7 @@ body.blackviolet {
   --white: #ffffff;
   --black: #000000;
   /* --gradient-hero: linear-gradient(135deg, #14141d, #1d1d2b, #0b0b0f); */
+  --opacity:0.4;
   --gradient-hero: linear-gradient(135deg,transparent,transparent,#000000,transparent,#000000,transparent, #000000,transparent,transparent);
 
   --bg-subtle: #12121a;

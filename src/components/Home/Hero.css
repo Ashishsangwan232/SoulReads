@@ -32,7 +32,8 @@
   position: absolute;
   inset: 0;
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
-  opacity: 0.8;
+  /* opacity: 0.8; */
+  opacity: var(--opacity);
   z-index: 0;
 }
 
