@@ -34,7 +34,7 @@
 }
 
 .post-content {
-
+  text-align: justify;
   font-size: 1.1rem;
   color: var(--text-default);
   margin-bottom: 2rem;
