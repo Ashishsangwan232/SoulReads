@@ -236,7 +236,7 @@
 }
 @media (max-width:486px) {
   .readmore-title {
-  text-align:none;
+  text-align:left;
   font-size: 2.2rem;
   color: var(--primary-color);
   text-transform: capitalize;
