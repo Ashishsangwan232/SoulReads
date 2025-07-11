@@ -48,6 +48,7 @@ function Hero() {
 
     return (
         <section className="hero">
+                <img src="/logo/logobook2.svg" alt="logo" />
             <div className="hero-content">
                 <h1
                     className="tagline"
@@ -56,7 +57,7 @@ function Hero() {
                 >
                     {tagline}
                 </h1>
-
+            
                 <p
                     className="subtitle"
                     data-aos="fade-up"

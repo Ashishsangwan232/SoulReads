@@ -6,8 +6,8 @@ import { AuthContext } from '../../context/AuthContext';
 import ImageDropdown from './ImageDropdown';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import DarkModeToggle from '../Themetoggle/DarkModeToggle';
 import DarkModeTogglemenu from '../Themetoggle/DarkModeTogglemenu';
+import Logobook from './Logobook';
 
 function Navbar() {
   const location = useLocation();
@@ -42,7 +42,8 @@ function Navbar() {
     <nav className={`navbar ${isWritingPage ? 'writingnavbar' : ''}`}>
 
       <div className="logo" data-aos="fade-down" data-aos-duration="1000">
-        <img src="/logo/logobook2.svg" alt="logo" />
+        {/* <img src="/logo/logobook2.svg" alt="logo" /> */}
+        <Logobook />
         <p>SoulReads</p>
       </div>
 
