@@ -42,6 +42,7 @@ function Navbar() {
     <nav className={`navbar ${isWritingPage ? 'writingnavbar' : ''}`}>
 
       <div className="logo" data-aos="fade-down" data-aos-duration="1000">
+        <img src="/logo/logobook2.svg" alt="logo" />
         <p>SoulReads</p>
       </div>
 
@@ -76,6 +77,14 @@ function Navbar() {
           ><span className="material-symbols-outlined">info</span>
             <p>About</p>
           </Link>
+          {/* <Link
+            to="/read-book"
+            className={`aos-link ${location.pathname === '/about' ? 'active' : ''}`}
+            data-aos="fade-down"
+            data-aos-duration="1100"
+          >
+            <p>Bookpage</p>
+          </Link> */}
           <div className='DarkModetoggle'>
             <DarkModeTogglemenu dash={false} />
           </div>

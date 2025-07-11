@@ -1,0 +1,35 @@
+.bookshelf-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.books-grid {
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+/* .books-grid .img{
+  border: 2px solid red;
+  width: 100px;
+  height: 150px;
+
+} */
+
+.book-item {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s;
+}
+
+.book-item img {
+  width: 150px;
+  height: 220px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+.book-item:hover {
+  transform: scale(1.05);
+}

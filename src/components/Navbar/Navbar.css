@@ -14,13 +14,17 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   font-size: 1.6rem;
   font-weight: bold;
+  gap: 0.8rem;
   color: var(--text-default);
 }
 
 .logo img {
-  height: 100%;
+  border-radius: 0.8rem;
+  width: 50px;
 }
 
 .nav-links {
@@ -213,12 +217,12 @@
     font-size: 1.7rem;
   }
 
-  .DarkModetogglemenu {
+  /* .DarkModetogglemenu { */
     /* position: absolute; */
     /* left: 0.8rem; */
     /* bottom: 1rem; */
     /* display: block; */
-  }
+  /* } */
 
   .DarkModetoggle {
     display: none;

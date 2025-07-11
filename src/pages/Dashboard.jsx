@@ -351,6 +351,7 @@ const Dashboard = () => {
         {/* Top Navigation */}
         <motion.div className="topforlogo">
           <motion.div className="dash-logo" initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
+            <img src="/logo/logobook2.svg" alt="" />
             <p>SoulReads</p>
           </motion.div>
           <motion.div className="dashboard-topnavlink">

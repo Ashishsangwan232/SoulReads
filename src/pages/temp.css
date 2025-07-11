@@ -18,11 +18,15 @@
   padding: 0 20px;
   box-shadow: 0 2px 6px var(--shadow-hover);
 }
-
+.dash-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
 .dash-logo img {
-  /* font-family:'Times New Roman', Times, serif; */
   height: 40px;
-  /* width: 40px; */
   font-size: 1.6rem;
   font-weight: bold;
   color: var(--text-default);
@@ -30,13 +34,9 @@
   cursor: pointer;
 }
 .dash-logo p {
-  /* font-family:'Times New Roman', Times, serif; */
-  height: 40px;
   font-size: 1.6rem;
   font-weight: bold;
   color: var(--text-default);
-  /* object-fit: contain; */
-  cursor: pointer;
 }
 
 .dashboard-topnavlink {

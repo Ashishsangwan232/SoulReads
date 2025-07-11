@@ -19,11 +19,14 @@ import WritingPageSlateEditing from './RichTextEditor/WritingPageSlateEditing';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import AddComment from './components/comment/Addcomment';
-import About from './components/About/About'; 
+import About from './components/About/About';
 import UserProfile from './components/userdetails/UserProfile'
 import useFCMNotifications from './firebase/useFCMNotifications';
 import NewUpdates from './Newupdates/NewUpdates';
 import TopbarUpdate from './Newupdates/TopbarUpdate';
+// import BookViewer from './components/Book/BookViewer';
+import BookReader from './components/Book/BookReader';
+import Bookshelf from './components/Book/Bookshelf';
 
 function App() {
   useFCMNotifications();
@@ -31,7 +34,7 @@ function App() {
   const ispage = location.pathname === '/login' || location.pathname === '/register' || location.pathname == '/dashboard' || location.pathname == "/writing" || location.pathname == "/richtext";
   return (
     <>
-    <TopbarUpdate/>
+      <TopbarUpdate />
       {!ispage && <Navbar />
       }
       <Routes>
@@ -46,6 +49,9 @@ function App() {
         <Route path="/autosave-history" element={<AutosaveHistory />} />
         <Route path="/userprofile" element={<UserProfile />} />
         <Route path="/updates" element={<NewUpdates />} />
+        {/* <Route path="/read-book" element={<Bookshelf />} />
+        <Route path="/read/:dateId" element={<BookReader />} /> */}
+        {/* <Route path='/read-book' element={<BookViewer/>}/> */}
 
         <Route element={<ProtectedRoute />}>
           <Route path="/addcomment" element={<AddComment />} />
