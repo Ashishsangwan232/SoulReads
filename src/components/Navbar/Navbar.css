@@ -209,8 +209,7 @@
   opacity: 1;
 }
 
-@media (max-width: 686px) {
-
+@media (max-width: 486px) {
   .navbar {
     position: relative;
     height: 100px;

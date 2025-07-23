@@ -142,6 +142,7 @@
 }
 
 .back-btn {
+  border: green 20px solid;
   display: flex;
   padding: 0.2rem 0.4rem;
   background: transparent;
