@@ -1,0 +1,23 @@
+.Soon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to top, #2e2e2e, #000000, #000000);
+}
+.Soon h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    text-align: center;
+}
+.Soon h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.Soon h3 {
+    color: #ffffff;
+    font-size: 1rem;
+    text-align: center;
+}

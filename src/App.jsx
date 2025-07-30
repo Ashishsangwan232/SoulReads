@@ -24,18 +24,20 @@ import UserProfile from './components/userdetails/UserProfile'
 import useFCMNotifications from './firebase/useFCMNotifications';
 import NewUpdates from './Newupdates/NewUpdates';
 import TopbarUpdate from './Newupdates/TopbarUpdate';
+import Maintenace from './Maintenace';
 
 function App() {
   useFCMNotifications();
   const location = useLocation();
-  const ispage = location.pathname === '/login' || location.pathname === '/register' || location.pathname == '/dashboard' || location.pathname == "/writing" || location.pathname == "/richtext";
+  const ispage = location.pathname === '/login' || location.pathname === '/register' || location.pathname == '/dashboard' || location.pathname == "/writing" || location.pathname == "/richtext" || location.pathname == "/";
   return (
     <>
-      <TopbarUpdate />
-      {!ispage && <Navbar />
-      }
+      {/* <TopbarUpdate /> */}
+      {!ispage && <TopbarUpdate />}
+      {!ispage && <Navbar />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Maintenace />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/heart" element={<HeartButton />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/posts/:id" element={<ReadMore />} />
