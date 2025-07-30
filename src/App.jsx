@@ -29,16 +29,15 @@ import Maintenace from './Maintenace';
 function App() {
   useFCMNotifications();
   const location = useLocation();
-  const ispage = location.pathname === '/login' || location.pathname === '/register' || location.pathname == '/dashboard' || location.pathname == "/writing" || location.pathname == "/richtext" || location.pathname == "/";
+  const ispage = location.pathname === '/login' || location.pathname === '/register' || location.pathname == '/dashboard' || location.pathname == "/writing" || location.pathname == "/richtext";
   return (
     <>
       {/* <TopbarUpdate /> */}
-      {!ispage && <TopbarUpdate />}
-      {!ispage && <Navbar />}
+      {/* {!ispage && <Navbar />} */}
       <Routes>
         <Route path="/" element={<Maintenace />} />
         {/* <Route path="/" element={<Home />} /> */}
-        <Route path="/heart" element={<HeartButton />} />
+        {/* <Route path="/heart" element={<HeartButton />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/posts/:id" element={<ReadMore />} />
         <Route path="/about" element={<About />} />
@@ -47,20 +46,20 @@ function App() {
         <Route path="/editing/:id?" element={<WritingPageSlateEditing />} />
         <Route path="/autosave-history" element={<AutosaveHistory />} />
         <Route path="/userprofile" element={<UserProfile />} />
-        <Route path="/updates" element={<NewUpdates />} />
+        <Route path="/updates" element={<NewUpdates />} /> */}
 
-        <Route element={<ProtectedRoute />}>
+        {/* <Route element={<ProtectedRoute />}>
           <Route path="/addcomment" element={<AddComment />} />
           <Route path="/writing" element={<WritingPageSlate />} />
           <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
+        </Route> */}
 
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        {/* <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/resend-verification" element={<ResendVerification />} />
-        <Route path="/verify-success" element={<VerifySuccess />} />
+        <Route path="/verify-success" element={<VerifySuccess />} /> */}
       </Routes>
-      {!ispage && <Footer />}
+      {/* {!ispage && <Footer />} */}
     </>
   );
 }
