@@ -1,3 +1,7 @@
+.settings-container{
+  /* border: 2px solid red; */
+  padding:1rem 2rem ;
+}
 .settings-back-btn {
   display: flex;
   padding: 0.2rem 0.4rem;
@@ -13,6 +17,7 @@
 }
 
 .Settings-head-name {
+  /* border: 2px solid red; */
   color: var(--primary-color);
   display: flex;
   justify-content: space-between;

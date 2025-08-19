@@ -154,6 +154,7 @@ const ReadMore = () => {
 
         <div className="comments-section">
           <h3>Comments</h3>
+          <Addcomment postId={postId} onCommentAdded={() => fetchComments(postId)} />
 
           {loadingComments && comments.length === 0 ? (
             <p>Loading comments...</p>
@@ -202,9 +203,6 @@ const ReadMore = () => {
             <p className='Nocomments'>No comments yet.</p>
           )}
         </div>
-
-        <Addcomment postId={postId} onCommentAdded={() => fetchComments(postId)} />
-
       </section>
     </div>
   );

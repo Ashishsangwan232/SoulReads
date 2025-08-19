@@ -21,41 +21,45 @@ import { MyPostsArchivedProvider } from './context/MyPostsContextArchieved';
 import { LikeProvider } from './context/Likecontext';
 import { UpdatePostProvider } from './context/UpdatePostContext';
 import { DeleteProvider } from './context/DeleteContext';
+import { CustomThemeProvider } from './context/ThemeContext';
+// import { CustomThemeProvider } from 'styled-components';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <LikeProvider>
-          <AllPostsProvider>
-            <MyPostsProvider>
-              <BookmarksProvider>
-                <UpdatePostProvider>
-                  <DraftsProvider>
-                    <DeleteProvider>
-                      <TrashProvider>
-                        <ArchiveProvider>
-                          <MyPostsArchivedProvider>
-                            <SinglePostProvider>
-                              <PostActionsProvider>
-                                <CommentProvider>
-                                  <CountPostProvider>
-                                    <App />
-                                  </CountPostProvider>
-                                </CommentProvider>
-                              </PostActionsProvider>
-                            </SinglePostProvider>
-                          </MyPostsArchivedProvider>
-                        </ArchiveProvider>
-                      </TrashProvider>
-                    </DeleteProvider>
-                  </DraftsProvider>
-                </UpdatePostProvider>
-              </BookmarksProvider>
-            </MyPostsProvider>
-          </AllPostsProvider>
-        </LikeProvider>
-      </AuthProvider>
+      <CustomThemeProvider>
+        <AuthProvider>
+          <LikeProvider>
+            <AllPostsProvider>
+              <MyPostsProvider>
+                <BookmarksProvider>
+                  <UpdatePostProvider>
+                    <DraftsProvider>
+                      <DeleteProvider>
+                        <TrashProvider>
+                          <ArchiveProvider>
+                            <MyPostsArchivedProvider>
+                              <SinglePostProvider>
+                                <PostActionsProvider>
+                                  <CommentProvider>
+                                    <CountPostProvider>
+                                      <App />
+                                    </CountPostProvider>
+                                  </CommentProvider>
+                                </PostActionsProvider>
+                              </SinglePostProvider>
+                            </MyPostsArchivedProvider>
+                          </ArchiveProvider>
+                        </TrashProvider>
+                      </DeleteProvider>
+                    </DraftsProvider>
+                  </UpdatePostProvider>
+                </BookmarksProvider>
+              </MyPostsProvider>
+            </AllPostsProvider>
+          </LikeProvider>
+        </AuthProvider>
+      </CustomThemeProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode >
 );

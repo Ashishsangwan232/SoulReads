@@ -10,7 +10,7 @@ import Loading from "../components/loader/Loading";
 import Loadingerror from "../components/loader/Loadingerror";
 
 export default function Explore() {
-  const { posts: allposts, loading,error } = useContext(AllPostsContext);
+  const { posts: allposts, loading, error } = useContext(AllPostsContext);
   const [searchTerm, setSearchTerm] = useState("");
 
   const fuse = useMemo(() => {
@@ -25,9 +25,11 @@ export default function Explore() {
     if (!searchTerm) return allposts;
     return fuse.search(searchTerm).map(result => result.item);
   }, [searchTerm, fuse]);
- if (loading) return <div className="featured-posts-message"><Loading /></div>;
+  if (loading) return <div className="featured-posts-message"><Loading /></div>;
   const Posterror = error?.message || error;
   if (error) return <p className="featured-posts-message featured-posts-error"><Loadingerror error={Posterror} /></p>;
+  
+  
   return (
     <>
       <Startwriting />

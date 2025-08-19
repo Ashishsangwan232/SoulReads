@@ -12,7 +12,8 @@ const Filtercards = ({
   publishedCategory,
   setPublishedCategory,
   deleteCategory,
-  setDeletedCategory
+  setDeletedCategory,
+  authpostcount
 }) => {
   const baseCategories = ['all', 'story', 'selfreflection', 'journal', 'favorites'];
   const categories = activeTab !== 'published' ? [...baseCategories, 'published'] : baseCategories;
@@ -32,7 +33,7 @@ const Filtercards = ({
             }
           }}
         >
-          {cat === 'all' ? 'All' : cat.charAt(0).toUpperCase() + cat.slice(1)}
+          {cat === 'all' ? `All\u00A0\u00A0 ${authpostcount}` : cat.charAt(0).toUpperCase() + cat.slice(1)}
         </button>
       ))}
     </div>
@@ -40,18 +41,15 @@ const Filtercards = ({
 
   return (
     <>
-      {activeTab === 'published' && renderSubTabs(publishedCategory, setPublishedCategory)}
-      {activeTab === 'draft' && renderSubTabs(draftCategory, setDraftCategory)}
-      {activeTab === 'archived' && renderSubTabs(archiveCategory, setArchiveCategory)}
-      {activeTab === 'bookmarked' && renderSubTabs(bookmarkCategory, setBookmarkCategory)}
-      {activeTab === 'deleted' && renderSubTabs(deleteCategory, setDeletedCategory)}
-
-      <div className='sideactivetab'>
-        {activeTab === 'draft' && <h5>Draft</h5>}
-        {activeTab === 'archived' && <h5>Archived</h5>}
-        {activeTab === 'bookmarked' && <h5>Bookmarked</h5>}
-        {activeTab === 'published' && <h5>Published</h5>}
-        {activeTab === 'deleted' && <h5>deleted</h5>}
+      <div className='mainfiltercards'>
+        <div className='mainfiltercards-filterby'>
+          Filter by:
+        </div>
+        {activeTab === 'published' && renderSubTabs(publishedCategory, setPublishedCategory)}
+        {activeTab === 'draft' && renderSubTabs(draftCategory, setDraftCategory)}
+        {activeTab === 'archived' && renderSubTabs(archiveCategory, setArchiveCategory)}
+        {activeTab === 'bookmarked' && renderSubTabs(bookmarkCategory, setBookmarkCategory)}
+        {activeTab === 'deleted' && renderSubTabs(deleteCategory, setDeletedCategory)}
       </div>
     </>
   );

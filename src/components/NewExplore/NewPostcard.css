@@ -1,0 +1,199 @@
+.Nwpstcd-container {
+    border: 2px solid hsl(var(--border));
+    padding: 1rem;
+    border-radius: 1rem;
+    background: hsl(var(--card-foreground));
+    /* box-shadow: hsl(var(--soul-mist)); */
+}
+
+.Nwpstcd-container:hover {
+    box-shadow: 0 4px 8px hsl(var(--soul-mist));
+    transform: translateY(-4px);
+    transition: transform 0.2s ease-in-out;
+    background: hsl(var(--));
+}
+
+.Nwpstcd-header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    /* border: 2px solid red; */
+    height: 30px;
+}
+
+.Nwpstcd-badge {
+    display: flex;
+    border: 1px solid hsl(var(--muted-foreground));
+    border-radius: 10px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-default);
+}
+
+.Nwpstcd-bookmark {
+    display: none;
+}
+
+.Nwpstcd-container:hover .Nwpstcd-bookmark {
+    display: block;
+}
+
+.Nwpstcd-post-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-default);
+}
+
+.Nwpstcd-container:hover .Nwpstcd-post-title {
+    color: hsl(var(--soul-purple));
+}
+
+.Nwpstcd-quote {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    padding: 0.41rem 1rem;
+    border-left: 0.25rem solid hsl(var(--border));
+}
+
+.Nwpstcd-excerpt-content {
+    line-height: 1.35;
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+.Nwpstcd-details {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.3rem;
+}
+
+.Nwpstcd-image {
+    background: rgb(57, 57, 57);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.Nwpstcd-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.Nwpstcd-author-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+}
+
+.Nwpstcd-author-details h4 {
+    font-size: medium;
+    color: var(--text-default);
+
+}
+
+.Nwpstcd-author-details p {
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+    color: hsl(var(--muted-foreground));
+
+}
+
+.Nwpstcd-tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    color: var(--text-default);
+}
+
+.Nwpstcd-tags p {
+    color: var(--text-light);
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 0.1rem 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.Nwpstcd-actions {
+    /* border: 2px solid red; */
+    padding: 1rem 0.2rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.Nwpstcd-like-comment {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    color: var(--text-default);
+    padding: 0.4rem;
+    align-items: center;
+}
+
+.Nwpstcd-like-button {
+    display: flex;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.Nwpstcd-read-more button {
+    /* border: 2px solid red; */
+    display: none;
+    padding: 0.4rem 0.6rem;
+    background-color: hsl(var(--soul-mist));
+    color: var(--text-light);
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.2rem;
+}
+
+.Nwpstcd-read-more button:hover {
+    background-color: hsl(var(--soul-mist2));
+    color: var(--text-default);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.Nwpstcd-read-more a:hover {
+    text-decoration: none;
+}
+
+.Nwpstcd-comment-count {
+    display: flex;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.message-icon {
+    /* border: 2px solid red; */
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-right: 0.5rem;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+.Nwpstcd-container:hover .Nwpstcd-read-more button {
+    display: block;
+}
+
+.hori-line {
+    width: 100%;
+    height: 1px;
+    background-color: hsl(var(--border));
+    margin: 0.5rem 0;
+}

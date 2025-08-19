@@ -25,6 +25,10 @@ import useFCMNotifications from './firebase/useFCMNotifications';
 import NewUpdates from './Newupdates/NewUpdates';
 import TopbarUpdate from './Newupdates/TopbarUpdate';
 import Maintenace from './Maintenace';
+import Explorepage from './components/NewExplore/Explorepage';
+import ExploreMain from './components/NewExplore/ExploreMain';
+import Smallscreennav from './components/Navbar/Smallscreennav';
+import Complete_Navbar from './components/Navbar/Complete_Navbar';
 
 function App() {
   useFCMNotifications();
@@ -33,12 +37,15 @@ function App() {
   return (
     <>
       {/* <TopbarUpdate /> */}
-      {/* {!ispage && <Navbar />} */}
+      {/* {!ispage && <Complete_Navbar />} */}
+      {!ispage && <Navbar />}
       <Routes>
-        <Route path="/" element={<Maintenace />} />
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/heart" element={<HeartButton />} />
-        <Route path="/explore" element={<Explore />} />
+        {/* <Route path="/" element={<Maintenace />} /> */}
+        <Route path="/" element={<Home />} />
+        <Route path="/heart" element={<HeartButton />} />
+        {/* <Route path="/explore" element={<Explore />} /> */}
+        {/* <Route path="/explore" element={<Explorepage />} /> */}
+        <Route path="/explore" element={<ExploreMain />} />
         <Route path="/posts/:id" element={<ReadMore />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
@@ -46,20 +53,20 @@ function App() {
         <Route path="/editing/:id?" element={<WritingPageSlateEditing />} />
         <Route path="/autosave-history" element={<AutosaveHistory />} />
         <Route path="/userprofile" element={<UserProfile />} />
-        <Route path="/updates" element={<NewUpdates />} /> */}
+        <Route path="/updates" element={<NewUpdates />} />
 
-        {/* <Route element={<ProtectedRoute />}>
+        <Route element={<ProtectedRoute />}>
           <Route path="/addcomment" element={<AddComment />} />
           <Route path="/writing" element={<WritingPageSlate />} />
           <Route path="/dashboard" element={<Dashboard />} />
-        </Route> */}
+        </Route>
 
-        {/* <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/resend-verification" element={<ResendVerification />} />
-        <Route path="/verify-success" element={<VerifySuccess />} /> */}
+        <Route path="/verify-success" element={<VerifySuccess />} />
       </Routes>
-      {/* {!ispage && <Footer />} */}
+      {!ispage && <Footer />}
     </>
   );
 }

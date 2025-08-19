@@ -2,6 +2,8 @@
     padding: 60px 20px;
     max-width: 800px;
     margin: auto;
+    margin-top: 4rem;
+    /* border: 2px solid red; */
     text-align: center;
   }
   .about-section h1 {

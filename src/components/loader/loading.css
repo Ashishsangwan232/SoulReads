@@ -8,17 +8,18 @@
   border-radius: 1.25rem;
 }
 .loader {
+
   color: rgb(124, 124, 124);
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 25px;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  height: 40px;
-  padding: 10px 10px;
+  height: 30px;
+  padding: 0.8rem;
   display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  /* display: -ms-flexbox;
+  display: flex; */
   border-radius: 8px;
 }
 
@@ -88,3 +89,13 @@
     transform: translateY(-400%);
   }
 }
+  @media (max-width:786px) {
+    .loader{
+      padding: 0.3rem;
+      font-size: 1.2rem;
+    }
+    .word{
+      font-size: 0.85rem;
+    }
+    
+  }

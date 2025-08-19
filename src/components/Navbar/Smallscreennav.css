@@ -1,0 +1,26 @@
+.nav-links-smallscreen {
+    border: 2px solid red;
+    background-color: var(--background-nav);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links-smallscreen li {
+    border: 2px solid red;
+    padding: 0.2rem 0.1rem;
+}
+
+.nav-links-smallscreen a {
+    color: var(--text-default);
+    text-decoration: none;
+    display: block;
+}
+
+.nav-links-smallscreen li:hover {
+    background-color: var(--text-muted);
+}
+
+.nav-links-smallscreen li:hover a {
+    color: red;
+}

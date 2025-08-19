@@ -17,9 +17,11 @@ const PostCountCard = () => {
 
   return (
     <div className="post-count-card">
-      <h5>
-
-        Total Posts <br /> You've Made: {count}
+      <h1>{count}</h1>
+      <div className="post-count-card-content">
+        <h5>
+          Total Posts
+        </h5>
         <button onClick={fetchTotalPost}>
           {/* Refresh */}
           <lord-icon
@@ -30,7 +32,7 @@ const PostCountCard = () => {
           >
           </lord-icon>
         </button>
-      </h5>
+      </div>
     </div>
   );
 };

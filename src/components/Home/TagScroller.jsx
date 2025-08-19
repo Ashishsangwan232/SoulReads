@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Tags.css';
 import { useLocation } from 'react-router-dom';
+import Floatingman from './Floatingman';
 
 const TagScroller = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,6 +28,7 @@ const TagScroller = ({ onSearch }) => {
 
   return (
     <div className="tags">
+      {/* <Floatingman /> */}
       <div className='tags-span'>
         <span>#SelfDiscovery</span>
         <span>#BookReview</span>

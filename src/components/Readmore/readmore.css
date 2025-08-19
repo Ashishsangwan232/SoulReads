@@ -1,3 +1,7 @@
+.readmore-container-div {
+  padding-top: 1rem;
+}
+
 .post-detail {
   max-width: 900px;
   margin: 4rem auto;
@@ -26,7 +30,6 @@
   height: 25px;
   border-radius: 50%;
   object-fit: cover;
-  /* border: 2px solid #ddd; */
 }
 
 .add-fav {
@@ -93,30 +96,31 @@
 }
 
 .comment {
-  padding: 0.1rem 0.4rem;
-  margin: 0.5rem 0;
+  padding: 0.5rem 0.4rem;
+  margin: 0.8rem 0;
   border-radius: 0.5rem;
   border-bottom: 0.1rem solid var(--border-color);
-
 }
 
 .reamdome-comment-author {
   display: flex;
+  align-items: center;
   flex-direction: row;
   gap: 0.6rem;
   margin-bottom: 0.4rem;
 }
 
-.reamdome-comment-author span {
-  color: var(--text-heading);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
 
 .reamdome-comment-author p {
-  font-size: 0.8rem;
   color: var(--text-light);
+  font-size: 0.8rem;
 
+}
+
+.reamdome-comment-author span {
+  color: var(--text-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .comment-author {
@@ -127,8 +131,8 @@
 }
 
 .comment-author img {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -142,7 +146,7 @@
 }
 
 .back-btn {
-  border: green 20px solid;
+  /* border: green 20px solid; */
   display: flex;
   padding: 0.2rem 0.4rem;
   background: transparent;
@@ -235,11 +239,12 @@
   color: var(--primary-color);
   text-transform: capitalize;
 }
+
 @media (max-width:486px) {
   .readmore-title {
-  text-align:left;
-  font-size: 2.2rem;
-  color: var(--primary-color);
-  text-transform: capitalize;
-}
+    text-align: left;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    text-transform: capitalize;
+  }
 }

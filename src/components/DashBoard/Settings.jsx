@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import './settings.css';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
+import ThemeDropdown from '../Themetoggle/ThemeDropdown';
 
 const Settings = ({ setSettingtab }) => {
     const { user, updateprofile, updateprofilepic } = useContext(AuthContext);
@@ -244,7 +245,7 @@ const Settings = ({ setSettingtab }) => {
             </div>
 
             {/* Theme (non-functional placeholder) */}
-            <div className="settings-section">
+            {/* <div className="settings-section">
                 <h4>Default Theme</h4>
                 <div className="settings-field">
                     <label>Choose Theme</label>
@@ -253,7 +254,8 @@ const Settings = ({ setSettingtab }) => {
                         <option value="2">Light</option>
                     </select>
                 </div>
-            </div>
+            </div> */}
+            <ThemeDropdown />
 
             {/* Phone Number */}
             <div className="settings-section">

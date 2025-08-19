@@ -1,17 +1,22 @@
 .navbar {
+  border-bottom: 1px solid rgba(81, 81, 81, 0.53);
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 1000;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 2px 0;
   padding: 8px 28px;
-  border-radius: 20px;
-  background-color: var(--bg-section);
+  background: var(--bacgorund-nav);
+  backdrop-filter: blur(16px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  /* border: 2px solid red; */
 }
 
-.DarkModetogglemenu {
-  display: none;
-}
+
 
 .logo {
   display: flex;
@@ -58,12 +63,6 @@
   font-size: 1.2rem;
 }
 
-@media (max-width: 786px) {
-  .aos-link span {
-    display: block;
-  }
-}
-
 .aos-link::after {
   content: '';
   position: absolute;
@@ -90,7 +89,9 @@
 }
 
 .User-login-handle {
+  /* border: 2px salmon solid; */
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -128,11 +129,15 @@
 .user-actions {
   display: flex;
   align-items: center;
+  /* border: 2px solid salmon; */
   gap: 1rem;
 }
 
 .user-actions a {
+  /* border: 2px solid salmon; */
   text-decoration: none;
+  text-align: end;
+  margin-right: 0.4rem;
   color: var(--text-default);
 }
 
@@ -147,56 +152,9 @@
   z-index: 999;
 }
 
-@media (max-width: 786px) {
-  .navbar {
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  .DarkModetogglemenu {
-    display: block;
-
-  }
-
-  .DarkModetoggle {
-    display: none;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    text-align: center;
-    margin-top: 1rem;
-  }
-
-  .logo {
-    text-align: center;
-    font-size: 1.5rem;
-  }
-
-  .signin-btn-div {
-    display: flex;
-    justify-content: end;
-    border: 2px solid var(--primary-color);
-    border-radius: 6px;
-    padding: 2px;
-  }
-
-  .signin-btn-div .signtext {
-    display: none;
-  }
-
-  .signin-btn-div .signlg {
-    color: var(--text-default);
-    fill: var(--text-default);
-    display: block;
-  }
-
-  .signin-btn {
-    padding: 2px 4px;
-    background-color: var(--primary-color);
-  }
+.user-details-nav {
+  /* border: 2px solid salmon; */
+  display: flex;
 }
 
 [data-aos] {
@@ -209,92 +167,146 @@
   opacity: 1;
 }
 
+/* Hamburger icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1100;
+  margin-left: 0.6rem;
+  /* border: 2PX SOLID red; */
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 0.12rem;
+  background: var(--text-default);
+  transition: all 0.3s ease;
+}
+
+/* Animation when open */
+.hamburger.open span:nth-child(1) {
+  height: 0.2rem;
+  transform: rotate(45deg) translate(6px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  height: 0.2rem;
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Small menu overlay */
+.small-menu {
+  position: absolute;
+  align-items: start;
+  top: 60px;
+  right: 20px;
+  background: var(--bacgorund-nav);
+  backdrop-filter: blur(12px);
+  padding: 1rem;
+  border-radius: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: start; */
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.small-menu a {
+  text-decoration: none;
+  color: var(--text-default);
+  font-weight: 500;
+}
+
+.small-menu a:hover {
+  color: var(--primary-color);
+}
+
+
+
+/* Responsive rules */
 @media (max-width: 486px) {
+  .logo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0rem;
+    font-size: 1.2rem;
+  }
+
+}
+
+@media (max-width: 786px) {
   .navbar {
-    position: relative;
-    height: 100px;
-    /* border: 2px solid red; */
+    padding: 0.4rem;
   }
+.DarkModetoggle-bigsc{
+  display: none;
+}
+  .logo {
+    flex-wrap: wrap;
+    gap: 0rem;
+    /* font-size: 1.2rem; */
+  }
+
   .logobook {
-    position: absolute;
-    left: -15px;
-    top: -10px;
-    width: 45px;
-    height: 45px;
-  }
-  .logo p {
-    position: absolute;
-    top:35px;
-    left: -20px;
-    font-size: 0.8rem;
-    bottom: 0;
+    display: flex;
+    width: 43px;
+    height: 40px;
+    cursor: pointer;
   }
 
-  .DarkModetoggle {
+  .large-screen {
     display: none;
   }
 
-  .nav-links-smallerscreen {
-    position: absolute;
-    left: 0;
-    bottom: 1rem;
-    padding: 0px 1rem 0px 0.8rem;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0px 0px 10px rgba(118, 118, 118, 0.062);
 
-  }
-  .nav-links {
-    display: flex;
-    margin: 0;
-    flex-direction: row;
-  }
-
-  .aos-link span {
-    display: block;
-    font-size: 1.3rem;
-  }
-
-  .aos-link p {
+  .user-details-nav {
     display: none;
   }
 
-  .login-btn {
-    padding: 6px 10px;
-    max-width: 150px;
-    font-size: 0.6rem;
+  .user-details-nav-smallscreen {
+    /* text-align: right; */
+    display: flex;
   }
 
-  .signup-btn {
-    padding: 6px 10px;
-    max-width: 150px;
-    font-size: 0.6rem;
+  .user-details-nav-smallscreen span {
+    /* display: flex; */
+    font-size: .8rem;
+  }
+
+  .user-details-nav-smallscreen p {
+    /* display: flex; */
+    font-size: .8rem;
+  }
+
+  .hamburger {
+    display: flex;
   }
 
   .User-login-handle {
-    position: absolute;
-    right: 0.6rem;
-    top: 0.2rem;
-    padding: 6px 10px;
-    max-width: 150px;
+    gap: 6px;
   }
 
-  .user-name {
+  .login-btn {
+    padding: 0.4rem 0.6rem;
     font-size: 0.7rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
   }
 
-  .user-actions {
-    position: absolute;
-    right: 0.6rem;
-    text-align: left;
-    align-items: center;
-    max-width: 150px;
-    gap: 8px;
+  .signup-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 787px) {
+  .small-menu {
+    display: none;
   }
 }

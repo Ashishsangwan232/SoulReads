@@ -24,7 +24,8 @@ const MainContent = ({
     setDeletedCategory,
     loading,
     error,
-    loadingBookmarked
+    loadingBookmarked,
+    authpostcount
 }) => {
     return (
         <>
@@ -42,11 +43,21 @@ const MainContent = ({
                     setPublishedCategory={setPublishedCategory}
                     deleteCategory={deleteCategory}
                     setDeletedCategory={setDeletedCategory}
+                    authpostcount={authpostcount}
                 />
                 <motion.div className='dash-menuactivity'>
+                    <div className='sideactivetab'>
+                        {activeTab === 'draft' && <h5>Draft</h5>}
+                        {activeTab === 'archived' && <h5>Archived</h5>}
+                        {activeTab === 'bookmarked' && <h5>Bookmarked</h5>}
+                        {activeTab === 'published' && <h5>Published</h5>}
+                        {activeTab === 'deleted' && <h5>deleted</h5>}
+                    </div>
                     <Menu_activity activeTab={activeTab} setActiveTab={setActiveTab} />
                 </motion.div>
             </motion.div>
+
+            <div className='horizontal-line2'></div>
 
             {loading && <p>Loading your posts...</p>}
             {error && <p className="error">Error: {error}</p>}

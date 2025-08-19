@@ -2,18 +2,24 @@ body.soulreads-light {
   --bg-default: #F5F7FA;
   --bg-section: #E5E7EB;
   --bg-card: #FFFFFF;
-  
+
   --text-default: #2E2E2E;
   --text-muted: #6B7280;
-  
+  --fully-muted: hsl(0, 0%, 80%);
+  --little-muted: hsl(0, 0%, 32%);
+
   --primary-color: #6366F1;
+  --primary-muted: #4c4eb6;
   --primary-color-dark: #4F46E5;
+  --primary-color-light: #9960b7;
   --white: #FFFFFF;
   --black: #000000;
-  /* --gradient-hero: linear-gradient(135deg, #F5F7FA, #E0E7FF, #F5F7FA); */
-  --gradient-hero: linear-gradient(135deg, transparent,transparent,#e6e6e6,transparent,#e6e6e6,transparent,#e6e6e6,transparent,transparent);
-  /* --gradient-hero: linear-gradient(135deg, #F5F7FA, #E0E7FF, #F5F7FA); */
-  --opacity:1;
+  --shape-color: #ffdfdf;
+
+  --gradient-hero: linear-gradient(135deg, transparent, transparent, #e6e6e6, transparent, #e6e6e6, transparent, #e6e6e6, transparent, transparent);
+
+  --hero-background: linear-gradient(45deg, rgba(137, 43, 226, 0.21), white, white, rgba(255, 255, 255, 0.664), #74d6f75e, #74d6f7a0);
+  --opacity: 1;
   --bg-subtle: #f0f2f6;
   --bg-hover: #e6e8ee;
   --text-light: #9CA3AF;
@@ -30,6 +36,26 @@ body.soulreads-light {
   --arrow-bg-color-hover: #e8edff61;
   --quotes: linear-gradient(to right, #dae5ff1d, #dae5ff77, transparent, #dae5ff36, transparent, #dae5ff47);
   --gradient-muted: linear-gradient(135deg, #F5F7FA, #E5E7EB);
+  --bacgorund-nav: rgba(255, 255, 255, 0.6);
+
+  --card: 251 15% 10%;
+  --card-foreground: 285 10% 95%;
+
+  --background: 248 250 252;
+  --soul-purple: 262 52% 47%;
+  --soul-purple-light: 285 85% 88%;
+  --soul-purple-dark: 262 52% 25%;
+  --soul-lavender: 285 70% 75%;
+  --soul-deep: 248 28% 10%;
+  --soul-mist: 262 15% 96%;
+  --soul-glow: 285 100% 85%;
+  --gradient-soul: linear-gradient(135deg, hsl(var(--soul-purple)), hsl(var(--soul-lavender)));
+  --gradient-mist: linear-gradient(180deg, hsl(var(--soul-mist)), hsl(var(--background)));
+  --gradient-text: linear-gradient(135deg, hsl(var(--soul-purple)), hsl(var(--soul-lavender)));
+
+  --muted: 262 15% 96%;
+  --muted-foreground: 262 8% 45%;
+  --border: 262 20% 90%;
 }
 
 body.blackviolet {
@@ -38,18 +64,26 @@ body.blackviolet {
   --bg-card: #1d1d2b;
   --text-default: #eae6f9;
   --text-muted: #9d96c4;
+  --fully-muted: hsl(0, 0%, 18%);
+  --little-muted: hsl(0, 0%, 68%);
+
+  --primary-muted: hsl(260, 50%, 20%);
   --primary-color: #8a4fff;
   --primary-color-dark: #6a3acc;
+  --primary-color-light: #9960b7;
   --button: #8a4fff;
   --white: #ffffff;
   --black: #000000;
+  --bacgorund-nav: rgba(0, 0, 0, 0.6);
   /* --gradient-hero: linear-gradient(135deg, #14141d, #1d1d2b, #0b0b0f); */
-  --opacity:0.35;
-  --gradient-hero: linear-gradient(135deg,transparent,transparent,#000000,transparent,#000000,transparent, #000000,transparent,transparent);
+  --opacity: 0.35;
+  --shape-color: #000000;
 
+  --gradient-hero: linear-gradient(135deg, transparent, transparent, #000000, transparent, #000000, transparent, #000000, transparent, transparent);
+  --hero-background: linear-gradient(45deg, rgba(137, 43, 226, 0.21), black, black, black, black, black, rgba(0, 0, 0, 0.664), #74d6f75e, #74d6f7a0);
   --bg-subtle: #12121a;
   --bg-hover: #1a1a27;
-  --text-light: #b7b2d5;
+  --text-light: #b9a7c8;
   --text-heading: #f5f3ff;
   --text-link: #b38fff;
   --primary-light: #b28cff;
@@ -61,10 +95,36 @@ body.blackviolet {
   --arrow-bg-color-hover: #2a2a3f46;
   --quotes: linear-gradient(to right, #3a255b44, #4e348241, transparent, #5f429a36, transparent, #b28cff68);
   --highlight-bg: #322652;
-  --card-shadow:#1400465b;
-  --card-shadow-hover:#2000715b;
+  --card-shadow: #1400465b;
+  --card-shadow-hover: #2000715b;
   --gradient-muted: linear-gradient(135deg, #14141d, #1d1d2b);
+
+
+  /* Dark Theme Custom Colors */
+  --card-dash: 222.2 84% 4.9%;
+  --card-foreground-dash: 210 40% 98%;
+  --card: 255 255 255;
+  --card-foreground: 255 28% 8%;
+  --background: 251 11% 7%;
+  --soul-purple: 285 85% 88%;
+  --soul-purple-light: 285 70% 75%;
+  --soul-purple-dark: 262 52% 25%;
+  --soul-lavender: 285 60% 70%;
+  --soul-deep: 285 85% 95%;
+  --soul-mist: 251 15% 15%;
+  --soul-mist2: 251 15% 10%;
+  --soul-glow: 285 100% 85%;
+
+  /* Dark Gradients */
+  --gradient-soul: linear-gradient(135deg, hsl(var(--soul-purple)), hsl(var(--soul-lavender)));
+  --gradient-mist: linear-gradient(180deg, hsl(var(--soul-mist)), hsl(var(--background)));
+  --gradient-text: linear-gradient(135deg, hsl(var(--soul-purple)), hsl(var(--soul-lavender)));
+  --gradient-card: linear-gradient(135deg, hsl(219 18% 9%), hsl(219 18% 11%));
+  --muted: 251 15% 15%;
+  --muted-foreground: 251 15% 65%;
+  --border: 251 15% 20%;
 }
+
 /* 
 body.sandstonetheme {
   --bg-default: #f9f5f1;

@@ -3,17 +3,6 @@
   /* z-index: 1; */
 }
 
-.optionss svg {
-  fill: var(--text-heading);
-  cursor: pointer;
-  outline: none;
-}
-
-.optionss svg:hover {
-  background: var(--text-light);
-  border-radius: 0.3rem;
-}
-
 .further_options {
   position: absolute;
   right: 25px;
@@ -21,7 +10,7 @@
   border-radius: 4px;
   padding: 6px;
   background-color: var(--bg-default);
-  min-width: 100px;
+  min-width: 120px;
   box-shadow: 0 2px 8px rgba(2, 2, 2, 0.37);
   z-index: 99;
 }
@@ -31,10 +20,41 @@
   margin: 0;
   padding: 8px 10px;
   border-radius: 2px;
-  color: var(--text-default);
   cursor: pointer;
   font-size: 14px;
   line-height: 1.4;
+}
+
+.further_options_menu {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  border-radius: 4px;
+  padding: 6px;
+  background-color: var(--bg-default);
+  min-width: 120px;
+  box-shadow: 0 2px 8px rgba(2, 2, 2, 0.37);
+  z-index: 99;
+}
+
+.further_options_menu p {
+  width: 100%;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-default);
+}
+
+.archive-btn,
+.edit-btn {
+  color: var(--text-default);
+}
+
+.Delete-btn {
+  color: salmon;
 }
 
 .further_options p:hover {
@@ -43,4 +63,56 @@
 
 .further_options p:last-child {
   margin-bottom: 0;
+}
+.further_options_menu p:hover {
+  background: var(--bg-hover);
+}
+
+.further_options_menu p:last-child {
+  margin-bottom: 0;
+}
+
+.trash-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.archive-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.edit-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+
+.svgoption svg {
+  fill: var(--text-heading);
+  cursor: pointer;
+  outline: none;
+}
+
+.svgoption svg:hover {
+  background: var(--text-light);
+  border-radius: 0.3rem;
 }

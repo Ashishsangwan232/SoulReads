@@ -7,17 +7,18 @@
   border-radius: 1.25rem;
 }
 .error-loader {
+  /* border: 2px solid red; */
   color: rgb(255, 0, 0);
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 25px;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
-  height: 40px;
-  padding: 10px 10px;
+  height: 30px;
+  padding: 0.8rem;
   display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px;
 }
 
@@ -34,56 +35,67 @@
     transparent 30%,
     transparent 70%,
     var(--bg-color) 90%
-  );
-  z-index: 20;
-}
-
-.error-word {
-  display: block;
-  height: 100%;
-  padding-left: 6px;
-  color: #fa6a6a;
-  animation: spin_4991 4s infinite;
-}
-
-@keyframes spin_4991 {
-  10% {
-    -webkit-transform: translateY(-102%);
-    transform: translateY(-102%);
+    );
+    z-index: 20;
   }
-
-  25% {
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
+  
+  .error-word {
+    display: block;
+    height: 100%;
+    padding-left: 6px;
+    color: #fa6a6a;
+    animation: spin_4991 4s infinite;
   }
-
-  35% {
-    -webkit-transform: translateY(-202%);
-    transform: translateY(-202%);
+  
+  @keyframes spin_4991 {
+    10% {
+      -webkit-transform: translateY(-102%);
+      transform: translateY(-102%);
+    }
+    
+    25% {
+      -webkit-transform: translateY(-100%);
+      transform: translateY(-100%);
+    }
+    
+    35% {
+      -webkit-transform: translateY(-202%);
+      transform: translateY(-202%);
+    }
+    
+    50% {
+      -webkit-transform: translateY(-200%);
+      transform: translateY(-200%);
+    }
+    
+    60% {
+      -webkit-transform: translateY(-302%);
+      transform: translateY(-302%);
+    }
+    
+    75% {
+      -webkit-transform: translateY(-300%);
+      transform: translateY(-300%);
+    }
+    
+    85% {
+      -webkit-transform: translateY(-402%);
+      transform: translateY(-402%);
+    }
+    
+    100% {
+      -webkit-transform: translateY(-400%);
+      transform: translateY(-400%);
+    }
   }
-
-  50% {
-    -webkit-transform: translateY(-200%);
-    transform: translateY(-200%);
+  
+  @media (max-width:786px) {
+    .error-loader{
+      padding: 0.3rem;
+      font-size: 1.2rem;
+    }
+    .error-word{
+      font-size: 0.85rem;
+    }
+    
   }
-
-  60% {
-    -webkit-transform: translateY(-302%);
-    transform: translateY(-302%);
-  }
-
-  75% {
-    -webkit-transform: translateY(-300%);
-    transform: translateY(-300%);
-  }
-
-  85% {
-    -webkit-transform: translateY(-402%);
-    transform: translateY(-402%);
-  }
-
-  100% {
-    -webkit-transform: translateY(-400%);
-    transform: translateY(-400%);
-  }
-}

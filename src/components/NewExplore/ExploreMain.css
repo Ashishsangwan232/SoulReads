@@ -1,0 +1,42 @@
+.ExploreMain-container {
+    /* background:var(--gradient-mist); */
+    position: relative;
+}
+
+.circle1 {
+    position: fixed;
+    top: 40%;
+    left: -4%;
+    width: 200px;
+    height: 200px;
+    background-color: hsl(var(--soul-mist));
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: fadeIn 2s ease-in;
+    filter: blur(3px);
+}
+
+.circle2 {
+    position: fixed;
+    top: 60%;
+    right: -6%;
+    width: 200px;
+    height: 200px;
+    background-color: hsl(var(--soul-mist));
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: fadeIn 2s ease-in;
+    filter: blur(3px);
+}
+
+@keyframes fadeIn {
+    from {
+        filter: blur(20px);
+        opacity: 0;
+    }
+    
+    to {
+        filter: blur(3px);
+        opacity: 0.5;
+    }
+}

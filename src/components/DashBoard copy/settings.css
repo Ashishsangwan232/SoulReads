@@ -1,0 +1,210 @@
+.settings-back-btn {
+  display: flex;
+  padding: 0.2rem 0.4rem;
+  background: transparent;
+  color: var(--arrow-color);
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+  fill: none;
+  stroke: var(--text-muted);
+}
+
+.Settings-head-name {
+  color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.Settings-head-name h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.settings-section {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
+}
+
+.settings-section h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.settings-field {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.settings-label {
+  min-width: 140px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.settings-field input,
+.settings-field select {
+  flex: 1;
+  background: var(--bg-section);
+  color: var(--text);
+  border: 1px solid var(--border-color);
+  border-radius: 0.3rem;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.settings-field input:focus,
+.settings-field select:focus {
+  border-color: var(--text-light);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--shadow-hover);
+}
+
+.Settings-saveanddiscard-btn button {
+  padding: 0.6rem 1.4rem;
+  margin-right: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-muted);
+  text-transform: capitalize;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.Settings-saveanddiscard-btn button:hover {
+  background: var(--primary-color);
+  color: var(--white);
+  border-color: var(--text-heading);
+}
+
+@media (max-width: 600px) {
+  .settings-field {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .settings-label {
+    margin-bottom: 0.3rem;
+  }
+
+  .settings-back-btn {
+    transform: scale(0.9);
+  }
+
+  .Settings-head-name h1 {
+    font-size: 1.8rem;
+  }
+
+  .Settings-saveanddiscard-btn {
+    display: flex;
+    gap: 4px;
+    flex-direction: row;
+
+  }
+
+  .Settings-saveanddiscard-btn button {
+    /* flex-direction: column; */
+    padding: 0.6rem 1.2rem;
+    margin-right: 0;
+    font-size: 0.7rem;
+    font-weight: 500;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-muted);
+    text-transform: capitalize;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+  }
+}
+
+/* .setting-password{
+  display: flex;
+} */
+.setting-passwordinside {
+  /* display: flex; */
+  /* margin-left:; */
+  width: 100%;
+}
+
+.setting-passwordinside input {
+  /* display: flex; */
+  width: 100%;
+}
+
+.strength {
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.strength-weak {
+  color: #e53935;
+}
+
+.strength-medium {
+  color: #ff9800;
+}
+
+.strength-strong {
+  color: #1e88e5;
+}
+
+.strength-perfect {
+  color: #4CAF50;
+}
+
+.last-updated {
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  color: var(--text-light);
+}
+
+.status-message {
+  color: var(--text-heading);
+}
+
+.avatar-selector {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.avatar-option {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid transparent;
+  transition: border 0.2s ease;
+}
+
+.avatar-option:hover {
+  border-color: #888;
+}
+
+.avatar-option.selected {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px #007bff66;
+}

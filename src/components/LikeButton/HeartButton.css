@@ -15,15 +15,6 @@
   opacity: 0.6;
 }
 
-@keyframes heartbeat {
-  0% { transform: scale(0.9); }
-  25% { transform: scale(1.2); }
-  50% { transform: scale(0.95); }
-  75% { transform: scale(1.05); }
-  95% { transform: scale(1.5); }
-  100% { transform: scale(1.2); }
-}
-
 .heart-button {
   display: flex;
   background-color: white;
@@ -38,6 +29,53 @@
 
 .heart-button:active {
   box-shadow: none;
+}
+
+.heart-icon {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.25rem;
+  stroke: var(--text-muted);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.heart-icon.animate-like {
+  stroke: var(--text-default);
+  animation: heartbeat 0.4s ease-out;
+  transform: scale(1.2);
+}
+
+.heart-icon.animate-unlike {
+  transform: scale(1.01);
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(0.9);
+  }
+
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  75% {
+    transform: scale(1.05);
+  }
+
+  95% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1.2);
+  }
 }
 
 .bookmark-button {
@@ -68,6 +106,7 @@
     transform: scale(0.8);
     opacity: 0.6;
   }
+
   100% {
     transform: scale(1);
     opacity: 1;

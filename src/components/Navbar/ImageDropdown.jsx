@@ -58,7 +58,7 @@ const ImageDropdown = () => {
         <div className="image-dropdown" ref={containerRef}>
             <img
                 src={user?.profilePic || '/default-avatar.png'}
-                alt="Profile"
+                alt=""
                 className="profile-button"
                 onClick={() => setOpen(prev => !prev)}
             />

@@ -26,7 +26,7 @@ const Menu_activity = ({ activeTab, setActiveTab }) => {
   return (
     <div className="optionss" ref={wrapperRef}>
       {isOpen && (
-        <div className="further_options">
+        <div className="further_options_menu">
           {tabs.map((tab) => (
             <p
               key={tab}
