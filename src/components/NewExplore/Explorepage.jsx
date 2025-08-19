@@ -1,6 +1,6 @@
 // import React from 'react'
 import React, { useContext, useState, useMemo } from "react";
-import './Explorepage.css';
+import './explorepage.css';
 import Searchpost from '../Home/Searchpost';
 import PostcardGrid from './PostcardGrid';
 
