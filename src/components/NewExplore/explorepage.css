@@ -3,11 +3,11 @@
 }
 
 /* .Explorepage-container h1 {
-    text-align: center;
-    color: var(--text-default);
-    font-size: 2rem;
-    margin-top: 20px;
-} */
+  text-align: center;
+  color: var(--text-default);
+  font-size: 2rem;
+  margin-top: 20px;
+  } */
 .Explorepage-heading-text {
   background-image: var(--gradient-text);
   background-clip: text;
@@ -34,15 +34,15 @@
   font-family: 'Inter', sans-serif;
   line-height: 1.625;
 }
-.Explorepage-content-search{
-  /* border: 2px solid red; */
+
+.Explorepage-content-search {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
 }
+
 .Explorepage-trending-container {
-  /* border: 2px solid red; */
   margin-top: 3rem;
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@
 .Explorepage-sparkle-icon {
   height: 1rem;
   width: 1rem;
-  color:var(--primary-color-light); 
+  color: var(--primary-color-light);
   margin-right: 0.5rem;
 }
 
@@ -66,8 +66,9 @@
   color: hsl(var(--muted-foreground));
   /* color: var(--muted-foreground); or something like #6b7280 */
 }
+
 .Explorepage-tag-container {
-  max-width: 64rem; /* ~1024px */
+  max-width: 64rem;
   margin: 0 auto;
   padding-bottom: 8px;
   display: flex;
@@ -81,11 +82,13 @@
   overflow-x: auto;
   gap: 8px;
   padding-bottom: 8px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
 .Explorepage-tag-scroll::-webkit-scrollbar {
-  display: none; /* Chrome */
+  display: none;
+  /* Chrome */
 }
 
 .Explorepage-tag-button {
@@ -113,6 +116,7 @@
 .Explorepage-tag-text {
   transition: all 0.3s ease;
 }
+
 .Explorepage-tag-button:hover .Explorepage-tag-text {
   background: var(--gradient-text);
   background-clip: text;
@@ -126,8 +130,41 @@
     transform: translateY(10px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0px);
     opacity: 1;
   }
+}
+
+@media (max-width:786px) {
+  .Explorepage-heading-text {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .Explorepage-heading-muted {
+    font-size: 1.15rem;
+  }
+
+  .Explorepage-content-search {
+    margin-top: 1.6rem;
+    padding: 0px 0.2rem;
+  }
+
+  .Explorepage-trending-container {
+    margin-top: 2rem;
+  }
+
+  .Explorepage-tag-scroll {
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+
+  .Explorepage-tag-button {
+    padding: 6px;
+  }
+
+
 }
