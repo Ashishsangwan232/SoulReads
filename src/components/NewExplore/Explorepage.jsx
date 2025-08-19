@@ -1,8 +1,8 @@
 // import React from 'react'
 import React, { useContext, useState, useMemo } from "react";
-import './Explorepage.css'
-import Searchpost from '../Home/Searchpost'
-import PostcardGrid from './PostcardGrid'
+import './Explorepage.css';
+import Searchpost from '../Home/Searchpost';
+import PostcardGrid from './PostcardGrid';
 
 import { AllPostsContext } from "../../context/AllPostsContext";
 import Fuse from "fuse.js";
