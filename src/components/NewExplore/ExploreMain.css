@@ -34,9 +34,22 @@
         filter: blur(20px);
         opacity: 0;
     }
-    
+
     to {
         filter: blur(3px);
         opacity: 0.5;
+    }
+}
+
+@media (max-width:786px) {
+    .circle1 {
+        top: 30%;
+        left: -30%;
+    }
+
+    .circle2 {
+        position: fixed;
+        top: 60%;
+        right: -30%;
     }
 }
