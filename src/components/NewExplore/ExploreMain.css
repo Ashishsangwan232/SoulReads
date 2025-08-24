@@ -44,6 +44,19 @@
 @media (max-width:786px) {
     .circle1 {
         top: 30%;
+        left: -15%;
+    }
+
+    .circle2 {
+        position: fixed;
+        top: 60%;
+        right: -15%;
+    }
+}
+
+@media (max-width:486px) {
+    .circle1 {
+        top: 30%;
         left: -30%;
     }
 
