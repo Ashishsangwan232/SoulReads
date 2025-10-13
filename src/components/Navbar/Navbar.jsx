@@ -46,7 +46,7 @@ function Navbar() {
 
   return (
     <>
-    <TopbarUpdate/>
+    {/* <TopbarUpdate/> */}
       <nav className={`navbar ${isWritingPage ? 'writingnavbar' : ''}`}>
         <div className="logo" data-aos="fade-down" data-aos-duration="1000">
           <Logobook />
