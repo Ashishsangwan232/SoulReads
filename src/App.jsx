@@ -36,9 +36,11 @@ function App() {
   const ispage = location.pathname === '/login' || location.pathname === '/register' || location.pathname == '/dashboard' || location.pathname == "/writing" || location.pathname == "/richtext";
   return (
     <>
-      {/* <TopbarUpdate /> */}
       {/* {!ispage && <Complete_Navbar />} */}
-      {!ispage && <Navbar />}
+      <div>
+        {/* <TopbarUpdate /> */}
+        {!ispage && <Navbar />}
+      </div>
       <Routes>
         {/* <Route path="/" element={<Maintenace />} /> */}
         <Route path="/" element={<Home />} />
