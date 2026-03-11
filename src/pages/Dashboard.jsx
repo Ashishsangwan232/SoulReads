@@ -216,7 +216,7 @@ const Dashboard = () => {
             <div className="image-and-btn" >
               <img src={user?.profilePic || '/default-avatar.png'} alt="Profile" className="profile-pic" />
               <div className="profile-info">
-                <h4>{displayName} Sangwan</h4>
+                <h4>{displayName}</h4>
                 <p>Writer</p>
               </div>
             </div>
