@@ -95,7 +95,8 @@
   font-size: 0.875rem;
   white-space: nowrap;
   /* color: aliceblue; */
-  color: black;
+  /* color: black; */
+  color:  hsl(var(--soul-mist2));
   background-color: hsl(var(--soul-mist2));
   border: 1px solid hsl(var(--border));
   border-radius: 6px;
