@@ -4,7 +4,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Footer from './Footer';
 import { useTotalPostCount } from "../context/CountPostContext";
-import { Eye, EyeOff } from 'lucide-react'; // Lucide icons
+import { Eye, EyeOff } from 'lucide-react';
+import * as S from './Auth.styles';
+
 const Login = () => {
   const { refreshMyPosts: refreshpostcount } = useTotalPostCount();
   const { login } = useContext(AuthContext);
@@ -46,10 +48,10 @@ const Login = () => {
 
   return (
     <>
-      <div className="body_log_sig">
+      <S.AuthBody>
         <ParticleBackground />
-        <div className="log_sig_cont">
-          <h2 className="heading">Welcome Back 👋</h2>
+        <S.AuthContainer>
+          <h2>Welcome Back 👋</h2>
           <form onSubmit={handleLogin}>
             <FloatingInput
               label="Email"
@@ -67,14 +69,7 @@ const Login = () => {
               toggle={() => setShowPassword(prev => !prev)}
               required
             />
-            {/* <FloatingInput
-              label="Password"
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              required
-            /> */}
-            <div className="fom-opt">
+            <S.FormOptions>
               <label>
                 <input
                   type="checkbox"
@@ -84,28 +79,28 @@ const Login = () => {
                 Remember me
               </label>
               <Link to="/forgot-password">Forgot password?</Link>
-              {/* <a href="#">Forgot password?</a> */}
-            </div>
-            <button className='btn-log-sig' type="submit">Sign In</button>
+            </S.FormOptions>
+            <S.AuthButton type="submit">Sign In</S.AuthButton>
           </form>
 
-          <div className='botm_log_sig'>
-
-            <p className="log-sig-link">
+          <div style={{ marginTop: '1rem' }}>
+            <S.RedirectLink>
               Didn’t get the email? <Link to="/resend-verification">Resend</Link>
-            </p>
-            <p className="log-sig-link">
+            </S.RedirectLink>
+            <S.RedirectLink style={{ marginTop: '0.5rem' }}>
               New here? <Link to='/register'>Create account</Link>
-            </p>
-            <p className={`message ${message.type === 'success' ? 'success' : 'error'}`}>
-              {message.text}
-            </p>
+            </S.RedirectLink>
+            {message.text && (
+              <S.Message className={message.type === 'success' ? 'success' : 'error'}>
+                {message.text}
+              </S.Message>
+            )}
           </div>
-        </div>
-        <div className='footer_log_sig'>
+        </S.AuthContainer>
+        <div style={{ position: 'absolute', bottom: 0, width: '100%' }}>
           <Footer />
         </div>
-      </div>
+      </S.AuthBody>
     </>
   );
 };
@@ -113,7 +108,7 @@ const Login = () => {
 function FloatingInput({ label, type, value, onChange, ...rest }) {
   const id = label.toLowerCase().replace(/\s+/g, '-');
   return (
-    <div className="floating-group">
+    <S.FloatingGroup>
       <input
         type={type}
         id={id}
@@ -123,12 +118,13 @@ function FloatingInput({ label, type, value, onChange, ...rest }) {
         {...rest}
       />
       <label htmlFor={id}>{label}</label>
-    </div>
+    </S.FloatingGroup>
   );
 }
+
 function PasswordInput({ label, id, value, onChange, show, toggle, required }) {
   return (
-    <div className="floating-group password-group">
+    <S.FloatingGroup>
       <input
         type={show ? 'text' : 'password'}
         id={id}
@@ -138,10 +134,11 @@ function PasswordInput({ label, id, value, onChange, show, toggle, required }) {
         required={required}
       />
       <label htmlFor={id}>{label}</label>
-      <span className="password-toggle" onClick={toggle}>
+      <S.PasswordToggle onClick={toggle}>
         {show ? <EyeOff size={18} /> : <Eye size={18} />}
-      </span>
-    </div>
+      </S.PasswordToggle>
+    </S.FloatingGroup>
   );
 }
+
 export default Login;
