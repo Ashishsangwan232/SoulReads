@@ -67,8 +67,8 @@ function App() {
         <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/resend-verification" element={<ResendVerification />} />
         <Route path="/verify-success" element={<VerifySuccess />} /> */}
+       {/* /*{!ispage && <Footer />} } */}
       </Routes>
-      {/* /* {!ispage && <Footer />} */ */}
     </>
   );
 }
