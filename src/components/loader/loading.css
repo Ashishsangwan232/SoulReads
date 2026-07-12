@@ -89,7 +89,7 @@
     transform: translateY(-400%);
   }
 }
-  @media (max-width:786px) {
+  @media (max-width:768px) {
     .loader{
       padding: 0.3rem;
       font-size: 1.2rem;

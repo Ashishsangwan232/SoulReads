@@ -9,11 +9,13 @@ import { useMyPosts } from '../context/MyPostsContext';
 import { AuthContext } from '../context/AuthContext';
 import PostCountCard from '../components/DashBoard/Postcountcard';
 import { useDelete } from '../context/DeleteContext';
-import { useMyPostsArchived } from '../context/MyPostsContextArchieved';
+import { useMyPostsArchived } from '../context/MyPostsContextArchived';
 import { BookmarksContext } from '../context/BookmarksContext';
 import MainContent from '../components/DashBoard/MainContent';
 import Settings from '../components/DashBoard/Settings';
 import DarkModeTogglemenu from '../components/Themetoggle/DarkModeTogglemenu';
+import { useUIFeedback } from '../components/UIFeedback/UIFeedbackProvider';
+import { getErrorMessage } from '../services/api';
 
 const normalize = (str) => str?.toLowerCase().replace(/\s/g, '');
 
@@ -26,7 +28,6 @@ const filterByCategory = (posts, category, status = null) => {
 };
 
 const Dashboard = () => {
-  const { count } = { count: 0 }; // Removed useTotalPostCount as per original, wait, it was there. I'll restore it. Let me fix the import first.
   const [settingtab, setSettingtab] = useState(false);
 
   const { user, logout } = useContext(AuthContext);
@@ -49,6 +50,7 @@ const Dashboard = () => {
   const sidebarRef = useRef();
   const location = useLocation();
   const navigate = useNavigate();
+  const { confirm, showToast } = useUIFeedback();
 
   const displayName = user?.username ? user.username : 'Invalid';
   const postCount = Array.isArray(myPosts) ? myPosts.length : 0; // fallback if count isn't working
@@ -94,13 +96,14 @@ const Dashboard = () => {
   }, [showMenu, isMobile]);
 
   const handleLogout = async () => {
-    if (!window.confirm('Proceed to logout?')) return;
+    const confirmed = await confirm('Proceed to logout?');
+    if (!confirmed) return;
     setLoadinglogout(true);
     try {
       await logout();
       navigate('/');
     } catch (error) {
-      alert('Logout failed. ' + (error.response?.data?.message || ''));
+      showToast(getErrorMessage(error, 'Logout failed.'), 'error');
     } finally {
       setLoadinglogout(false);
     }
@@ -168,8 +171,8 @@ const Dashboard = () => {
               <S.SettingButton onClick={() => setSettingtab(true)}>
                 <SettingsIcon size={20} /> Settings
               </S.SettingButton>
-              <S.SettingButton onClick={handleLogout} style={{ color: '#fd6565' }}>
-                <LogOut size={20} /> Logout
+              <S.SettingButton onClick={handleLogout} disabled={loadinglogout} style={{ color: '#fd6565' }}>
+                <LogOut size={20} /> {loadinglogout ? 'Logging out...' : 'Logout'}
               </S.SettingButton>
             </S.SidebarFooter>
           </S.SidebarContainer>

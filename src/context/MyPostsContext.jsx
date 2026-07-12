@@ -1,6 +1,5 @@
-// contexts/MyPostsContext.js
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { createContext, useState, useEffect, useContext, useCallback, useMemo } from 'react';
+import api, { getErrorMessage } from '../services/api';
 import { AuthContext } from './AuthContext';
 
 export const MyPostsContext = createContext();
@@ -10,29 +9,31 @@ export const MyPostsProvider = ({ children }) => {
   const [myPosts, setMyPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-const API_URL = import.meta.env.VITE_API_URL;
-  const fetchMyPosts = async () => {
+
+  const fetchMyPosts = useCallback(async () => {
     if (!user) return;
     try {
       setLoading(true);
-      const res = await axios.get(`${API_URL}/posts/me`);
-      setMyPosts(res.data);
+      const res = await api.get('/posts/me');
+      // API returns { posts: [...], pagination: {...} }, not a bare array.
+      setMyPosts(Array.isArray(res.data?.posts) ? res.data.posts : []);
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to fetch your posts.');
+      setError(getErrorMessage(err, 'Failed to fetch your posts.'));
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     fetchMyPosts();
-  }, [user]);
+  }, [fetchMyPosts]);
 
-  return (
-    <MyPostsContext.Provider value={{ myPosts, loading, error, refreshMyPosts: fetchMyPosts }}>
-      {children}
-    </MyPostsContext.Provider>
+  const value = useMemo(
+    () => ({ myPosts, loading, error, refreshMyPosts: fetchMyPosts }),
+    [myPosts, loading, error, fetchMyPosts]
   );
+
+  return <MyPostsContext.Provider value={value}>{children}</MyPostsContext.Provider>;
 };
 
-export const useMyPosts = () => useContext(MyPostsContext)
+export const useMyPosts = () => useContext(MyPostsContext);

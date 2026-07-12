@@ -48,7 +48,7 @@ const NewUpdates = () => {
   const containerRef = useRef([]);
 
   useEffect(() => {
-    containerRef.current.forEach((el, index) => {
+    containerRef.current.forEach((el) => {
       gsap.fromTo(el, 
         { opacity: 0, y: 50 },
         { 

@@ -1,28 +1,34 @@
-import { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import axios from 'axios';
-import { useLikeContext } from './Likecontext';
+import { createContext, useContext, useState, useCallback, useEffect, useMemo, useRef } from 'react';
+import api from '../services/api';
+import { useLikeContext } from './LikeContext';
 
 const CommentContext = createContext();
 
 export const CommentProvider = ({ children }) => {
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(false);
-  const [initialLoad, setInitialLoad] = useState(true);
   const [error, setError] = useState(null);
   const [currentPostId, setCurrentPostId] = useState(null);
 
-  const API_URL = import.meta.env.VITE_API_URL;
   const { checkUserLikeStatus } = useLikeContext();
+  // Cancels the in-flight fetch for the *previous* postId so a slow response
+  // for post A can't land after post B and overwrite its comments.
+  const abortRef = useRef(null);
 
   const fetchComments = useCallback(async (postId, showLoading = false) => {
     if (!postId) return;
+
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
 
     if (showLoading) setLoadingComments(true);
     setCurrentPostId(postId);
 
     try {
-      const res = await axios.get(`${API_URL}/comments/${postId}`);
-      const rawComments = Array.isArray(res.data) ? res.data : [];
+      const res = await api.get(`/comments/${postId}`, { signal: controller.signal });
+      // API returns { comments: [...], pagination: {...} }, not a bare array.
+      const rawComments = Array.isArray(res.data?.comments) ? res.data.comments : [];
 
       const enriched = await Promise.all(
         rawComments.map(async (comment) => {
@@ -39,13 +45,13 @@ export const CommentProvider = ({ children }) => {
       setError(null);
 
     } catch (err) {
+      if (err.name === 'CanceledError' || err.code === 'ERR_CANCELED') return;
       console.error("Error fetching comments:", err);
       setError('Failed to load comments');
     } finally {
       setLoadingComments(false);
-      setInitialLoad(false);
     }
-  }, [API_URL, checkUserLikeStatus]);
+  }, [checkUserLikeStatus]);
 
   const addComment = useCallback(async (postId, content) => {
     if (!content?.trim()) {
@@ -53,7 +59,7 @@ export const CommentProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.post(`${API_URL}/comments/${postId}`, { content });
+      const res = await api.post(`/comments/${postId}`, { content });
       let newComment = res.data;
 
       try {
@@ -70,48 +76,55 @@ export const CommentProvider = ({ children }) => {
       console.error("Error adding comment:", err);
       return { success: false, error: 'Failed to add comment' };
     }
-  }, [API_URL, checkUserLikeStatus]);
+  }, [checkUserLikeStatus]);
 
-  const deleteComment = async (commentId, postId) => {
+  // Returns { success, error } instead of alert()-ing directly, so the caller
+  // (UI) decides how to present the failure (toast, inline message, etc.).
+  const deleteComment = useCallback(async (commentId, postId) => {
     try {
-      if (window.confirm('Are you sure you want to delete this comment?')) {
-        await axios.patch(`${API_URL}/posthard/comments/${commentId}`, {
-          withCredentials: true
-        });
-        fetchComments(postId, false); // No loading UI for polling update
-      }
+      // NOTE: this endpoint isn't listed in API_REFERENCE.md — confirm the real
+      // comment-delete route with the backend team.
+      await api.patch(`/posthard/comments/${commentId}`);
+      fetchComments(postId, false); // No loading UI for polling update
+      return { success: true };
     } catch (err) {
       console.error("Failed to delete comment:", err);
-      alert("Could not delete comment.");
+      return { success: false, error: 'Could not delete comment.' };
     }
-  };
+  }, [fetchComments]);
 
-  // Polling: Refresh comments every 10 seconds, no loader flash
+  // Stops the polling below and clears the loaded comments. Consumers (e.g. the
+  // post-detail page) should call this on unmount / when navigating away from a
+  // post, otherwise polling for that post keeps running in the background for
+  // the lifetime of the app (this provider is mounted at the app root).
+  const clearComments = useCallback(() => {
+    abortRef.current?.abort();
+    setCurrentPostId(null);
+    setComments([]);
+  }, []);
+
+  // Polling: Refresh comments every 8 seconds while a post's comments are open,
+  // no loader flash. Paused while the tab isn't visible to avoid needless requests.
   useEffect(() => {
     if (!currentPostId) return;
 
     fetchComments(currentPostId, true); // Initial load shows loader
 
     const interval = setInterval(() => {
-      fetchComments(currentPostId, false); // Silent polling
+      if (document.visibilityState === 'visible') {
+        fetchComments(currentPostId, false); // Silent polling
+      }
     }, 8000);
 
     return () => clearInterval(interval);
   }, [currentPostId, fetchComments]);
 
-  return (
-    <CommentContext.Provider value={{
-      comments,
-      loadingComments,
-      error,
-      fetchComments,
-      addComment,
-      setComments,
-      deleteComment,
-    }}>
-      {children}
-    </CommentContext.Provider>
+  const value = useMemo(
+    () => ({ comments, loadingComments, error, fetchComments, addComment, setComments, deleteComment, clearComments }),
+    [comments, loadingComments, error, fetchComments, addComment, deleteComment, clearComments]
   );
+
+  return <CommentContext.Provider value={value}>{children}</CommentContext.Provider>;
 };
 
 export const useComments = () => useContext(CommentContext);

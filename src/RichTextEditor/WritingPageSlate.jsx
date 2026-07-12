@@ -2,18 +2,14 @@ import React, {
     useContext,
     useEffect,
     useState,
-    useMemo,
 } from 'react';
-import axios from 'axios';
-// import { createEditor } from 'slate';
-// import { withReact } from 'slate-react';
-// import { withHistory } from 'slate-history';
-// import './Appmain.css';
+import api, { getErrorMessage } from '../services/api';
 import './wrtingpageslate.css';
 import { AuthContext } from '../context/AuthContext';
 import { MyPostsContext } from '../context/MyPostsContext';
 import useAutosave from '../components/DashBoard/useAutosave';
 import WritingPage from './WritingPage';
+import { useUIFeedback } from '../components/UIFeedback/UIFeedbackProvider';
 
 const initialValue = [
     {
@@ -25,6 +21,7 @@ const initialValue = [
 const WritingPageSlate = () => {
     const { user } = useContext(AuthContext);
     const { refreshMyPosts } = useContext(MyPostsContext);
+    const { showToast } = useUIFeedback();
 
     const userKey = user?.id || user?.email || 'anonymous';
     const [value, setValue] = useState(initialValue);
@@ -32,7 +29,6 @@ const WritingPageSlate = () => {
 
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('story');
-    const [status, setStatus] = useState('published');
     const [postId, setPostId] = useState(null);
     const [message, setMessage] = useState('');
     const [autosaveOn, setAutosaveOn] = useState(true);
@@ -42,7 +38,6 @@ const WritingPageSlate = () => {
 
     const plainText = value.map(n => n.children.map(c => c.text).join('')).join('\n');
     const wordCount = plainText.trim() === '' ? 0 : plainText.trim().split(/\s+/).length;
-    const API_URL = import.meta.env.VITE_API_URL;
 
     useAutosave({
         userKey,
@@ -91,7 +86,7 @@ const WritingPageSlate = () => {
         if (saving) return;
 
         if (!title.trim() || plainText.trim() === '') {
-            alert("Title and content can't be empty.");
+            showToast("Title and content can't be empty.", 'error');
             return;
         }
 
@@ -99,7 +94,6 @@ const WritingPageSlate = () => {
 
 
         const postStatus = isDraft ? 'draft' : 'published';
-        setStatus(postStatus);
 
         const postData = {
             title: title.trim(),
@@ -111,18 +105,14 @@ const WritingPageSlate = () => {
         try {
             let response;
             if (postId) {
-                response = await axios.patch(`${API_URL}/posts/${postId}`, postData, {
-                    withCredentials: true,
-                });
+                response = await api.patch(`/posts/${postId}`, postData);
             } else {
-                response = await axios.post(`${API_URL}/posts/post`, postData, {
-                    withCredentials: true,
-                });
+                response = await api.post('/posts/post', postData);
                 setPostId(response.data.id);
             }
 
             const successMsg = isDraft ? 'Draft saved successfully!' : 'Post published successfully!';
-            alert(successMsg);
+            showToast(successMsg, 'success');
             setMessage(successMsg);
 
             if (!isDraft) {
@@ -136,7 +126,7 @@ const WritingPageSlate = () => {
             }
         } catch (error) {
             console.error('Error saving post:', error);
-            alert(error.response?.data?.message || 'Failed to save. Please try again.');
+            showToast(getErrorMessage(error, 'Failed to save. Please try again.'), 'error');
         } finally {
             setSaving(false); // Unlock the save button
         }
@@ -167,7 +157,7 @@ const WritingPageSlate = () => {
         const plainText = extractTextFromSlate(value);
 
         if (title.trim() === '' && plainText === '') {
-            alert('Nothing to save.');
+            showToast('Nothing to save.', 'info');
             return;
         }
 
@@ -193,10 +183,10 @@ const WritingPageSlate = () => {
             ];
             localStorage.setItem(indexKey, JSON.stringify(updatedIndex));
 
-            alert(`✅ Manual version saved at ${new Date(timestamp).toLocaleTimeString()}`);
+            showToast(`Manual version saved at ${new Date(timestamp).toLocaleTimeString()}`, 'success');
         } catch (e) {
             console.warn('Manual version save failed:', e);
-            alert('❌ Failed to save manually. Check console for details.');
+            showToast('Failed to save manually. Check console for details.', 'error');
         }
     };
 

@@ -16,13 +16,21 @@ const useFCMNotifications = () => {
                 .then(currentToken => {
                     if (currentToken) {
                         // console.log('✅ FCM Token:', currentToken);
-                        saveFcmToken(currentToken, user.id);
+                        saveFcmToken(currentToken);
                     } else {
                         console.warn('⚠️ No registration token available.');
                     }
                 })
                 .catch(err => console.error('❌ Token retrieval error:', err));
         };
+
+        // Guard against browsers/contexts without the Notification API at all
+        // (some in-app webviews, older browsers) -- calling requestPermission()
+        // there would throw and was previously uncaught.
+        if (!('Notification' in window)) {
+            console.warn('This browser does not support notifications.');
+            return;
+        }
 
         Notification.requestPermission().then(permission => {
             console.log('🔔 Notification permission:', permission);

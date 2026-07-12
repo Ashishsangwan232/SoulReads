@@ -242,7 +242,7 @@
 
 }
 
-@media (max-width: 786px) {
+@media (max-width: 768px) {
   .navbar {
     padding: 0.4rem;
   }

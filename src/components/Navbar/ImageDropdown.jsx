@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import './imagedropdown.css';
 import { AuthContext } from '../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { useUIFeedback } from '../UIFeedback/UIFeedbackProvider';
 
 const ImageDropdown = () => {
     const [open, setOpen] = useState(false);
@@ -10,10 +11,11 @@ const ImageDropdown = () => {
     const containerRef = useRef();
     const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
+    const { confirm } = useUIFeedback();
 
     const handleLogout = async () => {
-        const isConfirm = window.confirm("Proceed with logout?");
-        if (!isConfirm) return;
+        const confirmed = await confirm('Proceed with logout?');
+        if (!confirmed) return;
         try {
             await logout();
             navigate('/');
@@ -58,7 +60,7 @@ const ImageDropdown = () => {
         <div className="image-dropdown" ref={containerRef}>
             <img
                 src={user?.profilePic || '/default-avatar.png'}
-                alt=""
+                alt="Open profile menu"
                 className="profile-button"
                 onClick={() => setOpen(prev => !prev)}
             />

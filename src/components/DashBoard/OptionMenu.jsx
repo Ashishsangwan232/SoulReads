@@ -2,67 +2,70 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useArchive } from '../../context/ArchiveContext';
 import { useDelete } from '../../context/DeleteContext';
 import './optionmenu.css';
-import { useMyPostsArchived } from '../../context/MyPostsContextArchieved';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useMyPostsArchived } from '../../context/MyPostsContextArchived';
+import { useNavigate } from 'react-router-dom';
 import { useMyPosts } from '../../context/MyPostsContext';
+import { useUIFeedback } from '../UIFeedback/UIFeedbackProvider';
+import { getErrorMessage } from '../../services/api';
 
 const OptionsMenu = ({ postId, archivestatus, status }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { refreshMyPosts: refreshMine } = useMyPosts();
   const { refreshMyPosts: refreshArchived } = useMyPostsArchived();
   const wrapperRef = useRef(null);
-  const { softDelete, HardDelete, refreshMyPosts: refreshDeleted } = useDelete();
+  const { softDelete, hardDelete, refreshMyPosts: refreshDeleted } = useDelete();
   const { toggleArchive } = useArchive();
-  const [statusMessage, setStatusMessage] = useState(null);
   const navigate = useNavigate();
-  // const location =useLocation();
+  const { confirm, showToast } = useUIFeedback();
+
   const handleHardDelete = async () => {
-    const confirmed = window.confirm("Are you sure you want to move this post to trash?");
+    // This is the *permanent* delete (irreversible) — the confirm copy must say so.
+    const confirmed = await confirm(
+      'This will permanently delete this post and cannot be undone. Continue?',
+      { confirmLabel: 'Delete permanently' }
+    );
     if (!confirmed) return;
 
     try {
-      await HardDelete(postId);
-      setStatusMessage('Post deleted successfully.');
+      await hardDelete(postId);
+      showToast('Post deleted successfully.', 'success');
       setIsOpen(false);
       refreshMine?.();
       refreshArchived?.();
       refreshDeleted?.();
-      // refreshMyPosts();
-
     } catch (err) {
-      alert("Hard Delete failed: " + (err.response?.data?.message || err.message));
-      console.error("Delete error:", err.response?.data);
+      showToast('Permanent delete failed: ' + getErrorMessage(err), 'error');
+      console.error("Delete error:", err);
     }
   };
   const handleDelete = async () => {
-    const confirmed = window.confirm("Are you sure you want to move this post to trash?");
+    const confirmed = await confirm('Are you sure you want to move this post to trash?');
     if (!confirmed) return;
 
     try {
       await softDelete(postId);
-      setStatusMessage('Post deleted successfully.');
+      showToast('Post deleted successfully.', 'success');
       setIsOpen(false);
       refreshMine?.();
       refreshArchived?.();
       refreshDeleted?.();
-      // refreshMyPosts();
     } catch (err) {
-      alert("Delete failed: " + (err.response?.data?.message || err.message));
-      console.error("Delete error:", err.response?.data);
+      showToast('Delete failed: ' + getErrorMessage(err), 'error');
+      console.error("Delete error:", err);
     }
   };
 
   const handleToggle = async () => {
     try {
-      const tog = await toggleArchive(postId);
-      setStatusMessage('Post archive status toggled.');
+      await toggleArchive(postId);
+      showToast('Post archive status toggled.', 'success');
       setIsOpen(false);
       refreshMine?.();
       refreshArchived?.();
     }
     catch (err) {
-      alert("Archive failed: " + (err.response?.data?.message || err.message));
-      console.error("Archive error:", err.response?.data);
+      showToast('Archive failed: ' + getErrorMessage(err), 'error');
+      console.error("Archive error:", err);
     }
   };
 
@@ -110,7 +113,7 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                class="archive-icon"
+                className="archive-icon"
               >
                 <rect width="20" height="5" x="2" y="3" rx="1"></rect>
                 <path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"></path>
@@ -125,18 +128,22 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              class="edit-icon"
+              className="edit-icon"
             >
               <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
               <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path>
             </svg>
             Edit</p>
-          {/* <p onClick={handleDelete}>Delete</p> */}
-          <p className='Delete-btn' onClick={handleHardDelete}>
+          {/* Move to Trash (soft delete) -- previously commented out, meaning
+              this app's entire Trash feature (see TrashContext / the Trash
+              page) was unreachable: the only visible "Delete" action skipped
+              straight to permanent deletion. Restored as its own clearly
+              labeled option, distinct from permanent delete below. */}
+          <p className='Delete-btn' onClick={handleDelete}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              class="trash-icon"
+              className="trash-icon"
             >
               <path d="M3 6h18"></path>
               <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
@@ -144,7 +151,21 @@ const OptionsMenu = ({ postId, archivestatus, status }) => {
               <line x1="10" y1="11" x2="10" y2="17"></line>
               <line x1="14" y1="11" x2="14" y2="17"></line>
             </svg>
-            Delete
+            Move to Trash
+          </p>
+          <p className='Delete-btn' onClick={handleHardDelete}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className="trash-icon"
+            >
+              <path d="M3 6h18"></path>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+            Delete Permanently
           </p>
         </div>
       )

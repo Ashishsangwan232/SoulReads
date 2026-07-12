@@ -2,15 +2,17 @@ import React, { useContext, useState } from 'react';
 import './addcomment.css';
 import { useComments } from '../../context/CommentsContext';
 import { AuthContext } from '../../context/AuthContext';
+import { useUIFeedback } from '../UIFeedback/UIFeedbackProvider';
 
 const AddComment = ({ postId, onCommentAdded }) => {
   const {user}=useContext(AuthContext);
   const [commentText, setCommentText] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const { addComment } = useComments(); // From context
+  const { showToast } = useUIFeedback();
 
   const handleSubmit = async () => {
-    if(!user) return alert('You need to login first!');
+    if (!user) return showToast('You need to log in first!', 'error');
     const trimmedComment = commentText.trim();
     if (!trimmedComment) return;
 
@@ -23,11 +25,11 @@ const AddComment = ({ postId, onCommentAdded }) => {
         setCommentText('');
         onCommentAdded?.(); // Optional callback if parent wants to act
       } else {
-        alert(result.error || 'Could not post comment. Try again.');
+        showToast(result.error || 'Could not post comment. Try again.', 'error');
       }
     } catch (error) {
       console.error('Failed to add comment:', error);
-      alert('Could not post comment. Please try again later.');
+      showToast('Could not post comment. Please try again later.', 'error');
     } finally {
       setSubmitting(false);
     }

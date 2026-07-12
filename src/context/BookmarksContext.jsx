@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import api from '../services/api';
 import { AuthContext } from './AuthContext';
 
 export const BookmarksContext = createContext();
@@ -8,7 +8,7 @@ export const BookmarksProvider = ({ children }) => {
   const { user } = useContext(AuthContext);
   const [bookmarks, setBookmarks] = useState([]);
   const [loadingbookmared, setLoadingBookmared] = useState(true);
-  const API_URL = import.meta.env.VITE_API_URL;
+
   // Fetch bookmarks when user logs in
   useEffect(() => {
     if (!user) {
@@ -19,9 +19,10 @@ export const BookmarksProvider = ({ children }) => {
 
     const fetchBookmarks = async () => {
       try {
-        const res = await axios.get(`${API_URL}/bookmark/bookmarked`);
-        setBookmarks(res.data); // each item includes a `post` field if populated
-        // console.log(res.data);
+        const res = await api.get('/bookmark/bookmarked');
+        // API returns { bookmarks: [...], pagination: {...} }, not a bare array.
+        // Each item includes a `post` field if populated.
+        setBookmarks(Array.isArray(res.data?.bookmarks) ? res.data.bookmarks : []);
       } catch (err) {
         console.error('Failed to fetch bookmarks:', err.message);
       } finally {
@@ -32,44 +33,39 @@ export const BookmarksProvider = ({ children }) => {
     fetchBookmarks();
   }, [user]);
 
-  // 🔁 Toggle bookmark
-  const toggleBookmark = async (postId) => {
+  // Toggle bookmark. Trusts the server's response (201 = added, 200 = removed)
+  // rather than guessing from local state, so it can't drift out of sync.
+  const toggleBookmark = useCallback(async (postId) => {
     try {
-      const res = await axios.post(`${API_URL}/bookmark/togglebookmark/${postId}`);
-      const isBookmarked = bookmarks.some((b) => b.post._id === postId);
+      const res = await api.post(`/bookmark/togglebookmark/${postId}`);
+      const wasAdded = res.status === 201;
 
-      if (isBookmarked) {
-        setBookmarks(bookmarks.filter((b) => b.post._id !== postId));
+      if (wasAdded) {
+        setBookmarks((prev) => [...prev, { post: { _id: postId }, bookmarkedAt: new Date() }]);
       } else {
-        const newBookmark = { post: { _id: postId }, bookmarkedAt: new Date() };
-        setBookmarks((prev) => [...prev, newBookmark]);
+        setBookmarks((prev) => prev.filter((b) => b.post._id !== postId));
       }
     } catch (err) {
       console.error('Toggle bookmark failed:', err.message);
     }
-  };
+  }, []);
 
-  // 🧠 Check if bookmarked
-  const isBookmarked = (postId) => {
-    return bookmarks.some((b) => b.post._id === postId);
-  };
-
-  // 📦 Return all bookmarked post objects
-  const getBookmarkedPosts = () => {
-    return bookmarks.map((b) => b.post);
-  };
-
-  return (
-    <BookmarksContext.Provider
-      value={{
-        bookmarks,            // raw bookmarks with metadata
-        toggleBookmark,
-        isBookmarked,
-        getBookmarkedPosts,   // 📦 easy way to access just the post objects
-        loadingbookmared,
-      }}
-    >
-      {children}
-    </BookmarksContext.Provider>
+  const isBookmarked = useCallback(
+    (postId) => bookmarks.some((b) => b.post._id === postId),
+    [bookmarks]
   );
+
+  const getBookmarkedPosts = useCallback(
+    () => bookmarks.map((b) => b.post),
+    [bookmarks]
+  );
+
+  const value = useMemo(
+    () => ({ bookmarks, toggleBookmark, isBookmarked, getBookmarkedPosts, loadingbookmared }),
+    [bookmarks, toggleBookmark, isBookmarked, getBookmarkedPosts, loadingbookmared]
+  );
+
+  return <BookmarksContext.Provider value={value}>{children}</BookmarksContext.Provider>;
 };
+
+export const useBookmarks = () => useContext(BookmarksContext);

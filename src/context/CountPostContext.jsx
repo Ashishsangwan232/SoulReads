@@ -1,37 +1,38 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import api, { getErrorMessage } from "../services/api";
 
-// 1. Capitalize context properly
 export const CountPostContext = createContext();
 
 export const CountPostProvider = ({ children }) => {
-  const [count, setCount] = useState(0); // should be number, not []
+  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const API_URL = import.meta.env.VITE_API_URL;
-  const fetchTotalPost = async () => {
+
+  const fetchTotalPost = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
-      const res = await axios.get(`${API_URL}/posts/count`, {
-        withCredentials: true
-      });
+      const res = await api.get('/posts/count');
       setCount(res.data.totalPosts);
     } catch (err) {
       console.error("Error fetching Total Post count: ", err);
-      setError("Failed to load posts.");
+      setError(getErrorMessage(err, "Failed to load posts."));
     } finally {
       setLoading(false);
     }
-  };
-
-  // optional auto-fetch when component mounts
-  useEffect(() => {
-    fetchTotalPost();
   }, []);
 
+  useEffect(() => {
+    fetchTotalPost();
+  }, [fetchTotalPost]);
+
+  const value = useMemo(
+    () => ({ count, loading, error, refreshMyPosts: fetchTotalPost }),
+    [count, loading, error, fetchTotalPost]
+  );
+
   return (
-    <CountPostContext.Provider value={{ count, loading, error, refreshMyPosts: fetchTotalPost }}>
+    <CountPostContext.Provider value={value}>
       {children}
     </CountPostContext.Provider>
   );

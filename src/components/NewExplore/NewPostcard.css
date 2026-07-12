@@ -191,7 +191,7 @@
     margin: 0.5rem 0;
 }
 
-@media (max-width:786px) {
+@media (max-width:768px) {
     .Nwpstcd-container {
         padding: 0.6rem
     }

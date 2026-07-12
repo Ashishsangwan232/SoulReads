@@ -89,7 +89,7 @@
     }
   }
   
-  @media (max-width:786px) {
+  @media (max-width:768px) {
     .error-loader{
       padding: 0.3rem;
       font-size: 1.2rem;

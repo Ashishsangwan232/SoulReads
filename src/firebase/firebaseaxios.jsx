@@ -1,20 +1,15 @@
-import axios from 'axios';
+import api from '../services/api';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-export const saveFcmToken = async (token, userId) => {
-    if (!token || !userId) {
-        console.warn('Missing token or userId while saving FCM token.');
+export const saveFcmToken = async (token) => {
+    if (!token) {
+        console.warn('Missing token while saving FCM token.');
         return;
     }
 
     try {
-        const response = await axios.post(
-            `${API_URL}/save-token`,
-            { token, userId },
-            { withCredentials: true }
-        );
-
+        // Server always uses the authenticated session's identity for this --
+        // it never needed (or should trust) a client-supplied userId.
+        const response = await api.post('/notifications/save-token', { token });
         console.log('✅ FCM token saved:', response.data.message);
     } catch (error) {
         console.error('❌ Failed to save FCM token:', error.response?.data?.message || error.message);

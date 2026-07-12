@@ -5,7 +5,7 @@ import { useSinglePost } from '../../context/SinglePostContext.jsx';
 import Addcomment from '../comment/Addcomment.jsx';
 import { useComments } from '../../context/CommentsContext.jsx';
 import LikeButton from '../LikeButton/Likebutton.jsx';
-import { useLikeContext } from '../../context/Likecontext.jsx';
+import { useLikeContext } from '../../context/LikeContext.jsx';
 import BookmarkButton from '../LikeButton/HeartButton.jsx';
 import ShareButton from './ShareButton.jsx';
 import { AuthContext } from '../../context/AuthContext.jsx';
@@ -20,7 +20,7 @@ const ReadMore = () => {
   const { id: postId } = useParams();
   const { user } = useContext(AuthContext);
   const { post, loading: postLoading, fetchPostById } = useSinglePost();
-  const { comments, loadingComments, error: commentsError, fetchComments, deleteComment } = useComments();
+  const { comments, loadingComments, error: commentsError, fetchComments, deleteComment, clearComments } = useComments();
   const { checkUserLikeStatus } = useLikeContext();
 
   const [isCurrentUserLiked, setIsCurrentUserLiked] = useState(false);
@@ -37,11 +37,13 @@ const ReadMore = () => {
     if (postId && (!post || String(post._id) !== postId)) {
       fetchPostById(postId);
     }
-  }, [postId]);
+  }, [postId, post, fetchPostById]);
 
   useEffect(() => {
     if (postId) fetchComments(postId);
-  }, [postId]);
+    // Stop the background polling for this post's comments once we navigate away.
+    return () => clearComments();
+  }, [postId, fetchComments, clearComments]);
 
   useEffect(() => {
     if (post && String(post._id) === postId) {
@@ -62,7 +64,7 @@ const ReadMore = () => {
 
       fetchStatus();
     }
-  }, [post]);
+  }, [post, postId, checkUserLikeStatus]);
 
   if (postLoading) {
     return <div className="post-detail-loading"><PostLoading /></div>;

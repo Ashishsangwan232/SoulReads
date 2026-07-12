@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import api, { getErrorMessage } from '../services/api';
 import './Appmain.css';
 import { MyPostsContext } from '../context/MyPostsContext';
 import RichTextEditor from './RichTextEditor';
 import { useLocation, useNavigate, useParams, Link } from 'react-router-dom';
+import { useUIFeedback } from '../components/UIFeedback/UIFeedbackProvider';
 
 const WritingPageSlateEditing = () => {
   const { id } = useParams();
   const { refreshMyPosts } = useContext(MyPostsContext);
+  const { showToast } = useUIFeedback();
 
   const [value, setValue] = useState(null);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('story');
-  const [status, setStatus] = useState('published');
   const [postId, setPostId] = useState(null);
   const [message, setMessage] = useState('');
   const [wordCount, setWordCount] = useState(0);
@@ -20,10 +21,8 @@ const WritingPageSlateEditing = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  
-  const from = location.state?.from?.pathname || '/';
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  const from = location.state?.from?.pathname || '/';
 
   useEffect(() => {
     if (message) {
@@ -36,7 +35,7 @@ const WritingPageSlateEditing = () => {
     const fetchPost = async () => {
       if (!id) return;
       try {
-        const res = await axios.get(`${API_URL}/posts/${id}`, { withCredentials: true });
+        const res = await api.get(`/posts/${id}`);
         const post = res.data;
 
         const fetchedTitle = post.title || '';
@@ -54,7 +53,6 @@ const WritingPageSlateEditing = () => {
 
         setTitle(fetchedTitle);
         setCategory(fetchedCategory);
-        setStatus(fetchedStatus);
         setPostId(fetchedId);
         setValue(parsedContent);
 
@@ -71,11 +69,11 @@ const WritingPageSlateEditing = () => {
 
       } catch (err) {
         console.error('Failed to fetch post:', err);
-        alert("Failed to load post. Please try again.");
+        showToast('Failed to load post. Please try again.', 'error');
       }
     };
     fetchPost();
-  }, [id]);
+  }, [id, showToast]);
 
   useEffect(() => {
     if (!value) return;
@@ -88,7 +86,7 @@ const WritingPageSlateEditing = () => {
     const plainText = value?.map(n => n.children.map(c => c.text).join('')).join('\n');
 
     if (!title.trim() || plainText?.trim() === '') {
-      alert("Title and content can't be empty.");
+      showToast("Title and content can't be empty.", 'error');
       return;
     }
 
@@ -109,7 +107,7 @@ const WritingPageSlateEditing = () => {
         originalData.content === currentData.content;
 
       if (noChanges) {
-        alert("No changes made to the post.");
+        showToast('No changes made to the post.', 'info');
         return;
       }
     }
@@ -117,42 +115,31 @@ const WritingPageSlateEditing = () => {
     try {
       let response;
       if (postId) {
-        response = await axios.patch(`${API_URL}/posts/${postId}`, currentData, {
-          withCredentials: true,
-        });
+        response = await api.patch(`/posts/${postId}`, currentData);
       } else {
-        response = await axios.post(`${API_URL}/posts/post`, currentData, {
-          withCredentials: true,
-        });
+        response = await api.post('/posts/post', currentData);
         setPostId(response.data.id);
       }
 
       const successMsg = isDraft ? 'Draft saved successfully!' : 'Post published successfully!';
       setMessage(successMsg);
-      alert(successMsg);
+      showToast(successMsg, 'success');
       refreshMyPosts?.();
       if (!isDraft) {
         setTitle('');
         setValue(null);
         setCategory('story');
-        setStatus('published');
         setPostId(null);
       }
 
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 1000);
+
     } catch (error) {
       console.error('Error saving post:', error);
-      if (error.response) {
-        alert(error.response.data.message || `Failed to save post. Status: ${error.response.status}`);
-      } else if (error.request) {
-        alert('Network error. Please check your connection.');
-      } else {
-        alert('Failed to set up the request. Please try again.');
-      }
+      showToast(getErrorMessage(error, 'Failed to save post.'), 'error');
     }
-
-    setTimeout(() => {
-      navigate(from, { replace: true });
-    }, 1000);
   };
 
   return (
@@ -185,7 +172,8 @@ const WritingPageSlateEditing = () => {
             >
               <option value="story">Story</option>
               <option value="journal">Journal</option>
-              <option value="selfreflection">SelfReflection</option>
+              {/* Value must match the API's exact enum casing (camelCase) or saves 422. */}
+              <option value="selfReflection">Self Reflection</option>
             </select>
           </div>
         </div>

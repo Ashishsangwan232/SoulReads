@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
-import axios from 'axios';
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import api, { getErrorMessage } from '../services/api';
 
 const UpdatePostContext = createContext();
 
@@ -7,28 +7,29 @@ export const UpdatePostProvider = ({ children }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateError, setUpdateError] = useState(null);
   const [updateSuccess, setUpdateSuccess] = useState(null);
-  const API_URL = import.meta.env.VITE_API_URL;
 
-  const updatePost = async (postId, updates) => {
+  const updatePost = useCallback(async (postId, updates) => {
     setIsUpdating(true);
     setUpdateError(null);
     setUpdateSuccess(null);
     try {
-      const res = await axios.patch(`${API_URL}/posts/${postId}`, updates);
+      const res = await api.patch(`/posts/${postId}`, updates);
       setUpdateSuccess(res.data.message);
       return res.data.post; // return updated post
     } catch (err) {
-      const msg = err.response?.data?.message || 'Update failed';
-      setUpdateError(msg);
+      setUpdateError(getErrorMessage(err, 'Update failed'));
     } finally {
       setIsUpdating(false);
     }
-  };
+  }, []);
+
+  const value = useMemo(
+    () => ({ updatePost, isUpdating, updateError, updateSuccess }),
+    [updatePost, isUpdating, updateError, updateSuccess]
+  );
 
   return (
-    <UpdatePostContext.Provider
-      value={{ updatePost, isUpdating, updateError, updateSuccess }}
-    >
+    <UpdatePostContext.Provider value={value}>
       {children}
     </UpdatePostContext.Provider>
   );

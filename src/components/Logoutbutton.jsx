@@ -1,24 +1,27 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { useUIFeedback } from './UIFeedback/UIFeedbackProvider';
+import { getErrorMessage } from '../services/api';
 
 const Logoutbutton = ({ className }) => {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const { logout } = useContext(AuthContext);
+    const { confirm, showToast } = useUIFeedback();
 
     const handleLogout = async () => {
-        const isconfirm = window.confirm("proced for logout")
-        if (!isconfirm) return;
+        const confirmed = await confirm('Proceed with logout?');
+        if (!confirmed) return;
         setLoading(true);
         try {
             await logout();
-            alert("Logout successful!");
+            showToast('Logout successful!', 'success');
             navigate("/login");
         } catch (error) {
-            alert("Logout failed. " + (error.response?.data?.message || ""));
-            console.error("Logout error:", error.response?.data);
+            showToast(getErrorMessage(error, 'Logout failed.'), 'error');
+            console.error("Logout error:", error);
         } finally {
             setLoading(false);
         }

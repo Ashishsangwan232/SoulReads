@@ -1,15 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import './Postcard.css';
 import { Link } from "react-router-dom";
 import LikeButton from "../LikeButton/Likebutton";
-import { useLikeContext } from '../../context/Likecontext';
-import { AllPostsContext } from "../../context/AllPostsContext";
-import Loading from "../loader/Loading";
-import Loadingerror from "../loader/Loadingerror";
+import { useLikeContext } from '../../context/LikeContext';
 
-export default function PostCard({ type, author, date, title, quote, excerpt, link, likes, commentsCount, postId, error, loading }) {
-  const { posts } = useContext(AllPostsContext)
-
+export default function PostCard({ type, author, date, title, quote, excerpt, link, likes, commentsCount, postId }) {
   const { checkUserLikeStatus } = useLikeContext();
   const [isCurrentUserLiked, setIsCurrentUserLiked] = useState(false);
   const [currentLikesCount, setCurrentLikesCount] = useState(0);

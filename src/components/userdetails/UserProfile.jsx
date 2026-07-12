@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './userprofile.css';
-import axios from 'axios';
+import api from '../../services/api';
 
 const UserProfile = ({ userId, onClose }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);  // Track error status
-  const API_URL = import.meta.env.VITE_API_URL;
-
-  // console.log('userprofile id:', userId);
 
   useEffect(() => {
     if (!userId) {
@@ -20,7 +17,7 @@ const UserProfile = ({ userId, onClose }) => {
 
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${API_URL}/user/profile/${userId}`);
+        const res = await api.get(`/user/profile/${userId}`);
         setUser(res.data);
         setError(null); // Clear error if successful
       } catch (err) {
@@ -49,9 +46,9 @@ const UserProfile = ({ userId, onClose }) => {
       <div className="userprofile-container">
         <div className="userprofile-card">
           <div className="userprofile-close-btn">
-            <span className="material-symbols-outlined" onClick={onClose}>
+            <button type="button" className="material-symbols-outlined userprofile-close-icon" onClick={onClose} aria-label="Close profile">
               close
-            </span>
+            </button>
           </div>
           <div className="userprofile-details">
             <p style={{ textAlign: 'center', margin: '2rem 0' }}>{error}</p>
@@ -68,9 +65,9 @@ const UserProfile = ({ userId, onClose }) => {
       <div className="userprofile-card">
 
         <div className="userprofile-close-btn">
-          <span className="material-symbols-outlined" onClick={onClose}>
+          <button type="button" className="material-symbols-outlined userprofile-close-icon" onClick={onClose} aria-label="Close profile">
             close
-          </span>
+          </button>
         </div>
 
         <div className="userprofile-details">

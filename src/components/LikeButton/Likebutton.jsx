@@ -1,17 +1,16 @@
 // src/components/Likebutton.js
 import React, { useState, useEffect } from 'react';
-import { useLikeContext } from '../../context/Likecontext';
+import { useLikeContext } from '../../context/LikeContext';
 import './likebutton.css';
 import { HeartButton } from './HeartButton';
 
 const Likebutton = ({ targetId, targetType, initialLikesCount = 0, initialIsLiked = false, atpage }) => {
-    const { toggleLike, loadingStates, errorStates } = useLikeContext();
+    const { toggleLike, loadingStates } = useLikeContext();
 
     const [isLiked, setIsLiked] = useState(initialIsLiked);
     const [likesCount, setLikesCount] = useState(initialLikesCount);
     const operationKey = `${targetType}-${targetId}`;
     const isLoading = loadingStates[operationKey] || false;
-    const error = errorStates[operationKey] || null;
 
     useEffect(() => {
         const script = document.createElement('script');
@@ -32,8 +31,7 @@ const Likebutton = ({ targetId, targetType, initialLikesCount = 0, initialIsLike
     }, [initialLikesCount]);
 
     const handleLikeToggle = async () => {
-        if (isLoading) {
-        }
+        if (isLoading) return;
 
         try {
             const data = await toggleLike(targetId, targetType);
@@ -41,6 +39,9 @@ const Likebutton = ({ targetId, targetType, initialLikesCount = 0, initialIsLike
             setLikesCount(data.likesCount);
         } catch (err) {
             console.error("Likebutton: Failed to toggle like in component", err);
+            window.dispatchEvent(new CustomEvent('app:toast', {
+                detail: { type: 'error', message: err.message || 'Could not update like.' },
+            }));
         }
     };
 

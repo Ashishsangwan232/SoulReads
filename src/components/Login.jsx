@@ -15,13 +15,16 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
   const [showPassword, setShowPassword] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    if (submitting) return;
     setMessage({ text: '', type: '' });
+    setSubmitting(true);
 
     try {
       const result = await login(email, password, rememberMe);
@@ -34,15 +37,17 @@ const Login = () => {
         }, 1000);
 
       } else {
-        const errMsg =
-          result.message === 'Email not verified'
-            ? 'Please verify your email before logging in. Check your inbox.'
-            : result.message || 'Login failed.';
-        setMessage({ text: errMsg, type: 'error' });
+        // Match loosely rather than an exact string: the backend's actual message
+        // is "Please verify your email before logging in." (see API_REFERENCE.md),
+        // which is already clear -- so we just pass it through as-is instead of
+        // (previously) comparing against a string the backend never sends.
+        setMessage({ text: result.message || 'Login failed.', type: 'error' });
       }
     } catch (err) {
       setMessage({ text: 'Something went wrong. Please try again.', type: 'error' });
       console.error('Login error:', err);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -80,7 +85,9 @@ const Login = () => {
               </label>
               <Link to="/forgot-password">Forgot password?</Link>
             </S.FormOptions>
-            <S.AuthButton type="submit">Sign In</S.AuthButton>
+            <S.AuthButton type="submit" disabled={submitting}>
+              {submitting ? 'Signing in...' : 'Sign In'}
+            </S.AuthButton>
           </form>
 
           <div style={{ marginTop: '1rem' }}>
@@ -91,7 +98,11 @@ const Login = () => {
               New here? <Link to='/register'>Create account</Link>
             </S.RedirectLink>
             {message.text && (
-              <S.Message className={message.type === 'success' ? 'success' : 'error'}>
+              <S.Message
+                role="alert"
+                aria-live="polite"
+                className={message.type === 'success' ? 'success' : 'error'}
+              >
                 {message.text}
               </S.Message>
             )}
@@ -134,7 +145,12 @@ function PasswordInput({ label, id, value, onChange, show, toggle, required }) {
         required={required}
       />
       <label htmlFor={id}>{label}</label>
-      <S.PasswordToggle onClick={toggle}>
+      <S.PasswordToggle
+        as="button"
+        type="button"
+        onClick={toggle}
+        aria-label={show ? 'Hide password' : 'Show password'}
+      >
         {show ? <EyeOff size={18} /> : <Eye size={18} />}
       </S.PasswordToggle>
     </S.FloatingGroup>

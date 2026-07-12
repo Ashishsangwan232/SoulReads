@@ -51,7 +51,7 @@
     }
 
 }
-@media (max-width:786px) {
+@media (max-width:768px) {
     .postcardgrid-item-content h1 {
         font-size: 1.2rem;
     }

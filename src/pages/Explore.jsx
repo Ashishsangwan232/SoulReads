@@ -24,7 +24,7 @@ export default function Explore() {
   const filteredPosts = useMemo(() => {
     if (!searchTerm) return allposts;
     return fuse.search(searchTerm).map(result => result.item);
-  }, [searchTerm, fuse]);
+  }, [searchTerm, fuse, allposts]);
   if (loading) return <div className="featured-posts-message"><Loading /></div>;
   const Posterror = error?.message || error;
   if (error) return <p className="featured-posts-message featured-posts-error"><Loadingerror error={Posterror} /></p>;
@@ -40,9 +40,9 @@ export default function Explore() {
         <TagScroller align="center" onSearch={(term) => setSearchTerm(term)} />
 
         <div className="post-grid">
-          {filteredPosts.map((post, index) => (
+          {filteredPosts.map((post) => (
             <PostCard
-              key={index}
+              key={post._id}
               type={post.category}
               author={post.authorId?.username || "Unknown"}
               date={new Date(post.createdAt).toLocaleDateString('en-US', {
@@ -53,14 +53,11 @@ export default function Explore() {
               })}
               title={post.title}
               quote={extractPlainTextFromSlate(post.content, 60)}
-              // quote={post.content.replace(/&nbsp;/g, ' ').replace(/<[^>]+>/g, '').slice(0, 60) + "..."}
               excerpt={extractPlainTextFromSlate(post.content, 120)}
               likes={post.likesCount}
               commentsCount={post.commentsCount}
               postId={post._id}
               link={`/posts/${post._id}`}
-              error={error}
-              loading={loading}
             />
           ))}
         </div>

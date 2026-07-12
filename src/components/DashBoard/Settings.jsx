@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './settings.css';
-import axios from 'axios';
+import api, { getErrorMessage } from '../../services/api';
 import { AuthContext } from '../../context/AuthContext';
 import ThemeDropdown from '../Themetoggle/ThemeDropdown';
 
@@ -14,8 +14,6 @@ const Settings = ({ setSettingtab }) => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState({ type: '', text: '' });
-
-    const API_URL = import.meta.env.VITE_API_URL;
 
     const avatarOptions = [
         { key: 'oggy', label: 'Oggy', ext: 'jpg' },
@@ -83,18 +81,13 @@ const Settings = ({ setSettingtab }) => {
             }
 
             try {
-                const res = await axios.post(
-                    `${API_URL}/auth/change-password`,
-                    { oldPassword, newPassword },
-                    { withCredentials: true }
-                );
+                const res = await api.post('/auth/change-password', { oldPassword, newPassword });
                 setMessage({ type: 'success', text: res.data.message });
                 setOldPassword('');
                 setNewPassword('');
                 setConfirmPassword('');
             } catch (err) {
-                const msg = err.response?.data?.message || 'Error changing password';
-                setMessage({ type: 'error', text: msg });
+                setMessage({ type: 'error', text: getErrorMessage(err, 'Error changing password') });
             }
         }
 

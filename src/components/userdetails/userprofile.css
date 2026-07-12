@@ -34,6 +34,15 @@
     color: #333;
 }
 
+.userprofile-close-icon {
+    background: transparent;
+    border: none;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
 .userprofile-details {
     display: flex;
     gap: 1rem;

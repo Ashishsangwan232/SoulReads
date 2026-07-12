@@ -4,6 +4,7 @@ import React, { useMemo } from 'react';
 import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
+import DOMPurify from 'dompurify';
 
 // Renderer for inline formatting (bold, italic, etc.)
 const renderLeaf = ({ attributes, children, leaf }) => {
@@ -47,6 +48,12 @@ const renderElement = ({ attributes, children, element }) => {
 
 const RichTextViewer = ({ content }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
+  // Sanitize eagerly (unconditionally) so this hook is never called conditionally.
+  // Cheap no-op when `content` isn't ultimately rendered as HTML.
+  const safeHtml = useMemo(
+    () => DOMPurify.sanitize(typeof content === 'string' ? content : ''),
+    [content]
+  );
 
   const fallbackSlate = [
     {
@@ -78,10 +85,14 @@ const RichTextViewer = ({ content }) => {
   }
 
   if (isHtml) {
+    // Sanitize on render, not just on write: the backend sanitizes content at
+    // post-creation time, but this component has no way to verify that any
+    // given `content` prop passed through that path, so it can't assume the
+    // string is safe to inject as-is.
     return (
       <div
         className="html-viewer"
-        dangerouslySetInnerHTML={{ __html: content }}
+        dangerouslySetInnerHTML={{ __html: safeHtml }}
       />
     );
   }

@@ -3,14 +3,14 @@ import './loading.css';
 
 const Loading = () => {
   return (
-    <div class="loader">
+    <div className="loader">
       <p>loading</p>
-      <div class="words">
-        <span class="word">Posts</span>
-        <span class="word">Stories</span>
-        <span class="word">Reviews</span>
-        <span class="word">cards</span>
-        <span class="word">Posts</span>
+      <div className="words">
+        <span className="word">Posts</span>
+        <span className="word">Stories</span>
+        <span className="word">Reviews</span>
+        <span className="word">cards</span>
+        <span className="word">Posts</span>
       </div>
     </div>
   )

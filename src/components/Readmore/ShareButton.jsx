@@ -1,20 +1,28 @@
 import React from 'react';
+import { useUIFeedback } from '../UIFeedback/UIFeedbackProvider';
 
 const ShareButton = ({ title = 'Check this out!', text = 'This is amazing!', url = window.location.href }) => {
+  const { showToast } = useUIFeedback();
+
   const handleShare = async () => {
     if (navigator.share) {
       try {
-        await navigator.share({
-          title,
-          text,
-          url,
-        });
-        console.log('Shared successfully');
+        await navigator.share({ title, text, url });
       } catch (error) {
-        console.error('Error sharing:', error);
+        // AbortError fires when the user just closes the native share sheet — not a real failure.
+        if (error.name !== 'AbortError') {
+          console.error('Error sharing:', error);
+        }
       }
-    } else {
-      alert('Sharing not supported on this browser. Please copy the link manually.');
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(url);
+      showToast('Link copied to clipboard!', 'success');
+    } catch (error) {
+      console.error('Clipboard write failed:', error);
+      showToast('Sharing not supported on this browser. Please copy the link manually.', 'info');
     }
   };
 

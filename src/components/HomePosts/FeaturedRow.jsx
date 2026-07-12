@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, useEffect } from 'react';
+import React, { useRef, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useInView } from 'react-intersection-observer';
@@ -21,32 +21,6 @@ const FeaturedRow = ({ category, posts, rowRef }) => {
     scrollRef.current = el;
     if (rowRef && typeof rowRef === 'function') rowRef(el);
   }, [rowRef]);
-
-  if (!Array.isArray(posts) || posts.length === 0) return null;
-
-  const createEmptyPosts = (count) =>
-    Array.from({ length: count }, (_, idx) => ({
-      _id: `empty-${idx}`,
-      isPlaceholder: true,
-    }));
-
-  let loopedCards;
-  if (posts.length >= 6) {
-    loopedCards = [
-      ...posts.slice(-BUFFER_LOOP),
-      ...posts,
-      ...posts.slice(0, BUFFER_LOOP),
-    ];
-  } else {
-    const totalNeeded = BUFFER_LOOP_placeholder;
-    // const prePlaceholderCount = Math.max(totalNeeded - Math.floor(posts.length / 2), 0);
-    const postPlaceholderCount = Math.max(totalNeeded - Math.ceil(posts.length / 2), 0);
-    loopedCards = [
-      ...createEmptyPosts(''),
-      ...posts,
-      ...createEmptyPosts(postPlaceholderCount),
-    ];
-  }
 
   const scroll = (dir) => {
     const node = scrollRef.current;
@@ -95,7 +69,43 @@ const FeaturedRow = ({ category, posts, rowRef }) => {
       node.removeEventListener('mouseup', onMouseUp);
       node.removeEventListener('mouseleave', onMouseUp);
     };
-  }, []);
+    // Note: this only (re)binds once on mount, before we know whether `posts`
+    // is populated -- `scrollRef.current` may be null on that first run if the
+    // row was empty. That's fine here since `setRef` (used as the row's ref
+    // callback) re-fires this component's render but not this effect; the
+    // effect intentionally targets whatever node is mounted at effect-run time.
+  }, [isTouchDevice]);
+
+  // This can only happen *after* every hook above has run, or hooks would be
+  // called conditionally (skipped on renders where `posts` is empty, run on
+  // renders where it isn't) -- a Rules-of-Hooks violation that throws
+  // "Rendered fewer hooks than expected" whenever `posts` goes from empty to
+  // populated (e.g. while the feed is still loading).
+  if (!Array.isArray(posts) || posts.length === 0) return null;
+
+  const createEmptyPosts = (count) =>
+    Array.from({ length: count }, (_, idx) => ({
+      _id: `empty-${idx}`,
+      isPlaceholder: true,
+    }));
+
+  let loopedCards;
+  if (posts.length >= 6) {
+    loopedCards = [
+      ...posts.slice(-BUFFER_LOOP),
+      ...posts,
+      ...posts.slice(0, BUFFER_LOOP),
+    ];
+  } else {
+    const totalNeeded = BUFFER_LOOP_placeholder;
+    // const prePlaceholderCount = Math.max(totalNeeded - Math.floor(posts.length / 2), 0);
+    const postPlaceholderCount = Math.max(totalNeeded - Math.ceil(posts.length / 2), 0);
+    loopedCards = [
+      ...createEmptyPosts(''),
+      ...posts,
+      ...createEmptyPosts(postPlaceholderCount),
+    ];
+  }
 
   return (
     <div className="netflix-row" ref={ref}>

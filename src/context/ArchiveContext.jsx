@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react';
-import axios from 'axios';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import api, { getErrorMessage } from '../services/api';
 import { useMyPosts } from './MyPostsContext';
 
 const ArchiveContext = createContext();
@@ -8,27 +8,24 @@ export const ArchiveProvider = ({ children }) => {
   const { refreshMyPosts } = useMyPosts();
   const [loading, setLoading] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL;
-
-  const toggleArchive = async (postId) => {
+  const toggleArchive = useCallback(async (postId) => {
     try {
       setLoading(true);
-      const res = await axios.patch(`${API_URL}/posts/toggle-archive/${postId}`);
-
-      console.log(res.data.message); // Optional: show message to user via toast
-      // Refresh user's posts after archive toggle
+      const res = await api.patch(`/posts/toggle-archive/${postId}`);
       refreshMyPosts();
       return res.data;
     } catch (err) {
-      console.error('Error toggling archive:', err?.response?.data?.message || err.message);
+      console.error('Error toggling archive:', getErrorMessage(err));
       throw err;
     } finally {
       setLoading(false);
     }
-  };
+  }, [refreshMyPosts]);
+
+  const value = useMemo(() => ({ loading, toggleArchive }), [loading, toggleArchive]);
 
   return (
-    <ArchiveContext.Provider value={{ loading, toggleArchive }}>
+    <ArchiveContext.Provider value={value}>
       {children}
     </ArchiveContext.Provider>
   );

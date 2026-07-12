@@ -15,6 +15,11 @@ export default ({ mode }) => {
           // rewrite: (path) => path.replace(/^\/api/, '') // optional
         }
       }
-    }
+    },
+    test: {
+      environment: 'jsdom',
+      globals: true,
+      setupFiles: './src/test/setup.js',
+    },
   });
 }

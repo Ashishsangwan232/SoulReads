@@ -205,4 +205,7 @@ export const PasswordToggle = styled.span`
   color: #666;
   display: flex;
   align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
 `;

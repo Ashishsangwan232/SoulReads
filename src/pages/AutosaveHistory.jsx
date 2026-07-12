@@ -3,11 +3,13 @@ import { AuthContext } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import '../css/autosave-history.css';
 import { extractPlainTextFromSlate } from '../../utils/extractPlainTextFromSlate';
+import { useUIFeedback } from '../components/UIFeedback/UIFeedbackProvider';
 
 const AutosaveHistory = () => {
     const { user, loading } = useContext(AuthContext);
     const navigate = useNavigate();
     const [versions, setVersions] = useState([]);
+    const { showToast, confirm } = useUIFeedback();
 
     const userKey = !loading && user
         ? user.id || user.id || user.email || 'anonymous'
@@ -16,10 +18,10 @@ const AutosaveHistory = () => {
     // Redirect if not logged in
     useEffect(() => {
         if (!loading && !user) {
-            alert("You're not logged in.");
+            showToast("You're not logged in.", 'error');
             navigate('/login');
         }
-    }, [loading, user, navigate]);
+    }, [loading, user, navigate, showToast]);
 
     // Load autosaved versions
     useEffect(() => {
@@ -47,8 +49,10 @@ const AutosaveHistory = () => {
         setVersions(detailed.sort((a, b) => new Date(b.time) - new Date(a.time)));
     }, [userKey]);
 
-    const handleDelete = (keyToDelete) => {
+    const handleDelete = async (keyToDelete) => {
         if (!userKey) return;
+        const confirmed = await confirm('Delete this saved version? This cannot be undone.');
+        if (!confirmed) return;
         const indexKey = `autosave-${userKey}-index`;
         const updatedVersions = versions.filter((v) => v.key !== keyToDelete);
         setVersions(updatedVersions);
@@ -62,15 +66,16 @@ const AutosaveHistory = () => {
     const handleRestore = (version) => {
         if (!userKey) return;
         localStorage.setItem(`autosave-${userKey}`, JSON.stringify(version));
-        alert('Version restored! Now go back to the writing page.');
+        showToast('Version restored! Now go back to the writing page.', 'success');
         navigate('/writing');
     };
 
-    const handleClearAll = () => {
-        const isconfirm =window.confirm("All clear");
-        if(!isconfirm)return;
+    const handleClearAll = async () => {
         if (!userKey) return;
-        if (!window.confirm('Are you sure you want to delete all autosaved versions?')) return;
+        // Was previously two separate confirms in a row, the first with meaningless
+        // text ("All clear") -- consolidated into a single clear confirmation.
+        const confirmed = await confirm('Are you sure you want to delete all autosaved versions? This cannot be undone.');
+        if (!confirmed) return;
 
         const indexKey = `autosave-${userKey}-index`;
         versions.forEach((v) => localStorage.removeItem(v.key));

@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LikeButton from "../LikeButton/Likebutton";
-import { useLikeContext } from '../../context/Likecontext';
+import { useLikeContext } from '../../context/LikeContext';
 import './NewPostcard.css';
 import BookmarkButton from "../LikeButton/HeartButton";
 
-const NewPostcard = ({ type, author, date, title, quote, excerpt, link, likes, commentsCount, postId, error, loading,image,postt }) => {
+const NewPostcard = ({ type, author, date, title, quote, excerpt, link, likes, commentsCount, postId, image }) => {
 
     const { checkUserLikeStatus } = useLikeContext();
     const [isCurrentUserLiked, setIsCurrentUserLiked] = useState(false);
@@ -30,9 +30,7 @@ const NewPostcard = ({ type, author, date, title, quote, excerpt, link, likes, c
             fetchStatus();
         }
     }, [postId, likes, checkUserLikeStatus]);
-    // console.log("NewPostcard: postId:", postId, "likes:", likes, "isCurrentUserLiked:", isCurrentUserLiked);
-    console.log("post",image);
-    // console.log("post",postt);
+
     return (
         <>
             <div className='Nwpstcd-container'>
@@ -91,7 +89,7 @@ const NewPostcard = ({ type, author, date, title, quote, excerpt, link, likes, c
                         <div className="Nwpstcd-comment-count">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
-                                class="message-icon"
+                                className="message-icon"
                             ><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
                             </svg>
                             {commentsCount}

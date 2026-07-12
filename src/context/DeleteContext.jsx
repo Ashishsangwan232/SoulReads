@@ -1,5 +1,5 @@
-import axios from "axios";
-import { Children, createContext, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import api, { getErrorMessage } from "../services/api";
 import { useMyPosts } from "./MyPostsContext";
 import { AuthContext } from "./AuthContext";
 
@@ -12,57 +12,58 @@ export const DeleteProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const API_URL = import.meta.env.VITE_API_URL;
+    const softDelete = useCallback(async (postId) => {
+        try {
+            setLoading(true);
+            const res = await api.patch(`/posts/${postId}/soft-delete`);
+            refreshMyPosts();
+            return res.data;
+        } catch (err) {
+            console.error("Error deleting post:", getErrorMessage(err));
+            throw err;
+        } finally {
+            setLoading(false);
+        }
+    }, [refreshMyPosts]);
 
-    const softDelete = async (postId) => {
+    const hardDelete = useCallback(async (postId) => {
         try {
             setLoading(true);
-            const res = await axios.patch(`${API_URL}/posts/${postId}/soft-delete`);
-            console.log(res.data.message);
+            const res = await api.patch(`/posthard/${postId}/parmanentDeleted`);
             refreshMyPosts();
             return res.data;
         } catch (err) {
-            console.error("Error deleting post:", err?.response?.data?.message || err.message);
+            console.error("Error deleting post:", getErrorMessage(err));
             throw err;
         } finally {
             setLoading(false);
         }
-    };
-    const HardDelete = async (postId) => {
-        try {
-            setLoading(true);
-            const res = await axios.patch(`${API_URL}/posthard/${postId}/parmanentDeleted`);
-            console.log(res.data.message);
-            refreshMyPosts();
-            return res.data;
-        } catch (err) {
-            console.error("Error deleting post:", err?.response?.data?.message || err.message);
-            throw err;
-        } finally {
-            setLoading(false);
-        }
-    };
-    const fetchMyPostsDeleted = async () => {
+    }, [refreshMyPosts]);
+
+    const fetchMyPostsDeleted = useCallback(async () => {
         if (!user) return;
         try {
             setLoading(true);
-            const res = await axios.get(`${API_URL}/posts/me/Deleted`);
-            setMyPostsDeleted(res.data);
+            const res = await api.get('/posts/me/Deleted');
+            // API returns { posts: [...], pagination: {...} }, not a bare array.
+            setMyPostsDeleted(Array.isArray(res.data?.posts) ? res.data.posts : []);
         } catch (err) {
-            setError(err.response?.data?.message || 'Failed to fetch Deleted posts.')
+            setError(getErrorMessage(err, 'Failed to fetch Deleted posts.'));
         } finally {
             setLoading(false);
         }
-    };
-    useEffect(() => {
-        fetchMyPostsDeleted();
     }, [user]);
 
-    return (
-        <DeleteContext.Provider value={{ myPostsDeleted, loading, HardDelete, softDelete, refreshMyPosts: fetchMyPostsDeleted }}>
-            {children}
-        </DeleteContext.Provider>
+    useEffect(() => {
+        fetchMyPostsDeleted();
+    }, [fetchMyPostsDeleted]);
+
+    const value = useMemo(
+        () => ({ myPostsDeleted, loading, error, hardDelete, softDelete, refreshMyPosts: fetchMyPostsDeleted }),
+        [myPostsDeleted, loading, error, hardDelete, softDelete, fetchMyPostsDeleted]
     );
+
+    return <DeleteContext.Provider value={value}>{children}</DeleteContext.Provider>;
 };
 
 export const useDelete = () => useContext(DeleteContext);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api, { getErrorMessage } from '../services/api';
 import './AuthPassword.css'; 
 
 export default function ForgotPassword() {
@@ -12,7 +12,6 @@ export default function ForgotPassword() {
     return saved ? parseInt(saved, 10) : 0;
   });
 
-  const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
   const timerRef = useRef(null);
@@ -44,7 +43,7 @@ export default function ForgotPassword() {
 
     intervalRef.current = setInterval(async () => {
       try {
-        const res = await axios.post(`${API_URL}/auth/check-reset-status`, { email });
+        const res = await api.post('/auth/check-reset-status', { email });
         if (res.data.passwordRecentlyReset) {
           clearInterval(intervalRef.current);
           clearInterval(timerRef.current);
@@ -57,7 +56,7 @@ export default function ForgotPassword() {
     }, 2000);
 
     return () => clearInterval(intervalRef.current);
-  }, [email, cooldown, navigate, API_URL]);
+  }, [email, cooldown, navigate]);
 
   // Handle form submit
   const handleSubmit = async (e) => {
@@ -68,7 +67,7 @@ export default function ForgotPassword() {
     setMessage({});
 
     try {
-      const statusRes = await axios.post(`${API_URL}/auth/check-reset-status`, { email });
+      const statusRes = await api.post('/auth/check-reset-status', { email });
       if (statusRes.data.passwordRecentlyReset) {
         setMessage({
           type: 'error',
@@ -77,7 +76,7 @@ export default function ForgotPassword() {
         return;
       }
 
-      const res = await axios.post(`${API_URL}/auth/forgot-password`, { email });
+      const res = await api.post('/auth/forgot-password', { email });
       setMessage({ type: 'success', text: res.data.message });
 
       const expireAt = Math.floor(Date.now() / 1000) + 100;
@@ -85,8 +84,7 @@ export default function ForgotPassword() {
       setCooldown(100);
 
     } catch (err) {
-      const msg = err.response?.data?.message || 'Something went wrong';
-      setMessage({ type: 'error', text: msg });
+      setMessage({ type: 'error', text: getErrorMessage(err) });
     } finally {
       setLoading(false);
     }
@@ -121,7 +119,7 @@ export default function ForgotPassword() {
       </form>
 
       {message.text && (
-        <p className={message.type === 'error' ? 'error' : 'success'}>
+        <p role="alert" aria-live="polite" className={message.type === 'error' ? 'error' : 'success'}>
           {message.text}
         </p>
       )}

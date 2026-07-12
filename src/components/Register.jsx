@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { AuthContext } from '../context/AuthContext';
+import api, { getErrorMessage } from '../services/api';
 import Footer from './Footer';
 import ParticleBackground from './ParticleBackground';
 import { Eye, EyeOff } from 'lucide-react';
@@ -17,10 +16,9 @@ const Register = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const API_URL = import.meta.env.VITE_API_URL;
   const [message, setMessage] = useState({ text: '', color: '' });
-  const { setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handlechange = (e) => {
@@ -29,24 +27,20 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (submitting) return;
 
     if (form.password !== form.confirmPassword) {
       setMessage({ text: 'Passwords do not match.', color: 'crimson' });
       return;
     }
 
+    setSubmitting(true);
     try {
-      const response = await axios.post(
-        `${API_URL}/auth/signup`,
-        {
-          username: form.name,
-          email: form.email,
-          password: form.password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await api.post('/auth/signup', {
+        username: form.name,
+        email: form.email,
+        password: form.password,
+      });
 
       setMessage({
         text: response.data.message || 'Registered successfully. Please check your email to verify your account.',
@@ -59,9 +53,10 @@ const Register = () => {
         navigate('/login');
       }, 3000);
     } catch (error) {
-      const errMsg = error.response?.data?.message || 'Registration failed. Please try again.';
-      setMessage({ text: errMsg, color: 'crimson' });
-      console.error('Registration error:', error.response?.data);
+      setMessage({ text: getErrorMessage(error, 'Registration failed. Please try again.'), color: 'crimson' });
+      console.error('Registration error:', error);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -109,7 +104,9 @@ const Register = () => {
               required
             />
 
-            <S.AuthButton type="submit">Register</S.AuthButton>
+            <S.AuthButton type="submit" disabled={submitting}>
+              {submitting ? 'Registering...' : 'Register'}
+            </S.AuthButton>
           </form>
 
           <div style={{ marginTop: '1rem' }}>
@@ -117,7 +114,11 @@ const Register = () => {
               Already have an account? <Link to="/login">Login</Link>
             </S.RedirectLink>
             {message.text && (
-              <S.Message className={message.color === 'green' ? 'success' : 'error'}>
+              <S.Message
+                role="alert"
+                aria-live="polite"
+                className={message.color === 'green' ? 'success' : 'error'}
+              >
                 {message.text}
               </S.Message>
             )}
@@ -159,7 +160,12 @@ function PasswordInput({ label, id, value, onChange, show, toggle, required }) {
         required={required}
       />
       <label htmlFor={id}>{label}</label>
-      <S.PasswordToggle onClick={toggle}>
+      <S.PasswordToggle
+        as="button"
+        type="button"
+        onClick={toggle}
+        aria-label={show ? 'Hide password' : 'Show password'}
+      >
         {show ? <EyeOff size={18} /> : <Eye size={18} />}
       </S.PasswordToggle>
     </S.FloatingGroup>

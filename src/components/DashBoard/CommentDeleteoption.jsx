@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './optionmenu.css';
+import { useUIFeedback } from '../UIFeedback/UIFeedbackProvider';
 
 const CommentDeleteoption = ({ commentId, postId, deleteComment }) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
+  const { confirm, showToast } = useUIFeedback();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -47,9 +49,14 @@ const CommentDeleteoption = ({ commentId, postId, deleteComment }) => {
         <div className="further_options">
           <p
             className="delete-comment-btn"
-            onClick={() => {
+            onClick={async () => {
               setIsOpen(false);
-              deleteComment(commentId, postId);
+              const confirmed = await confirm('Are you sure you want to delete this comment?');
+              if (!confirmed) return;
+              const result = await deleteComment(commentId, postId);
+              if (result && !result.success) {
+                showToast(result.error || 'Could not delete comment.', 'error');
+              }
             }}
           >
             Delete
