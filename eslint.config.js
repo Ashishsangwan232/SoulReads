@@ -36,4 +36,15 @@ export default [
       ],
     },
   },
+  {
+    // Context files intentionally export both a Provider component and its
+    // paired useXyz() hook from the same file -- the standard React context
+    // pattern. This only costs dev-mode Fast Refresh granularity (editing a
+    // context file remounts more than just that component), which isn't worth
+    // splitting all of these into two files each to avoid.
+    files: ['src/context/**/*.{js,jsx}', 'src/components/UIFeedback/**/*.{js,jsx}'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
 ]

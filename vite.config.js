@@ -16,6 +16,23 @@ export default ({ mode }) => {
         }
       }
     },
+    build: {
+      rollupOptions: {
+        output: {
+          // Split vendor code by how often it tends to change, so returning
+          // visitors can reuse cached chunks instead of re-downloading
+          // everything after any app-code deploy. `firebase` is intentionally
+          // its own chunk since it's now dynamically imported (only logged-in
+          // users trigger it) rather than bundled into the eager app code.
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+            'vendor-firebase': ['firebase/app', 'firebase/messaging'],
+            'vendor-motion': ['framer-motion', 'gsap', 'aos'],
+            'vendor-editor': ['slate', 'slate-history', 'slate-react'],
+          },
+        },
+      },
+    },
     test: {
       environment: 'jsdom',
       globals: true,

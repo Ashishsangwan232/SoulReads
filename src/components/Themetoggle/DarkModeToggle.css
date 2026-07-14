@@ -106,3 +106,22 @@ body.blackviolet .darkmode-btn:hover {
 .moon-icon {
   stroke-width: 1.6;
 } */
+
+/* Actually used by this file's component (DarkModeToggle.jsx renders a
+   <select> with these two classes) -- restored from the now-deleted
+   "DarkModeToggle copy.css", which was the only place they were defined. */
+.theme-toggle-lap-container {
+  display: inline-block;
+  margin: 0 10px;
+  position: relative;
+  z-index: 999;
+}
+
+.theme-lap-selector {
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--bg-card);
+  color: var(--text-default);
+}
